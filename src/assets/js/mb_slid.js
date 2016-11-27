@@ -391,11 +391,11 @@ if (typeof Object.create !== "function") {
 
         buildControls : function () {
             var base = this;
-            if (base.options.navigation === true || base.options.pagination === true) {
+            if (base.options.navigation === true || base.options.Request === true) {
                 base.owlControls = $("<div class=\"owl-controls\"/>").toggleClass("clickable", !base.browser.isTouch).appendTo(base.$elem);
             }
-            if (base.options.pagination === true) {
-                base.buildPagination();
+            if (base.options.Request === true) {
+                base.buildRequest();
             }
             if (base.options.navigation === true) {
                 base.buildButtons();
@@ -435,13 +435,13 @@ if (typeof Object.create !== "function") {
             });
         },
 
-        buildPagination : function () {
+        buildRequest : function () {
             var base = this;
 
-            base.paginationWrapper = $("<div class=\"owl-pagination\"/>");
-            base.owlControls.append(base.paginationWrapper);
+            base.RequestWrapper = $("<div class=\"owl-Request\"/>");
+            base.owlControls.append(base.RequestWrapper);
 
-            base.paginationWrapper.on("touchend.owlControls mouseup.owlControls", ".owl-page", function (event) {
+            base.RequestWrapper.on("touchend.owlControls mouseup.owlControls", ".owl-page", function (event) {
                 event.preventDefault();
                 if (Number($(this).data("owl-page")) !== base.currentItem) {
                     base.goTo(Number($(this).data("owl-page")), true);
@@ -449,20 +449,20 @@ if (typeof Object.create !== "function") {
             });
         },
 
-        updatePagination : function () {
+        updateRequest : function () {
             var base = this,
                 counter,
                 lastPage,
                 lastItem,
                 i,
-                paginationButton,
-                paginationButtonInner;
+                RequestButton,
+                RequestButtonInner;
 
-            if (base.options.pagination === false) {
+            if (base.options.Request === false) {
                 return false;
             }
 
-            base.paginationWrapper.html("");
+            base.RequestWrapper.html("");
 
             counter = 0;
             lastPage = base.itemsAmount - base.itemsAmount % base.options.items;
@@ -473,31 +473,31 @@ if (typeof Object.create !== "function") {
                     if (lastPage === i) {
                         lastItem = base.itemsAmount - base.options.items;
                     }
-                    paginationButton = $("<div/>", {
+                    RequestButton = $("<div/>", {
                         "class" : "owl-page"
                     });
-                    paginationButtonInner = $("<span></span>", {
-                        "text": base.options.paginationNumbers === true ? counter : "",
-                        "class": base.options.paginationNumbers === true ? "owl-numbers" : ""
+                    RequestButtonInner = $("<span></span>", {
+                        "text": base.options.RequestNumbers === true ? counter : "",
+                        "class": base.options.RequestNumbers === true ? "owl-numbers" : ""
                     });
-                    paginationButton.append(paginationButtonInner);
+                    RequestButton.append(RequestButtonInner);
 
-                    paginationButton.data("owl-page", lastPage === i ? lastItem : i);
-                    paginationButton.data("owl-roundPages", counter);
+                    RequestButton.data("owl-page", lastPage === i ? lastItem : i);
+                    RequestButton.data("owl-roundPages", counter);
 
-                    base.paginationWrapper.append(paginationButton);
+                    base.RequestWrapper.append(RequestButton);
                 }
             }
-            base.checkPagination();
+            base.checkRequest();
         },
-        checkPagination : function () {
+        checkRequest : function () {
             var base = this;
-            if (base.options.pagination === false) {
+            if (base.options.Request === false) {
                 return false;
             }
-            base.paginationWrapper.find(".owl-page").each(function () {
+            base.RequestWrapper.find(".owl-page").each(function () {
                 if ($(this).data("owl-roundPages") === $(base.$owlItems[base.currentItem]).data("owl-roundPages")) {
-                    base.paginationWrapper
+                    base.RequestWrapper
                         .find(".owl-page")
                         .removeClass("active");
                     $(this).addClass("active");
@@ -530,7 +530,7 @@ if (typeof Object.create !== "function") {
 
         updateControls : function () {
             var base = this;
-            base.updatePagination();
+            base.updateRequest();
             base.checkNavigation();
             if (base.owlControls) {
                 if (base.options.items >= base.itemsAmount) {
@@ -626,10 +626,10 @@ if (typeof Object.create !== "function") {
                 base.isCss3Finish = false;
 
                 if (speed === true) {
-                    base.swapSpeed("paginationSpeed");
+                    base.swapSpeed("RequestSpeed");
                     window.setTimeout(function () {
                         base.isCss3Finish = true;
-                    }, base.options.paginationSpeed);
+                    }, base.options.RequestSpeed);
 
                 } else if (speed === "rewind") {
                     base.swapSpeed(base.options.rewindSpeed);
@@ -646,7 +646,7 @@ if (typeof Object.create !== "function") {
                 base.transition3d(goToPixel);
             } else {
                 if (speed === true) {
-                    base.css2slide(goToPixel, base.options.paginationSpeed);
+                    base.css2slide(goToPixel, base.options.RequestSpeed);
                 } else if (speed === "rewind") {
                     base.css2slide(goToPixel, base.options.rewindSpeed);
                 } else {
@@ -684,7 +684,7 @@ if (typeof Object.create !== "function") {
             base.prevArr.shift(0);
 
             if (base.prevItem !== base.currentItem) {
-                base.checkPagination();
+                base.checkRequest();
                 base.checkNavigation();
                 base.eachMoveUpdate();
 
@@ -726,8 +726,8 @@ if (typeof Object.create !== "function") {
             var base = this;
             if (action === "slideSpeed") {
                 base.$owlWrapper.css(base.addCssSpeed(base.options.slideSpeed));
-            } else if (action === "paginationSpeed") {
-                base.$owlWrapper.css(base.addCssSpeed(base.options.paginationSpeed));
+            } else if (action === "RequestSpeed") {
+                base.$owlWrapper.css(base.addCssSpeed(base.options.RequestSpeed));
             } else if (typeof action !== "string") {
                 base.$owlWrapper.css(base.addCssSpeed(action));
             }
@@ -1462,7 +1462,7 @@ if (typeof Object.create !== "function") {
         itemsScaleUp : false,
 
         slideSpeed : 200,
-        paginationSpeed : 800,
+        RequestSpeed : 800,
         rewindSpeed : 1000,
 
         autoPlay : false,
@@ -1473,8 +1473,8 @@ if (typeof Object.create !== "function") {
         rewindNav : true,
         scrollPerPage : false,
 
-        pagination : true,
-        paginationNumbers : false,
+        Request : true,
+        RequestNumbers : false,
 
         responsive : true,
         responsiveRefreshRate : 200,

@@ -14,6 +14,8 @@ import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 import './assets/css/base.css';
 import './assets/css/index.css';
+import './assets/css/list.css';
+import './assets/css/complex.css';
 import getRoutes from './routes';
 
 const client = new ApiClient();

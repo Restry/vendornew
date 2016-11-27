@@ -42,7 +42,7 @@
 .rz-bj{background:url(../images/rz-txt-bj.jpg) top center no-repeat;}
 .actionWrap.rz-bj .tit h1{color:#fff;}
 .rz-txt-list{zoom:1; overflow:hidden; margin-left:-80px;}
-.rz-txt-list li{width:200px; height:280px; background:rgba(255,255,255,.2); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCffffff', endColorstr='#CCffffff'); float:left; margin-left:80px; _margin-left:40px; padding:20px;} 
+.rz-txt-list li{width:200px; height:280px; background:rgba(255,255,255,.2); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCffffff', endColorstr='#CCffffff'); float:left; margin-left:80px; _margin-left:40px; padding:20px;}
 .actionWrap.rz-bj .con{color:#fff;}
 .actionWrap.rz-bj .con h3{font-size:16px; padding:0 0 10px 0;}
 .actionWrap.rz-bj .con p{padding:5px 0; line-height:20px;}
@@ -64,7 +64,7 @@
 .IndustryBan .bd li a{display:block;background-size:auto;}
 .IndustryBan .indBanImg .banner-btn{width:820px;position:absolute;top:80px; left:50%; margin-left:-545px;}
 .IndustryBan .indBanImg .banner-btn a{display:none;width:29px;height:47px;position:absolute;top:50px;}
-.IndustryBan .indBanImg .banner-btn a.prev{left:0;background:url(../images/egc-icon.png) no-repeat 0 0;} 
+.IndustryBan .indBanImg .banner-btn a.prev{left:0;background:url(../images/egc-icon.png) no-repeat 0 0;}
 .IndustryBan .indBanImg .banner-btn a.next{right:0;background:url(../images/egc-icon.png) no-repeat -30px 0;}
 .IndustryBan .hd {width:820px;position:absolute;top:200px; left:50%; margin-left:-350px; text-align:center;}
 .IndustryBan .hd ul{zoom:1; text-align:center;}
@@ -116,7 +116,7 @@
 .zskf-info .tabs em{color:#333;}
 .zskf-info .tabs span.tel{font-family:Arial; font-size:20px; display:block;}
 .r-con-s{position:relative;}
-.r-con-s .tab{height:24px; background:url(../images/app-d.png) no-repeat; overflow:hidden; padding-left:30px; margin:10px 0 0 0;}
+.r-con-s .tab{height:24px; overflow:hidden; padding-left:30px; margin:10px 0 0 0;}
 .r-con-s .tab a{line-height:30px;  color:#787878;}
 .r-con-s .tab em{font-family:Arial; }
 .r-con-s .tab a:hover{color:#2ea7e4; text-decoration:underline;}
@@ -155,7 +155,7 @@
 .activityBox .title .next{right:10px;background-position:-35px -345px;}
 .activityBox .title .prev:hover{background-position:-86px -345px;}
 .activityBox .title .next:hover{background-position:-69px -345px;}
-.activityBox .leftZone, .activityBox .rightZone{background:url(../subject/images/index_main.png) 0 0 no-repeat;width:8px;height:8px;font-size:0;display:block;position:absolute;top:0;}
+.activityBox .leftZone, .activityBox .rightZone{ width:8px;height:8px;font-size:0;display:block;position:absolute;top:0;}
 .activityBox .leftZone{background-position:-103px -345px;left:0;}
 .activityBox .rightZone{background-position:-114px -345px;right:0;}
 .activityBox .content .contentInner ul li dl dd{padding:7px 0 5px 0; border-top:1px dashed #dcdcdc; line-height:24px; height:48px;}
@@ -233,8 +233,6 @@
 .supper-app .con.sup .smbox.list6-ek h2{color:#694a2e;}
 
 .appdown-tit{height:267px; overflow:hidden; clear:both;}
-.appdown-tit.sup{background:url(../images/appdown-sup-tit.jpg) top center no-repeat;}
-.appdown-tit.hy{background:url(../images/appdown-hy-tit.jpg) top center no-repeat;}
 .appdown-tit .txt,.appdown-tit .down{padding:53px; color:#fff;}
 .appdown-tit .txt h3{font-size:45px; padding:25px 0; }
 .appdown-tit .txt p{font-size:30px; color:#ffe29c;}
@@ -367,8 +365,8 @@
 .customMade{width:700px; height:370px; padding:50px; left:50%; top:50%; margin:-215px auto auto -400px; position:fixed;  z-index:3002;  background:rgba(0,102,153,.9); filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#19006699', endColorstr='#19006699'); border:4px solid #fff;}
 .customMade .upMade{width:290px; float:left; border-right:1px solid #076fa2; padding-right:49px;}
 .customMade .upBtnBox{margin:0; position:relative;}
-.customMade .upBtnBox a{display:block; width:282px; height:49px; background:url(../images/uoploadbtn.jpg) no-repeat;}
-.customMade .upBtnBox a:hover{background:url(../images/uoploadbtn.jpg) 0 -49px no-repeat;}
+.customMade .upBtnBox a{display:block; width:282px; height:49px; }
+.customMade .upBtnBox a:hover{ }
 .customMade .upBtnBox .direction{ position:absolute; left:300px; top:-5px;}
 .customMade .upBtnBox a p{color:#82bddb; padding:3px 0 0 0;}
 .customMade .areaMade{margin:0;}
@@ -408,9 +406,8 @@
 
 
 .dz-pop-con a.h-des{display:block; height:30px; padding-top:8px; width:100px; line-height:30px; padding-right:25px; color:#7f7f7f; text-align:center;  overflow:hidden; position:relative;}
-.dz-pop-con a.h-des i{position:absolute; right:0; top:15px; width:15px; height:15px; background:url(../images/qh-icon.png) 0 0 no-repeat;}
+.dz-pop-con a.h-des i{position:absolute; right:0; top:15px; width:15px; height:15px;  }
 .dz-pop-con a.h-des:hover{color:#ff7800;}
-.dz-pop-con a.h-des:hover i{background:url(../images/qh-icon.png) 0 -15px no-repeat;}
 .customMade .desMade .direction{color:#9f9f9f; text-align:center; padding:20px 0 0  0;}
 
 
@@ -458,8 +455,8 @@
 .reg-ct-con{font-size:12px; line-height:24px; color:#333; padding-bottom:20px; min-height:600px; height:100%; _height:600px;}
 .articleList{padding:0; margin:0; zoom:1;}
 .articleList li{border-bottom:1px dotted #e5e5e5; height:40px; clear:both; overflow:hidden;}
-.articleList li a{color:#666; font-size:14px; background:url(../images/icon-article.png) 5px 8px no-repeat; padding-left:15px; line-height:40px;}
-.articleList li a:hover{color:#0174b3; background:url(../images/icon-article2.png) 5px 8px no-repeat;}
+.articleList li a{color:#666; font-size:14px;   padding-left:15px; line-height:40px;}
+.articleList li a:hover{color:#0174b3;  }
 .articleList li span{float:right; line-height:40px; color:#ccc; font-size:14px; padding-right:5px;}
 .helpListWrap{width:120px;height:100%;border-right:1px solid #e0e0e0; color:#333;font-size:14px; margin-bottom:-10000px; padding-bottom:10000px;}
 .hp-list{width:120px;margin:5px 0;}
@@ -518,14 +515,14 @@
 .newsList .imglist_w{height:180px;width:310px;overflow:hidden;position:relative;/*必要元素*/}
 .newsList .imglist_w ul{height:20000px; width:294px; position:absolute;left:0px;top:0px;}
 .newsList .imglist_w li{width:294pxs; height:30px; padding:0 0 0 30px; margin:0; position:relative; clear:both; overflow:hidden;}
-.newsList .imglist_w li i{position:absolute; left:0; _left:-30px; top:8px; width:20px; height:16px; background-image:url(../images/mun.gif); color:#333; background-repeat:no-repeat; background-position:0 -16px; text-align:center; line-height:16px; font-size:12px;}
+.newsList .imglist_w li i{position:absolute; left:0; _left:-30px; top:8px; width:20px; height:16px;   color:#333; background-repeat:no-repeat; background-position:0 -16px; text-align:center; line-height:16px; font-size:12px;}
 .newsList .imglist_w li span{float:right; color:#666; line-height:30px;}
 .newsList .imglist_w li i.sec{background-position:0 0; color:#fff;}
 .newsList .imglist_w li a{line-height:30px; color:#333; font-size:14px; display:block; float:left;}
 .newsList .imglist_w li a:hover{color:#0174b3}
 
 .newsList a.aright,.newsList a.aleft{width:41px; height:25px; display:block; position:absolute; top:10px; border:1px solid #e6e6e6; background:#fff;}
-.newsList a.aright i,.newsList a.aleft i{width:11px; height:7px; background:url(../images/up-dwom.png) no-repeat; left:15px; top:9px; position:absolute;}
+.newsList a.aright i,.newsList a.aleft i{width:11px; height:7px;  left:15px; top:9px; position:absolute;}
 .newsList a.aright{right:18px;}
 .newsList a.aright i{background-position:0 -11px;}
 .newsList a.aleft{right:60px;}
@@ -579,7 +576,7 @@
 .pageBtn span.disabled ,.pageBtn span.current{color: #C3C3C3; border: 1px solid #F0F0F0;}
 .pageBtn span {padding: 5px 10px; font-size: 14px; color: #ABABAB; margin: 0 0px;}
 .pageBtn span.prev, .pageBtn span.next, .pageBtn span.current {cursor: default; }
-.pageBtn a:hover, .pageBtn a.prev:hover, .pageBtn a.next:hover, .pageBtn a.btn-skipsearch:hover {background: #ff7800; color: #fff; border: 1px solid #ff7800; transition: 0.3s ease; -moz- transition:0.3s ease; -webkit- transition:0.3s ease; }
+.pageBtn a:hover, .pageBtn a.prev:hover, .pageBtn a.next:hover, .pageBtn a.btn-skipsearch:hover {background: #ff7800; color: #fff; border: 1px solid #ff7800; transition: 0.3s ease; -moz-transition:0.3s ease; -webkit-transition:0.3s ease; }
 .pageBtn span.page-skip { border: 0; }
 .pageBtn span.noneb { border: 0; cursor: default; }
 .jumpto { width: 32px; height: 16px; margin: -2px 2px 0; line-height: 16px; font-size: 14px; color: #999; text-align: center; vertical-align: middle; border: 1px solid #ccc; padding:5px 0;}
@@ -594,8 +591,8 @@
 .search-fac-rela img{display:block; width:70px; height:70px;}
 .search-fac-rela .name{height:32px; line-height:16px; overflow:hidden; color:#02659c; text-decoration:underline; padding:0 5px; display:block;}
 
-.rela-ruzhu{background:url(../upload/rizhu.jpg) right bottom no-repeat; height:190px;}
-.rela-renzheng{background:url(../upload/renzheng.jpg) right bottom no-repeat; height:190px;}
+.rela-ruzhu{  height:190px;}
+.rela-renzheng{  height:190px;}
 .rela-title{padding:20px 0; font-size:18px; color:#4d4d4d;}
 .rela-tit-small{font-size:12px; padding:0 0 20px 0; color:#a5a5a5; line-height:24px;}
 
@@ -694,7 +691,7 @@
 .mainCoupon{margin:20px auto; background:#fff; padding:50px; width:1100px; zoom:1; overflow:hidden;}
 .boxCoupon{width:1200px;}
 .boxCoupon .couponItems{width:290px; padding:20px; background-image:url(../images/e.png); background-position:left bottom; background-repeat:no-repeat; color:#fff; zoom:1; overflow:hidden; border:5px solid #f2f2f2; float:left; margin:0 40px 30px 0; position:relative;}
-.boxCoupon .couponItems .ylq-coup{width:125px; height:58px; background:url(../images/ylq.png) no-repeat; _background:url(../images/ylq.gif) no-repeat; position:absolute; left:160px; top:50px;}
+.boxCoupon .couponItems .ylq-coup{width:125px; height:58px;   position:absolute; left:160px; top:50px;}
 .boxCoupon .couponItems .numcoup{width:120px; height:80px; float:left; text-align:center;}
 .boxCoupon .couponItems .numcoup span{font-size:30px; font-weight:700;}
 .boxCoupon .couponItems .numcoup em{font-family:Arial; font-size:60px; font-weight:700; line-height:80px;}

@@ -190,9 +190,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7f7f7", endC
 #owl-demo b{position:absolute;left:0;bottom:0;width:100%;height:40px;background-color:#000;opacity:.3;filter:alpha(opacity=30);-moz-opacity: 0.3;-khtml-opacity: 0.3;}
 #owl-demo span{position:absolute;left:0;bottom:10px;width:100%;font:12px/26px "微软雅黑","黑体";color:#fff; padding-left:10px;}
 
-.owl-pagination{position:absolute;left:0;bottom:5px;width:100%;height:5px;text-align:center; padding-left:10px;}
+.owl-Request{position:absolute;left:0;bottom:5px;width:100%;height:5px;text-align:center; padding-left:10px;}
 .owl-page{display:block;width:5px;height:5px;margin:0 2px;background-image:url(../images/bg15.png);*display:inline;*zoom:1; float:left;}
-.owl-pagination .active{width:13px;background-image:url(../images/bg16.png);}
+.owl-Request .active{width:13px;background-image:url(../images/bg16.png);}
 .owl-buttons{display:none;}
 .owl-buttons div{position:absolute;top:50%;width:25px;height:50px;margin-top:-40px;text-indent:-9999px;}
 .owl-prev{left:0;background-image:url(../images/bg17.png);}
