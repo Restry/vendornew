@@ -2,8 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { List } from 'immutable';
 import { connect } from 'react-redux';
-
-import './Request.scss';
+ 
 
 function paginate(list, page, pageSize) {
   return list.skip((page - 1) * pageSize).take(pageSize);
