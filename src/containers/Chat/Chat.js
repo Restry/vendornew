@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 @connect(
   state => ({user: state.auth.user})
 )
-export default class Chat extends Component {
+export default class Register extends Component {
 
   static propTypes = {
     user: PropTypes.object
@@ -50,18 +50,18 @@ export default class Chat extends Component {
   }
 
   render() {
-    const styles = {};// require('./Chat.scss');
+    const styles = {};// require('./Register.scss');
     const {user} = this.props;
 
     return (
-      <div className={style.chat + ' container'}>
-        <h1 className={style}>Chat</h1>
+      <div className={style.Register + ' container'}>
+        <h1 className={style}>Register</h1>
 
         {user &&
         <div>
           <ul>
           {this.state.messages.map((msg) => {
-            return <li key={`chat.msg.${msg.id}`}>{msg.from}: {msg.text}</li>;
+            return <li key={`Register.msg.${msg.id}`}>{msg.from}: {msg.text}</li>;
           })}
           </ul>
           <form className="login-form" onSubmit={this.handleSubmit}>
