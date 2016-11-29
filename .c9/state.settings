@@ -75,15 +75,15 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 7,
+            "@document": 8,
             "@form": 5,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 6,
-            "@tab": 1,
+            "@session": 7,
+            "@tab": 5,
             "@tree": 2,
-            "@undoManager": 7,
+            "@undoManager": 8,
             "@welcome": 1
         }
     },
@@ -147,7 +147,7 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/webpack/webpack-dev-server.js",
+            "focus": "tab1",
             "meta": {
                 "accessList": [
                     "tab6",
@@ -181,8 +181,7 @@
                     "name": "tab6",
                     "path": "/webpack/webpack-dev-server.js",
                     "className": [
-                        "tab6",
-                        "focus"
+                        "tab6"
                     ],
                     "document": {
                         "changed": false,
@@ -205,7 +204,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/package.json"
+            "/.gitignore"
         ]
     }
 }
