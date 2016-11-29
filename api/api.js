@@ -2,7 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import config from '../src/config';
 import * as actions from './actions/index';
-import {mapUrl} from 'utils/url.js';
+import { mapUrl } from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 // import SocketIo from 'socket.io';
@@ -36,7 +36,7 @@ mongoose.connect(config.db);
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
-  console.log('Open connection at : '+(new Date()).toLocaleString());
+  console.log('Open connection at : ' + (new Date()).toLocaleString());
 });
 
 // EXPRESS CONFIG
@@ -60,8 +60,8 @@ app.use((req, res) => {
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
-    action(req, params,app)
-      .then((result) => {``
+    action(req, params, app)
+      .then((result) => {
         if (result instanceof Function) {
           result(res);
         } else {

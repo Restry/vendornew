@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { List } from 'immutable';
 import { connect } from 'react-redux';
- 
+import {Link } from 'react-router';
 
 function paginate(list, page, pageSize) {
   return list.skip((page - 1) * pageSize).take(pageSize);
@@ -220,7 +220,7 @@ export function Request() {
             </div>
             <div className="clearfix"></div>
           </div>
-          <div className="xqzbBtnBox"><a className="fbxqBtn btn">立即发布需求</a></div>
+          <div className="xqzbBtnBox"><Link to="postRequest" className="fbxqBtn btn">立即发布需求</Link></div>
         </div>
         <div className="proRecommend suj">
           <div className="tit"><span>猜你喜欢</span><em>根据您的喜好精心为您推荐！</em><a className="cutover fr">换一批</a>

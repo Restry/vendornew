@@ -13,6 +13,7 @@ import {
   Survey,
   NotFound,
   Request,
+  PostRequest
 } from 'containers';
 
 export default (store) => {
@@ -39,6 +40,7 @@ export default (store) => {
   return (
     <Route>
 
+      <Route path="postRequest" component={PostRequest} />
       <Route path="register" component={Register} />
       <Route path="/" component={App}>
         { /* Home (main) route */}

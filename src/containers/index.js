@@ -9,3 +9,4 @@ export LoginSuccess from './LoginSuccess/LoginSuccess';
 export Survey from './Survey/Survey';
 export NotFound from './NotFound/NotFound';
 export Request from './Request/Request';
+export PostRequest from './Request/postRequest';

@@ -70,7 +70,8 @@ export default class App extends Component {
                 <Link to="/login"> 立即登录 </Link>
               </span>}
 
-              {user && <span className={styles.loggedInMessage + ' navbar-text'}><strong>{user.name}</strong>您好！<a onClick={this.handleLogout}>退出</a></span>}
+              {user && <span className={styles.loggedInMessage + ' navbar-text'}><strong>{user.name}</strong></span>}
+              {user && <span>您好！<a onClick={this.handleLogout}>退出</a></span>}
 
               <Link to="404">客服中心</Link>
               <Link to="404">帮助中心</Link>

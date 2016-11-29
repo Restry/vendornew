@@ -7,7 +7,7 @@ export default function login(req,params,app) {
   // add back the password field for this query
   var query = User.findOne({
     email: req.body.email
-  }).select('_id email +password nickname');
+  }).select('_id email +password name');
 
   return new Promise((resolve, reject) => {
 
