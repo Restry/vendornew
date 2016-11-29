@@ -57,7 +57,7 @@ export default class App extends Component {
 
   render() {
     const {user} = this.props;
-     const styles =  require('./App.scss');
+    const styles = require('./App.scss');
 
     return (
       <div>
@@ -87,8 +87,9 @@ export default class App extends Component {
                   {config.app.title}
                   &nbsp;&nbsp;&nbsp;&nbsp;一件起订</span></div>
               <div className="hd-nav facade"> <a href="#" className="on">我的库</a>
-                <a href="#">模板中心<em>new<s></s></em></a> <a href="#">交易数据</a>
+                <a href="#">模板中心<em>new<s></s></em></a>
 
+                <Link to="hello">交易数据</Link>
                 <Link to="Register">行业专属</Link>
                 <Link to="Request">需求招标</Link>
                 <div className="clearfixfix"></div>
