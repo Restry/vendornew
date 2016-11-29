@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
   console.log(`[API Request]:${req.url}`);
-  console.log(`[API Session]:${JSON.stringify(req.session)}`);
+  //console.log(`[API Session]:${JSON.stringify(req.session)}`);
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {

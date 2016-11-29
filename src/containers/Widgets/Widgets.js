@@ -44,7 +44,7 @@ export default class Widgets extends Component {
     if (loading) {
       refreshClassName += ' fa-spin';
     }
-     const styles = {};// require('./Widgets.scss');
+     const styles =  require('./Widgets.scss');
     return (
       <div className={styles.widgets + ' container'}>
         <h1>

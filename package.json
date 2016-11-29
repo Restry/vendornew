@@ -81,7 +81,7 @@
       "env": {
         "UV_THREADPOOL_SIZE": 100,
         "NODE_PATH": "./src",
-        "PORT": 3000,
+        "PORT": 3001,
         "APIPORT": 3030
       }
     },

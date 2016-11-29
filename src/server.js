@@ -89,6 +89,7 @@ app.use((req, res) => {
       res.status(500);
       hydrateOnClient();
     } else if (renderProps) {
+      console.log(`Attached : ${req.originalUrl}`);
       loadOnServer({...renderProps, store, helpers: {client}}).then(() => {
         const component = (
           <Provider store={store} key="provider">
@@ -104,6 +105,7 @@ app.use((req, res) => {
           ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store}/>));
       });
     } else {
+      console.log(`[Attach Not found] : ${req.originalUrl}`);
       res.status(404).send('Not found');
     }
   });

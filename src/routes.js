@@ -1,18 +1,19 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
-    App,
-    Chat,
-    Home,
-    Widgets,
-    About,
-    Login,
-    LoginSuccess,
-    Survey,
-    NotFound,
-    Request,
-  } from 'containers';
+  App,
+  Register,
+  Home,
+  Widgets,
+  About,
+  Login,
+  Hello,
+  LoginSuccess,
+  Survey,
+  NotFound,
+  Request,
+} from 'containers';
 
 export default (store) => {
   const requireLogin = (nextState, replace, cb) => {
@@ -36,25 +37,30 @@ export default (store) => {
    * Please keep routes in alphabetical order
    */
   return (
-    <Route path="/" component={App}>
-      { /* Home (main) route */ }
-      <IndexRoute component={Home}/>
+    <Route>
 
-      { /* Routes requiring login */ }
-      <Route onEnter={requireLogin}>
-        <Route path="chat" component={Chat}/>
-        <Route path="loginSuccess" component={LoginSuccess}/>
+      <Route path="register" component={Register} />
+      <Route path="/" component={App}>
+        { /* Home (main) route */}
+        <IndexRoute component={Home} />
+
+        { /* Routes requiring login */}
+        <Route onEnter={requireLogin}>
+          <Route path="loginSuccess" component={LoginSuccess} />
+        </Route>
+
+        { /* Routes */}
+        <Route path="about" component={About} />
+        <Route path="hello" component={Hello} />
+        <Route path="login" component={Login} />
+        <Route path="request" component={Request} />
+        <Route path="survey" component={Survey} />
+        <Route path="widgets" component={Widgets} />
+
+        { /* Catch all route */}
+        <Route path="*" component={NotFound} status={404} />
       </Route>
 
-      { /* Routes */ }
-      <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
-      <Route path="Request" component={Request}/>
-      <Route path="survey" component={Survey}/>
-      <Route path="widgets" component={Widgets}/>
-
-      { /* Catch all route */ }
-      <Route path="*" component={NotFound} status={404} />
     </Route>
   );
 };
