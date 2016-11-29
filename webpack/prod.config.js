@@ -30,13 +30,7 @@ module.exports = {
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: '/dist/'
   },
-  
-  externals: {
-    moment: true,
-    antd: true,
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
+
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},

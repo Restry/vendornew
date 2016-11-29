@@ -80,12 +80,12 @@ module.exports = {
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: 'http://' + host + ':' + port + '/dist/'
   },
-  externals: {
-    moment: true,
-    antd: true,
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
+  // externals: {
+  //   moment: true,
+  //   antd: true,
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM'
+  // },
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery)] },

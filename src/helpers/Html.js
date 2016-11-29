@@ -35,11 +35,6 @@ export default class Html extends Component {
 
           <link rel="shortcut icon" href="/favicon.ico" />
 
-          <script src="//cdn.bootcss.com/react/15.0.2/react.js"></script>
-          <script src="//cdn.bootcss.com/react/15.0.2/react-dom.js"></script>
-
-          <script src="//cdn.bootcss.com/antd/2.2.0/antd.js"></script>
-          <script src="//cdn.bootcss.com/moment.js/2.16.0/moment-with-locales.min.js"></script>
 
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
