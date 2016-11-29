@@ -1,7 +1,83 @@
-export default function login(req) {
-  const user = {
-    name: req.body.name
-  };
-  req.session.user = user;
-  return Promise.resolve(user);
+import { User } from './dbSchema';
+let jwt = require('jsonwebtoken');
+import utils from 'utils/pwd.js';
+
+export default function login(req,params,app) {
+
+  // add back the password field for this query
+  var query = User.findOne({
+    email: req.body.email
+  }).select('_id email +password nickname');
+
+  return new Promise((resolve, reject) => {
+
+    query.exec(function (err, user) {
+      if (err) reject(err);
+
+      if (!user) {
+        reject({
+          success: false,
+          message: 'No user with that email'
+        });
+      } else if (user) {
+        // check password
+        utils.comparePwd(req.body.password, user.password).then(function (isMatch) {
+          if (!isMatch) {
+            reject({
+              success: false,
+              message: 'Wrong password'
+            });
+          } else {
+            user.password = undefined;
+            // create token
+            var token = jwt.sign(user, app.get('superSecret'), {
+              expiresInminutes: 1440
+            });
+
+            var userIdentity = {
+              success: true,
+              message: 'Successfully authenticated!',
+              token: token,
+              user: user
+            };
+            req.session.user = userIdentity.user;
+            // send token
+            resolve(userIdentity);
+          }
+        });
+      }
+    });
+
+  });
+}
+
+
+// middleware
+function authenticate(req, res, next) {
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  console.log(req.headers);
+  if (token) {
+
+    // verify token validity
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        return res.json({
+          success: false,
+          message: 'Failed to authenticate token.'
+        });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+
+  } else {
+
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+
+  }
 }

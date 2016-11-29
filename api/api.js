@@ -1,20 +1,26 @@
 import express from 'express';
 import session from 'express-session';
-import bodyParser from 'body-parser';
 import config from '../src/config';
 import * as actions from './actions/index';
 import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
-import SocketIo from 'socket.io';
+// import SocketIo from 'socket.io';
+
+let mongoose = require('mongoose'),
+  bodyParser = require('body-parser'),
+  cookieParser = require('cookie-parser'),
+  methodOverride = require('method-override'),
+  expressJwt = require('express-jwt'),
+  morgan = require('morgan'),
+  cors = require('cors');
 
 const pretty = new PrettyError();
 const app = express();
-
 const server = new http.Server(app);
 
-const io = new SocketIo(server);
-io.path('/ws');
+// const io = new SocketIo(server);
+// io.path('/ws');
 
 app.use(session({
   secret: 'react and redux rule!!!!',
@@ -22,7 +28,29 @@ app.use(session({
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }));
+
+
+// ENVIRONMENT CONFIG
+
+mongoose.connect(config.db);
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  console.log('Open connection at : '+(new Date()).toLocaleString());
+});
+
+// EXPRESS CONFIG
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(express.static(__dirname + '/public'));
+app.use(morgan('dev'));
+
+// JWT config
+let jwtSecret = 'thupers3crT$12';
+app.set('superSecret', jwtSecret);
 
 
 app.use((req, res) => {
@@ -32,8 +60,8 @@ app.use((req, res) => {
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
-    action(req, params)
-      .then((result) => {
+    action(req, params,app)
+      .then((result) => {``
         if (result instanceof Function) {
           result(res);
         } else {
@@ -66,7 +94,7 @@ if (config.apiPort) {
     console.info('==> 💻  Send requests to http://%s:%s', config.apiHost, config.apiPort);
   });
 
-  io.on('connection', (socket) => {
+  /*io.on('connection', (socket) => {
     socket.emit('news', {msg: `'Hello World!' from server`});
 
     socket.on('history', () => {
@@ -86,7 +114,7 @@ if (config.apiPort) {
       io.emit('msg', data);
     });
   });
-  io.listen(runnable);
+  io.listen(runnable);*/
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
 }

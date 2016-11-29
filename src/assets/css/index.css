@@ -112,7 +112,7 @@ transition:1s ease;
 .ind-dz-lc .arrow-l{width:24px; height:13px; background:url(../images/arror-w.png) no-repeat; position:absolute; left:0; top:102px; *top:132px; /*IE7*/}
 .ind-dz-lc .arrow-r{width:24px; height:15px; background:url(../images/arror-t.png) no-repeat; position:absolute; right:0; top:102px; *top:132px; /*IE7*/}
 
-/* 关于易工场 */
+/* 关于诚宝通 */
 .mac-ban{width:416px; height:250px; padding:18px 112px 129px 20px; background:url(../images/mac-bj.png) no-repeat; position:relative; margin-left:100px;}
 .mob-ban{width:117px; height:186px; padding:37px 10px 71px 12px; background:url(../images/mob.png) no-repeat; position:absolute; left:0; top:150px; z-index:100;}
 .abt-ind-box{width:610px; height:367px; position:absolute; right:0; top:30px;}

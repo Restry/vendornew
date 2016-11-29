@@ -65,15 +65,15 @@ export default class App extends Component {
         <div className="egc-top">
           <div className="m-cnt">
             <div className="egc-menu">
-              <span>
-                <a href="#" className="zc-top">免费注册</a>|
-          {!user && <Link to="/login"> 立即登录 </Link>}
-              </span>
-              {user && <span className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</span>}
-              {user && <a onClick={this.handleLogout}>退出</a>}
+              {!user && <span>
+                <Link to="register" className="zc-top">免费注册</Link>|
+                <Link to="/login"> 立即登录 </Link>
+              </span>}
 
-              <a href="#"> 客服中心</a>
-              <a href="#">帮助中心</a>
+              {user && <span className={styles.loggedInMessage + ' navbar-text'}><strong>{user.name}</strong>您好！<a onClick={this.handleLogout}>退出</a></span>}
+
+              <Link to="404">客服中心</Link>
+              <Link to="404">帮助中心</Link>
             </div>
             <div className="egc-top-l"> <Link to="/" className="back-icon"><b></b>返回首页</Link></div>
           </div>
@@ -81,8 +81,8 @@ export default class App extends Component {
         <div className="egcMenu">
           <div className="egcNavigation facade">
             <div className="m-cnt">
-              <div className="nav-logo"><a href="#" className="fl logo">
-                <img src={require('../../assets/images/logo-indx.png')} /></a>
+              <div className="nav-logo"> <Link to="/" className="fl logo">
+                <img src={require('../../assets/images/logo-indx.png')} /></Link>
                 <span className="txt fl">
                   {config.app.title}
                   &nbsp;&nbsp;&nbsp;&nbsp;一件起订</span></div>
@@ -131,7 +131,7 @@ export default class App extends Component {
             <div className="items menu fl">
               <dl>
                 <dt>新手上路</dt>
-                <dd><a href="/articledetail-3.html" target="_blank">关于易工场</a><a href="/articledetail-4.html" target="_blank">注册流程</a><a href="/articledetail-5.html" target="_blank">会员等级</a><a href="/articledetail-6.html" target="_blank">常见问题</a></dd>
+                <dd><a href="/articledetail-3.html" target="_blank">关于诚宝通</a><a href="/articledetail-4.html" target="_blank">注册流程</a><a href="/articledetail-5.html" target="_blank">会员等级</a><a href="/articledetail-6.html" target="_blank">常见问题</a></dd>
               </dl>
               <dl>
                 <dt>定制流程</dt>
@@ -153,7 +153,7 @@ export default class App extends Component {
           </div>
           <div className="ft-text">
             <div className="links"><a href="/articledetail-3.html" target="_blank">关于我们</a><a href="/articledetail-21.html" target="_blank">购物指南</a><a href="#">定制流程</a><a href="#">友情链接</a></div>
-            <div className="copyright">ICP认证：苏B1-20140039 备案号：苏CIP备14031554号-4违法和不良信息举报电话：400-710-8886 Copyright © 2004-2015  易工场 EGC.CN 版权所有</div>
+            <div className="copyright">ICP认证：苏B1-20140039 备案号：苏CIP备14031554号-4违法和不良信息举报电话：400-710-8886 Copyright © 2004-2015  诚宝通 EGC.CN 版权所有</div>
             <div className="authenticate"><a href="#"><img src="images/1.gif" /></a><a href="#"><img src="images/2.png" /></a></div>
           </div>
         </div>

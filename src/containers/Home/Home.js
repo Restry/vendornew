@@ -53,7 +53,7 @@ export default class Home extends Component {
           <div className="main">
             <div className="tit">
               <h1>今日数据</h1>
-              <p>易工场自上线以来深受市场欢迎，企业用户，服务商家，设计师不断入驻，<br />
+              <p>诚宝通自上线以来深受市场欢迎，企业用户，服务商家，设计师不断入驻，<br />
                 我们每日的交易总额也不断增长，深受用户赞誉</p>
             </div>
             <div className="con">
@@ -414,7 +414,7 @@ export default class Home extends Component {
                     </div>
                     <div className="txt">
                       <h4>免费在线设计</h4>
-                      <p>易工场设计师免费设计效果图</p>
+                      <p>诚宝通设计师免费设计效果图</p>
                     </div>
                   </li>
                   <li>
@@ -444,7 +444,7 @@ export default class Home extends Component {
                     </div>
                     <div className="txt">
                       <h4>确定合同，下单付款</h4>
-                      <p>安全交易，易工场全程品质担保</p>
+                      <p>安全交易，诚宝通全程品质担保</p>
                     </div>
                   </li>
                   <li>
