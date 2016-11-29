@@ -1,13 +1,12 @@
 {
     "console": {
         "@expanded": true,
-        "@height": 622,
+        "@height": 645,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab1",
-                    "tab2"
+                    "tab1"
                 ]
             },
             "name": "pane1",
@@ -32,25 +31,11 @@
                             "id": "devel_667",
                             "cwd": "",
                             "width": 1648,
-                            "height": 596
+                            "height": 619
                         }
                     },
                     "editorType": "terminal",
                     "active": true
-                },
-                {
-                    "type": "tab",
-                    "name": "tab2",
-                    "path": "",
-                    "className": [],
-                    "document": {
-                        "title": "Immediate",
-                        "meta": {},
-                        "filter": true,
-                        "changed": false
-                    },
-                    "editorType": "immediate",
-                    "active": false
                 }
             ],
             "skin": "editor_tab",
@@ -72,18 +57,19 @@
     },
     "ext": {
         "counters": {
-            "@ace": 1,
+            "@ace": 2,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 9,
+            "@document": 12,
             "@form": 5,
+            "@immediate": 1,
             "@menu": 8,
             "@menuitem": 19,
             "@pane": 2,
-            "@session": 8,
-            "@tab": 6,
+            "@session": 12,
+            "@tab": 10,
             "@tree": 2,
-            "@undoManager": 9,
+            "@undoManager": 12,
             "@welcome": 1
         }
     },
@@ -102,7 +88,7 @@
     "panecycle": {
         "json()": [
             "tab1",
-            "tab6"
+            "tab8"
         ]
     },
     "panels": {
@@ -133,6 +119,7 @@
         }
     },
     "projecttree": {
+        "@scrollpos": -10,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -147,9 +134,11 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/webpack/webpack-dev-server.js",
+            "focus": "/webpack/prod.config.js",
             "meta": {
                 "accessList": [
+                    "tab8",
+                    "tab7",
                     "tab6",
                     "tab3"
                 ]
@@ -181,8 +170,7 @@
                     "name": "tab6",
                     "path": "/webpack/webpack-dev-server.js",
                     "className": [
-                        "tab6",
-                        "focus"
+                        "tab6"
                     ],
                     "document": {
                         "changed": false,
@@ -192,6 +180,47 @@
                         "filter": true,
                         "title": "webpack-dev-server.js",
                         "tooltip": "/webpack/webpack-dev-server.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab7",
+                    "path": "/src/containers/Hello/Hello.js",
+                    "className": [
+                        "tab7"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1480381874753
+                        },
+                        "filter": true,
+                        "title": "Hello.js",
+                        "tooltip": "/src/containers/Hello/Hello.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab8",
+                    "path": "/webpack/prod.config.js",
+                    "className": [
+                        "tab8",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1480382086693
+                        },
+                        "filter": true,
+                        "title": "prod.config.js",
+                        "tooltip": "/webpack/prod.config.js",
                         "ace": {}
                     },
                     "editorType": "ace",
