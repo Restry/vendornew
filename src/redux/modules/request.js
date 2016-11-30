@@ -76,14 +76,14 @@ export default function reducer(state = initialState, action = {}) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/request')
+    promise: (client) => client.get('/request/get')
   };
 }
 
 export function add(request) {
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: (client) => client.post('/request', {
+    promise: (client) => client.post('/request/post', {
       data: {
         request
       }
