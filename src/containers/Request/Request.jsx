@@ -160,7 +160,7 @@ export function Request() {
           <p>专属客服</p>
           <span>您的专属客服为您服务</span> </div>
         <div className="clearfix"></div>
-        <a className="fbxqBtn btn">立即发布需求</a> </div>
+        <Link to="postRequest" className="fbxqBtn btn">立即发布需求</Link> </div>
       <div className="subjWrap">
         <div className="xqzb-abt">
           <div className="xqzbTxt"> <i></i>

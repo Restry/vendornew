@@ -91,8 +91,8 @@ export default class App extends Component {
                 <a href="#">模板中心<em>new<s></s></em></a>
 
                 <Link to="hello">交易数据</Link>
-                <Link to="Register">行业专属</Link>
-                <Link to="Request">需求招标</Link>
+                <Link to="register">行业专属</Link>
+                <Link to="request">需求招标</Link>
                 <div className="clearfixfix"></div>
               </div>
               <div className="nav-search facade">

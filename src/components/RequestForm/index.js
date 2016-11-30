@@ -10,7 +10,7 @@ import requestValidation from './requestValidation';
     'notes'],
   validate: requestValidation,
  // asyncValidate,
-  asyncBlurFields: ['email']
+ // asyncBlurFields: ['email']
 })
 export default
   class RequestForm extends Component {
