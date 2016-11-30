@@ -24,7 +24,6 @@
   ],
   "main": "bin/server.js",
   "scripts": {
-
     "buildwatch": "babel bin --out-dir dist --watch --source-maps",
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
     "start-prod": "better-npm-run start-prod",
@@ -107,7 +106,9 @@
     "babel-runtime": "^6.3.19",
     "body-parser": "^1.14.1",
     "compression": "^1.6.0",
+    "cors": "^2.8.1",
     "express": "^4.13.3",
+    "express-jwt": "^5.1.0",
     "express-session": "^1.12.1",
     "file-loader": "^0.8.5",
     "hoist-non-react-statics": "^1.0.3",
@@ -118,6 +119,8 @@
     "less-loader": "^2.2.1",
     "lru-memoize": "^1.0.0",
     "map-props": "^1.0.0",
+    "mongoose": "^4.7.0",
+    "morgan": "^1.7.0",
     "multireducer": "^2.0.0",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
