@@ -38,6 +38,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log('Open connection at : ' + (new Date()).toLocaleString());
 });
+mongoose.Promise = global.Promise;
+// 不使用原生的Promise， 修复这个问题：(node:14396) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com
+// /docs/promises.html
 
 // EXPRESS CONFIG
 app.use(bodyParser.json());
@@ -55,13 +58,13 @@ app.set('superSecret', jwtSecret);
 
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-  console.log(`[API Request]:${req.url}`);
-  //console.log(`[API Session]:${JSON.stringify(req.session)}`);
+  // console.log(`[API Request]:${req.url}`);
+  // console.log(`[API Session]:${JSON.stringify(req.session)}`);
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
     action(req, params, app)
-      .then((result) => {
+      .then((result) => { // 从API中的Promise对象来Promise.resolve() || Promise.reject() || new Promise(){ resolve or reject } ;
         if (result instanceof Function) {
           result(res);
         } else {

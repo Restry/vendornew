@@ -12,7 +12,8 @@ import * as requestActions from 'redux/modules/request';
     ...requestActions })
 export default class Register extends Component {
   static propTypes = {
-    initialize: PropTypes.func.isRequired
+    initialize: PropTypes.func.isRequired,
+    add: PropTypes.func.isRequired
   }
 
   handleSubmit = (data) => {
@@ -20,7 +21,9 @@ export default class Register extends Component {
     this.props.add(data).then((res) => {
       this.props.initialize('request', {});
       alert(JSON.stringify(res));
-    })
+    }, (err) => {
+      alert(JSON.stringify(err));
+    });
   }
 
   handleInitialize = () => {
