@@ -7,7 +7,7 @@
     "transform-decorators-legacy",
     "transform-react-display-name"
   ],
-
+  "ignore": "/(.css|.less)$/",
   "env": {
     "development": {
       "plugins": [
