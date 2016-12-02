@@ -109,12 +109,12 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className="actionWrap">
-          <div className="egcNavigation facade">
+        <div className="">
+
           {this.props.children}
 
         <InfoBar />
-        </div>
+
         </div>
 
 
