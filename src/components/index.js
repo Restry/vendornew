@@ -13,3 +13,4 @@ export SurveyForm from './SurveyForm/SurveyForm';
 export WidgetForm from './WidgetForm/WidgetForm';
 export RegisterForm from './RegisterForm';
 export RequestForm from './RequestForm';
+export LoginForm from './LoginForm';

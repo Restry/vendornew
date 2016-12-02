@@ -86,7 +86,7 @@ export default class App extends Component {
                 <img src={require('../../assets/images/logo-indx.png')} /></Link>
                 <span className="txt fl">
                   {config.app.title}
-                  &nbsp;&nbsp;&nbsp;&nbsp;一件起订</span></div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;一单起订</span></div>
               <div className="hd-nav facade"> <a href="#" className="on">我的库</a>
                 <a href="#">模板中心<em>new<s></s></em></a>
 
@@ -109,10 +109,13 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className={styles.appContent}>
+        <div className="actionWrap">
+          <div className="egcNavigation facade">
           {this.props.children}
-        </div>
+
         <InfoBar />
+        </div>
+        </div>
 
 
         <div className="footWrap">

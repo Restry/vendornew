@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 import { connect } from 'react-redux';
-import Login from '../Login/Login';
+// import Login from '../Login/Login';
+import { LoginForm } from 'components';
 
 @connect(
   state => ({ user: state.auth.user }),
@@ -47,7 +48,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-        <Login />
+        <LoginForm />
 
         <div className="actionWrap">
           <div className="main">
