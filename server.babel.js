@@ -11,5 +11,12 @@ try {
   console.error('==>     ERROR: Error parsing your .babelrc.');
   console.error(err);
 }
-
+/**    // [
+        //   "babel-plugin-transform-require-ignore",
+        //   {
+        //     "extensions": [
+        //       ".css"
+        //     ]
+        //   }
+        // ], */
 require('babel-register')(config);
