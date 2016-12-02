@@ -9,14 +9,14 @@ import requestValidation from './requestValidation';
     'category',
     'notes'],
   validate: requestValidation,
- // asyncValidate,
- // asyncBlurFields: ['email']
+  // asyncValidate,
+  // asyncBlurFields: ['email']
 })
 export default
   class RequestForm extends Component {
   static propTypes = {
     active: PropTypes.string,
-  //  asyncValidating: PropTypes.bool.isRequired,
+    //  asyncValidating: PropTypes.bool.isRequired,
     fields: PropTypes.object.isRequired,
     dirty: PropTypes.bool.isRequired,
     handleSubmit: PropTypes.func.isRequired,
@@ -28,7 +28,7 @@ export default
 
   render() {
     const {
-    //  asyncValidating,
+      //  asyncValidating,
       dirty,
       fields: {
         title,
@@ -54,6 +54,17 @@ export default
       <form className="mainForm" onSubmit={handleSubmit}>
         {renderInput(title, '标题')}
         {renderInput(category, '类别')}
+
+        <div className="normalInput">
+          <span className="tit-reg">类别</span>
+
+          <input type="radio" id="category1" {...category} value="male" checked={category.value === 'male'} />
+          <label htmlFor="category1">Male</label>
+          <input type="radio" id="category2" {...category} value="female" checked={category.value === 'female'} />
+          <label htmlFor="category2">Female</label>
+
+        </div>
+
         {renderInput(notes, '描述')}
 
         <div className="rememberField">

@@ -13,6 +13,7 @@ import {
   Survey,
   NotFound,
   Request,
+  Trans,
   PostRequest
 } from 'containers';
 
@@ -53,7 +54,7 @@ export default (store) => {
 
         { /* Routes */}
         <Route path="about" component={About} />
-        <Route path="hello" component={Hello} />
+        <Route path="hello" component={Trans} />
         <Route path="login" component={Login} />
         <Route path="request" component={Request} />
         <Route path="survey" component={Survey} />

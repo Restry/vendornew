@@ -114,7 +114,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-12-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -161,7 +161,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -186,7 +186,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -233,7 +233,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -258,7 +258,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -305,7 +305,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -330,7 +330,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
@@ -377,7 +377,7 @@ export default class Home extends Component {
                         <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
                         <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
                       </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
+                      <div className="lxftime"></div>
                     </div>
                   </div>
                 </li>
