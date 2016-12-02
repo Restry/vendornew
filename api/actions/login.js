@@ -29,18 +29,22 @@ export default function login(req,params,app) {
             });
           } else {
             user.password = undefined;
-            // create token
-            var token = jwt.sign(user, app.get('superSecret'), {
-              expiresInminutes: 1440
+            // create token 
+            
+            var token = jwt.sign(user,app.get('superSecret') , {
+              expiresIn: 60000      //修复 error with new express
             });
 
+            console.log('create token end');
             var userIdentity = {
               success: true,
               message: 'Successfully authenticated!',
               token: token,
               user: user
             };
-            req.session.user = userIdentity.user;
+            console.log('set session start');
+            req.session.user = userIdentity.user; 
+            console.log('set session end');
             // send token
             resolve(userIdentity);
           }
