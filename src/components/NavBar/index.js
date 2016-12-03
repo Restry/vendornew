@@ -36,7 +36,7 @@ class NavBar extends Component {
                             <div className="clearfixfix"></div>
                             <div className="sear-keys">
                                 <span>热门搜索：</span>
-                                {
+                                {//这里会引起前端报警，Server-side React render was discarded，因为同构出错
                                     ranArrs.array.map((res, i) => {
                                       return <a key={i}>{res}</a>;
                                     })
