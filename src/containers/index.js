@@ -11,4 +11,5 @@ export NotFound from './NotFound/NotFound';
 export Request from './Request/Request';
 export PostRequest from './Request/postRequest';
 export Trans from './Trans';
+export Settled from './Settled';
 

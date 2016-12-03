@@ -8,12 +8,12 @@ import {
   Widgets,
   About,
   Login,
-  Hello,
   LoginSuccess,
   Survey,
   NotFound,
   Request,
   Trans,
+  Settled,
   PostRequest
 } from 'containers';
 
@@ -54,7 +54,8 @@ export default (store) => {
 
         { /* Routes */}
         <Route path="about" component={About} />
-        <Route path="hello" component={Trans} />
+        <Route path="trans" component={Trans} />
+        <Route path="settled" component={Settled} />
         <Route path="login" component={Login} />
         <Route path="request" component={Request} />
         <Route path="survey" component={Survey} />

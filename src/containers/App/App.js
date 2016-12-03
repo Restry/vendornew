@@ -12,17 +12,17 @@ import { asyncConnect } from 'redux-async-connect';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
-      const promises = [];
+    const promises = [];
 
-      if (!isInfoLoaded(getState())) {
-          promises.push(dispatch(loadInfo()));
-        }
-      if (!isAuthLoaded(getState())) {
-          promises.push(dispatch(loadAuth()));
-        }
+    if (!isInfoLoaded(getState())) {
+        promises.push(dispatch(loadInfo()));
+      }
+    if (!isAuthLoaded(getState())) {
+        promises.push(dispatch(loadAuth()));
+      }
 
-      return Promise.all(promises);
-    }
+    return Promise.all(promises);
+  }
 }])
 @connect(
     state => ({ user: state.auth.user }),
@@ -32,8 +32,8 @@ class App extends Component {
     componentWillReceiveProps(nextProps) {
       if (!this.props.user && nextProps.user) {
             // login
-          this.props.pushState('/loginSuccess');
-        } else if (this.props.user && !nextProps.user) {
+        this.props.pushState('/loginSuccess');
+      } else if (this.props.user && !nextProps.user) {
             // logout
           this.props.pushState('/');
         }
@@ -56,7 +56,7 @@ class App extends Component {
                         <div className="egc-menu">
                             {!user && <span>
                                 <Link to="register" className="zc-top">免费注册</Link>|
-                <Link to="/login"> 立即登录 </Link>
+                                <Link to="/login"> 立即登录 </Link>
                             </span>}
 
                             {user && <span className={styles.loggedInMessage + ' navbar-text'}><strong>{user.name}</strong></span>}
@@ -72,11 +72,7 @@ class App extends Component {
                 <NavBar />
 
                 <div className="">
-
                     {this.props.children}
-
-                    <InfoBar />
-
                 </div>
 
 
@@ -85,10 +81,10 @@ class App extends Component {
                         <div className="items abt fl">
                             <h6>APP下载</h6>
                             <div className="ewm-down">
-                                <div className="ewm fl"> <img src="images/ewm-down.jpg" width="80" height="80" />
+                                <div className="ewm fl"> <img src={require('assets/images/ewm-down.jpg')} width="80" height="80" />
                                     <p>安卓APP下载</p>
                                 </div>
-                                <div className="ewm fl"> <img src="images/ewm-down.jpg" width="80" height="80" />
+                                <div className="ewm fl"> <img src={require('assets/images/ewm-down.jpg')} width="80" height="80" />
                                     <p>苹果APP下载</p>
                                 </div>
                                 <div className="clearfix"></div>
@@ -120,7 +116,7 @@ class App extends Component {
                     <div className="ft-text">
                         <div className="links"><a href="/articledetail-3.html" target="_blank">关于我们</a><a href="/articledetail-21.html" target="_blank">购物指南</a><a href="#">定制流程</a><a href="#">友情链接</a></div>
                         <div className="copyright">ICP认证：苏B1-20140039 备案号：苏CIP备14031554号-4违法和不良信息举报电话：400-710-8886 Copyright © 2004-2015  诚宝通 EGC.CN 版权所有</div>
-                        <div className="authenticate"><a href="#"><img src="images/1.gif" /></a><a href="#"><img src="images/2.png" /></a></div>
+                        <div className="authenticate"><a href="#"><img src={require('assets/images/1.gif')} /></a><a href="#"><img src={require('assets/images/2.png')}/></a></div>
                     </div>
                 </div>
             </div>
