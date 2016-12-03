@@ -41,7 +41,7 @@ export default class Home extends Component {
               </li>
             </ul>
           </div>
-          <div className="ban-ind-btn"> <a className="prev"></a> <a className="next">></a>
+          <div className="ban-ind-btn"> <a className="prev">{'<'}</a> <a className="next">></a>
             <div className="hd">
               <ul>
               </ul>

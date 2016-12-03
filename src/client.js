@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 // import io from 'socket.io-client';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
@@ -40,16 +40,20 @@ const history = syncHistoryWithStore(_browserHistory, store);
 
 // global.socket = initSocket();
 
+history.listen(function(location) {
+   console.log('app is busy');
+});
+
 const component = (
   <Router render={(props) =>
-        <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />
-      } history={history}>
+    <ReduxAsyncConnect {...props} helpers={{ client }} filter={item => !item.deferred} />
+  } history={history}>
     {getRoutes(store)}
   </Router>
 );
 
 ReactDOM.render(
-  <Provider store={store} key="provider">
+  <Provider store={store} key="provider" onUpdate={() => { console.log('app is ready'); } }>
     {component}
   </Provider>,
   dest
@@ -66,7 +70,7 @@ if (process.env.NODE_ENV !== 'production') {
 if (__DEVTOOLS__ && !window.devToolsExtension) {
   const DevTools = require('./containers/DevTools/DevTools');
   ReactDOM.render(
-    <Provider store={store} key="provider">
+    <Provider store={store} key="provider" onUpdate={() => { console.log('app is ready'); } }>
       <div>
         {component}
         <DevTools />
