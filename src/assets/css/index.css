@@ -361,3 +361,12 @@ a.fullBtnBlue:hover{color:#fff; background-color:#39C; transition:background-col
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b80ff', endColorstr='#1d66d3',GradientType=0 );
   background: linear-gradient(top, rgb(43,128,255) 0%,rgb(29,102,211) 100%);
 }
+.loader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: 9999;
+}

@@ -9,6 +9,28 @@ import { InfoBar, NavBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import Loader from 'react-loader';
+var options = {
+    lines: 13,
+    length: 20,
+    width: 10,
+    radius: 30,
+    scale: 1.00,
+    corners: 1,
+    color: '#000',
+    opacity: 0.25,
+    rotate: 0,
+    direction: 1,
+    speed: 1,
+    trail: 60,
+    fps: 20,
+    zIndex: 2e9,
+    top: '50%',
+    left: '50%',
+    shadow: false,
+    hwaccel: false,
+    position: 'absolute'
+};
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -25,7 +47,11 @@ import { asyncConnect } from 'redux-async-connect';
   }
 }])
 @connect(
-    state => ({ user: state.auth.user }),
+    state => ({
+      user: state.auth.user,
+      loaded:state.reduxAsyncConnect.loaded,
+      routing:state.routing
+    }),
     { logout, pushState: push })
 class App extends Component {
 
@@ -45,7 +71,7 @@ class App extends Component {
     };
 
     render() {
-      const {user} = this.props;
+      const {user,loaded} = this.props;
       const styles = require('./App.scss');
 
       return (
@@ -71,9 +97,11 @@ class App extends Component {
 
                 <NavBar />
 
+            <Loader loaded={loaded} options={options} className="spinner">
                 <div className="">
                     {this.props.children}
                 </div>
+            </Loader>
 
 
                 <div className="footWrap">
