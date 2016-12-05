@@ -1,8 +1,19 @@
 import { Request } from '../dbSchema';
 
+Array.prototype.unique = function () {
+  this.sort();
+  var re = [this[0]];
+  for (var i = 1; i < this.length; i++) {
+    if (this[i] !== re[re.length - 1]) {
+      re.push(this[i]);
+    }
+  }
+  return re;
+}
+
 export const load = (req, pars) => {
   console.log(`request load: ${req.body}`);
-  return Request.find({}).exec();
+  return Request.find(req.body).exec();
 
   // return new Promise((resolve, reject) => {
   //   Request.find({}).select('_id title category note').exec().then((requests) => {

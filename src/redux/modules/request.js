@@ -9,7 +9,8 @@ const REMOVE_SUCCESS = 'redux-example/request/REMOVE_SUCCESS';
 const REMOVE_FAIL = 'redux-example/request/REMOVE_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  requests:[]
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -73,10 +74,10 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function load() {
+export function load(category) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/request/load')
+    promise: (client) => client.get('/request/load?category=' + category)
   };
 }
 

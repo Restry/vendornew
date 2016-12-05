@@ -15,6 +15,7 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT || 3030,
   db: 'mongodb://42.121.119.36/vendor-db',
+  categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }],
   app: {
     title: '诚宝通',
     description: 'All the modern best practices in one example.',
