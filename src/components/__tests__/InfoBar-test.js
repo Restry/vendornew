@@ -16,8 +16,11 @@ describe('InfoBar', () => {
       loaded: true,
       loading: false,
       data: {
-        message: 'This came from the api server',
-        time: Date.now()
+        enterprise: 1,
+        services: 1,
+        designer: 1,
+        totalAmount: 1,
+        services: Date.now()
       }
     }
   };
@@ -34,8 +37,9 @@ describe('InfoBar', () => {
   });
 
   it('should render with correct value', () => {
-    const text = dom.getElementsByTagName('strong')[0].textContent;
-    expect(text).to.equal(mockStore.info.data.message);
+    const text = dom.getElementsByTagName('div')[0].textContent;
+    console.log(text);
+    expect(text).to.equal(mockStore.info.data.enterprise);
   });
 
   it('should render with a reload button', () => {
@@ -43,9 +47,4 @@ describe('InfoBar', () => {
     expect(text).to.be.a('string');
   });
 
-  it('should render the correct className', () => {
-    const styles = require('components/InfoBar/InfoBar.scss');
-    expect(styles.infoBar).to.be.a('string');
-    expect(dom.className).to.include(styles.infoBar);
-  });
 });
