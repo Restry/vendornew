@@ -13,6 +13,7 @@
             "env": {
               "NODE_PATH": "./api",
               "NODE_ENV": "development",
+              "NODE_DEBUG": true,
               "PORT": 3000,
               "APIPORT": 3030
             },

@@ -20,7 +20,7 @@ describe('InfoBar', () => {
         services: 1,
         designer: 1,
         totalAmount: 1,
-        services: Date.now()
+        lastModify: Date.now()
       }
     }
   };

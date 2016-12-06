@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' && !process.env.NODE_DEBUG) {
   if (!require('piping')({
     hook: true,
     ignore: /(\/\.|~$|\.json$)/i

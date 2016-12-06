@@ -5,22 +5,26 @@ import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
 import { RequestForm } from 'components';
 import * as requestActions from 'redux/modules/request';
+import { push } from 'react-router-redux';
 
 @connect(
-  () => ({}),
-  { initialize,
+  (state) => ({
+    user: state.auth.user
+  }),
+  { initialize, pushState: push,
     ...requestActions })
 export default class Register extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired,
-    add: PropTypes.func.isRequired
+    add: PropTypes.func.isRequired,
+    'pushState': PropTypes.func
   }
 
   handleSubmit = (data) => {
     console.log('Data submitted! ' + JSON.stringify(data));
     this.props.add(data).then((res) => {
       this.props.initialize('request', {});
-      alert(JSON.stringify(res));
+      this.props.pushState('/');
     }, (err) => {
       alert(JSON.stringify(err));
     });
@@ -37,6 +41,11 @@ export default class Register extends Component {
   }
 
   render() {
+    if (!this.props.user) {
+      alert('please login befor post request !');
+      this.props.pushState('/');
+      // return <span />;
+    }
     return (
       <div className="container">
         <Helmet title="提交新的需求" />

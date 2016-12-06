@@ -1,26 +1,15 @@
 import { Request } from '../dbSchema';
 
-Array.prototype.unique = function () {
-  this.sort();
-  var re = [this[0]];
-  for (var i = 1; i < this.length; i++) {
-    if (this[i] !== re[re.length - 1]) {
-      re.push(this[i]);
-    }
-  }
-  return re;
-}
-
 export const load = (req, pars) => {
-  console.log(`request load: ${req.body}`);
-  return Request.find(req.body).exec();
+  console.log(`Request req.query: ${JSON.stringify(req.query)}`);
 
-  // return new Promise((resolve, reject) => {
-  //   Request.find({}).select('_id title category note').exec().then((requests) => {
-  //     resolve(requests);
-  //   });
-  // });
-  // return Promise.resolve(req.body);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      Request.find(req.query).exec().then((requests) => {
+        resolve(requests);
+      });
+    }, 500);
+  });
 };
 
 export const post = (req, pars, app) => {

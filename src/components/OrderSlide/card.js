@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrderCard = (item) => {
+const OrderCard = ({item}) => {
   return (
     <li rel="zbd">
       <div className="odr-items">

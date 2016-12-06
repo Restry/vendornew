@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import requestValidation from './requestValidation';
+import config from '../../config';
 
 @reduxForm({
   form: 'request',
@@ -53,15 +54,15 @@ export default
     return (
       <form className="mainForm" onSubmit={handleSubmit}>
         {renderInput(title, '标题')}
-        {renderInput(category, '类别')}
 
         <div className="normalInput">
           <span className="tit-reg">类别</span>
-
-          <input type="radio" id="category1" {...category} value="male" checked={category.value === 'male'} />
-          <label htmlFor="category1">Male</label>
-          <input type="radio" id="category2" {...category} value="female" checked={category.value === 'female'} />
-          <label htmlFor="category2">Female</label>
+          {config.categories.map((item) => {
+            return <span> <input type="radio" id={item.class} {...category} value={item.class}
+              checked={category.value === item.class} />
+              <label htmlFor={item.class}>{item.title}</label>
+            </span>;
+          })}
 
         </div>
 

@@ -39,7 +39,9 @@
     "test": "karma start",
     "testapi": "mocha --reporter progress api/**/*-test.js --compilers js:babel-core/register",
     "test-node": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --recursive --reporter spec",
-    "test-node-watch": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --watch"
+    "test-node-watch": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --watch",
+    "test-node-10": "node ./node_modules/mocha/bin/mocha -c api/**/*-test.js --compilers js:babel-core/register",
+    "test-node-watch-10": "node ./node_modules/mocha/bin/mocha -c api/**/*-test.js --compilers js:babel-core/register --watch"
   },
   "betterScripts": {
     "start-prod": {

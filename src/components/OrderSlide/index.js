@@ -31,18 +31,21 @@ class OrderSlide extends Component {
           <div className="tit">
             <h1>今日最新订单 {loading && '...'}</h1>
           </div>
-          <ul className="order-sx-tit">
-            {config.categories.map((item, index) => {
-              return <li onClick={this.chooseCategory.bind(this, item)} className={(item.class === selectedClass) ? 'selected' : ''} key={index}> <a>{item.title}</a></li>;
-            })}
-          </ul>
+          <div className="con">
 
-          <ul className="order-sx-con clearfixfix">
-            {categoryOfRequestOrders.map((item, index) => {
-              return <Card key={index} item={item} />;
-            })}
-          </ul>
+            <ul className="order-sx-tit">
+              {config.categories.map((item, index) => {
+                return <li onClick={this.chooseCategory.bind(this, item)} className={(item.class === selectedClass) ? 'selected' : ''} key={index}> <a>{item.title}</a></li>;
+              })}
+            </ul>
 
+            <ul className="order-sx-con clearfixfix">
+              {categoryOfRequestOrders.map((item, index) => {
+                return <Card key={index} item={item} />;
+              })}
+            </ul>
+            <div className="clearfix"></div>
+          </div>
         </div>
       </div>
     );
