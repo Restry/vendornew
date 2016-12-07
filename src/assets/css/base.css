@@ -126,7 +126,8 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #b3
 .egc-foot{line-height:24px; color:#999; padding:5px 10px; text-align:center;}
 .egcNavigation{height:100px; background:#0174b3; width:100%;}
 .egcNavigation .nav-logo{}
-.egcNavigation .nav-logo a.logo{display:block; width:120px; height:71px; border:none; margin-top:20px;}
+.egcNavigation .nav-logo a.logo{display:block; width:155px; height:71px; border:none; margin-top:20px;}
+.egcNavigation .nav-logo a.logo img { width:170px};
 .egcNavigation .nav-logo span.txt{height:20px; font-size:14px; color:#fff; line-height:20px; display:block; margin-top:45px;  margin-left:10px;}
 .hd-nav{position:absolute; left:300px; top:0; height:100px;}
 .hd-nav.ind{right:0;}

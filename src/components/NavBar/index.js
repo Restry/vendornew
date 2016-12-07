@@ -17,7 +17,7 @@ class NavBar extends Component {
         <div className="egcNavigation facade">
           <div className="m-cnt">
             <div className="nav-logo"> <Link to="/" className="fl logo">
-              <img src={require('../../assets/images/logo-indx.png')} /></Link>
+              <img src={require('../../assets/images/logo.png')} /></Link>
               <span className="txt fl">
                 {config.app.title}
                 &nbsp;&nbsp;&nbsp;&nbsp;一单起订</span></div>
