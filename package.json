@@ -111,6 +111,7 @@
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
+    "crypto": "0.0.3",
     "express": "^4.13.3",
     "express-jwt": "^5.1.0",
     "express-session": "^1.12.1",

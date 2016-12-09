@@ -8,103 +8,124 @@ import { mock, Random } from 'mockjs';
 // email must be unique
 // don't send password with requests
 const userSchema = new Schema({
-    'email': { type: String, required: true, unique: true },
-    'password': { type: String, required: true, select: false },
-    'admin': Boolean,
-    'prefix': String,
-    'acceptCount': Number,
-    'needsCount': Number,
-    'name': String,
-    'residence': Array,
-    'phone': String,
-    'captcha': String,
-    'agreement': Boolean
+  'email': { type: String, required: true, unique: true },
+  'password': { type: String, required: true, select: false },
+  'admin': Boolean,
+  'prefix': String,
+  'acceptCount': Number,
+  'needsCount': Number,
+  'name': String,
+  'residence': Array,
+  'phone': String,
+  'captcha': String,
+  'agreement': Boolean
 });
 
 const requestSchema = new Schema({
-    'title': { type: String, required: true },
-    'category': { type: String, required: true },
-    'type': String, // 招标单 还是直接下单（不投入精力来比对哪一家的钱更少）
-    'notes': { type: String, required: true },
-    'process': Number,
-    'states': { type: String, required: true },
-    'vendor': String, // 接标人
-    'order': Number,
-    'price': Number,
-    'creator': String,
-    'raceVendors': Array, // 所有竟标人
-    'created': { type: Date, required: true },
-    'modifed': Date,
-    'raceDay': Number, // 发标人设置的竟标时间
-    'completeTime': Date,
-    'raceTime': Date, // 开始竟标时间
-    'acceptTime ': Date
+  'title': { type: String, required: true },
+  'category': { type: String, required: true },
+  'type': String, // 招标单 还是直接下单（不投入精力来比对哪一家的钱更少）
+  'notes': { type: String, required: true },
+  'process': Number,
+  'states': { type: String, required: true },
+  'vendor': String, // 接标人
+  'order': Number,
+  'price': Number,
+  'creator': String,
+  'raceVendors': Array, // 所有竟标人
+  'created': { type: Date, required: true },
+  'modifed': Date,
+  'raceDay': Number, // 发标人设置的竟标时间
+  'completeTime': Date,
+  'raceTime': Date, // 开始竟标时间
+  'acceptTime ': Date
 });
 
-requestSchema.virtual('leftRaceDay').get(function() {
-    if (this.raceTime) {
-        return moment(this.raceTime).toNow();  // 多久之内      fromNow 多久之前
-    }
-    return null;
+requestSchema.virtual('leftRaceDay').get(()=> {
+  if (this.raceTime) {
+    return moment(this.raceTime).toNow();  // 多久之内      fromNow 多久之前
+  }
+  return null;
 });
+// 实例方法
+requestSchema.methods.race = (id, currentUser) => {
+  return new Promise((resolve, reject) => {
+    this.model('Request').findById(id, (err, req) => {
+      if (err) reject(err);
+      req.raceTime = new Date();
+      req.raceVendors.push(currentUser);
 
+      req.save((saveERR) => {
+        if (saveERR) reject(saveERR);
+        console.log('Race Done!');
+        resolve(req);
+      });
+    });
+  });
+};
 
 const informationSchema = new Schema({
-    'enterprise': Number,
-    'services': Number,
-    'designer': Number,
-    'totalAmount': Number,
-    'searchHistory': Array,
-    'lastModify': Date
+  'enterprise': Number,
+  'services': Number,
+  'designer': Number,
+  'totalAmount': Number,
+  'searchHistory': Array,
+  'lastModify': Date
 });
-informationSchema.virtual('expired').get(function() {
-    return moment(this.lastModify).add(1, 'minute') < (new Date());
+informationSchema.virtual('expired').get(function () {
+  return moment(this.lastModify).add(1, 'minute') < (new Date());
 });
 
 
 // informationSchema.methods.getSiteInfo = (cb) => {
 //   return this.model('Information').find({ type: this.type }, cb);
 // }
+// 静态方法，直接在类上引用
+informationSchema.statics.getSiteInfo = function () {
+  // console.log('Begin test loadinfo getSiteInfo');
 
-informationSchema.statics.getSiteInfo = function() {
-    console.log('Begin test loadinfo getSiteInfo');
+  const createOrUpdate = (item) => {
+    if (!item) {
+      const InfoModel = mongoose.model('Information', informationSchema);
+      item = new InfoModel({
+        enterprise: 1,
+        services: 1,
+        designer: 1,
+        totalAmount: 1,
+        searchHistory: [],
+        lastModify: new Date()
+      });
 
-    const createOrUpdate = (item) => {
-        if (!item) {
-            const InfoModel = mongoose.model('Information', informationSchema)
-            item = new InfoModel({
-                enterprise: 1,
-                services: 1,
-                designer: 1,
-                totalAmount: 1,
-                searchHistory: [],
-                lastModify: new Date()
-            });
-        }
-        if (item.expired) {
-            item.enterprise += parseInt(Math.random() * 10);
-            item.services += parseInt(Math.random() * 50);
-            item.designer += parseInt(Math.random() * 50);
-            item.totalAmount += parseInt(Math.random() * 1000);
-            item.lastModify = new Date();
-            item.searchHistory = mock({ 'data|3-6': [() => { return Random.cname(); }] }).data;
-
-            return new Promise(resolve => {
-                item.save((err, res) => {
-                    resolve(res);
-                });
-            });
-        }
-        return Promise.resolve(item);
-    };
-
-    return new Promise(resolve => {
-       // resolve('nice');
-        this.findOne({}, (err, info) => {
-            console.error('error:' + JSON.stringify(err));
-            createOrUpdate(info).then(resolve);
+      return new Promise(resolve => {
+        item.save((err, res) => {
+          resolve(res);
         });
+      });
+    }
+    if (item.expired) {
+      item.enterprise += parseInt(Math.random() * 10);
+      item.services += parseInt(Math.random() * 50);
+      item.designer += parseInt(Math.random() * 50);
+      item.totalAmount += parseInt(Math.random() * 1000);
+      item.lastModify = new Date();
+      item.searchHistory = mock({ 'data|3-6': [() => { return Random.cname(); }] }).data;
+
+      return new Promise(resolve => {
+        item.save((err, res) => {
+          resolve(res);
+        });
+      });
+    }
+    return Promise.resolve(item);
+  };
+
+  return new Promise(resolve => {
+    // resolve('nice');
+    this.findOne({}, (err, info) => {
+      // console.error('error:' + JSON.stringify(err));
+      createOrUpdate(info).then(resolve);
     });
+  });
 };
 
 

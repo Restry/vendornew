@@ -12,6 +12,6 @@ export default function survey(req) {
       } else {
         reject(errors);
       }
-    }, 1000);
+    }, 100);
   });
 }

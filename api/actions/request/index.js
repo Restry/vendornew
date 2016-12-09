@@ -13,13 +13,13 @@ export const load = (req, pars) => {
 };
 
 export const post = (req, pars, app) => {
-
   console.log(`request post: ${JSON.stringify(req.body)}`);
 
   const { request } = req.body;
   request.created = (new Date()).toLocaleString();
   request.completeTime = (new Date()).toLocaleString();
-  request.states = 1;
+  request.states = '招标中';
+  request.raceDay = request.raceDay || 10;
 
   const newRequest = new Request(request);
 

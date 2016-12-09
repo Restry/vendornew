@@ -1,33 +1,24 @@
-var //bcrypt = require('bcrypt'),
-  q = require('q');
+var crypto = require('crypto');
 
-// helper function for hashing users' passwords
 module.exports = {
-  comparePwd: function (password, hash) {
-    var dfd = q.defer();
-
-    // bcrypt.compare(password, hash, function(err, isMatch){
-    // 	if(err) dfd.reject(err);
-
-    // });
-
-    dfd.resolve(true);
-
-    return dfd.promise;
+  genSalt: function (SALT_WORK_FACTOR) {
+    return callback(null, 'aaa');
   },
-  hashPwd: function (password) {
-    var dfd = q.defer();
-    // bcrypt.genSalt(10, function(err, salt) {
-    // 	if(err) dfd.reject(err);
-
-    //     bcrypt.hash(password, salt, function(err, hash) {
-    //     	if(err) dfd.reject(err);
-
-    //     	dfd.resolve(hash);
-    //     });
-    // });
-    dfd.resolve(password);
-
-    return dfd.promise;
+  hash: (pwd, salt) => {
+    return new Promise((resolve) => {
+      const md5 = crypto.createHash('md5');
+      md5.update(pwd);
+      resolve(md5.digest('hex'));
+    });
+  },
+  compare: (pwd, cpwd) => {
+    return new Promise((resolve) => {
+      const md5 = crypto.createHash('md5');
+      md5.update(pwd);
+      const encodePwd = md5.digest('hex');
+      console.log(pwd + ':' + cpwd);
+      console.log(encodePwd + ':' + cpwd);
+      resolve(cpwd === encodePwd);
+    });
   }
 };

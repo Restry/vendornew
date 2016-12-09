@@ -1,17 +1,15 @@
 import { User } from './dbSchema';
-let jwt = require('jsonwebtoken');
-import utils from 'utils/pwd.js';
+const jwt = require('jsonwebtoken');
+import utils from '../utils/pwd';
 
-export default function login(req,params,app) {
-
+export default function login(req, params, app) {
   // add back the password field for this query
-  var query = User.findOne({
+  const query = User.findOne({
     email: req.body.email
   }).select('_id email +password name');
 
   return new Promise((resolve, reject) => {
-
-    query.exec(function (err, user) {
+    query.exec((err, user) => {
       if (err) reject(err);
 
       if (!user) {
@@ -21,29 +19,26 @@ export default function login(req,params,app) {
         });
       } else if (user) {
         // check password
-        utils.comparePwd(req.body.password, user.password).then(function (isMatch) {
+        utils.compare(req.body.password, user.password).then((isMatch) => {
           if (!isMatch) {
-            reject({
-              success: false,
-              message: 'Wrong password'
-            });
+            reject({ success: false, message: 'Wrong password' });
           } else {
             user.password = undefined;
-            // create token 
-            
-            var token = jwt.sign(user,app.get('superSecret') , {
-              expiresIn: 60000      //修复 error with new express
+            // create token
+
+            const token = jwt.sign(user, app.get('superSecret'), {
+              expiresIn: 60000      // 修复 error with new express
             });
 
             console.log('create token end');
-            var userIdentity = {
+            const userIdentity = {
               success: true,
               message: 'Successfully authenticated!',
               token: token,
               user: user
             };
             console.log('set session start');
-            req.session.user = userIdentity.user; 
+            req.session.user = userIdentity.user;
             console.log('set session end');
             // send token
             resolve(userIdentity);
@@ -51,14 +46,13 @@ export default function login(req,params,app) {
         });
       }
     });
-
   });
 }
 
 
 // middleware
 function authenticate(req, res, next) {
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  const token = req.body.token || req.query.token || req.headers['x-access-token'];
 
   console.log(req.headers);
   if (token) {
