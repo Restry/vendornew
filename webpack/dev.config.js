@@ -80,6 +80,7 @@ module.exports = {
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: 'http://' + host + ':' + port + '/dist/'
   },
+  externals: { moment: true },
   // externals: {
   //   moment: true,
   //   antd: true,

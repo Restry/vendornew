@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import {load as loadRequest} from 'redux/modules/request';
 import { NavBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
@@ -40,6 +41,7 @@ var options = {
 
     if (!isInfoLoaded(getState())) {
       promises.push(dispatch(loadInfo()));
+      promises.push(dispatch(loadRequest(config.categories[0].class)))
     }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));

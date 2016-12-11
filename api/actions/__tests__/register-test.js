@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import register from '../register';
-require('./enableConnection');
+// require('./enableConnection');
 
 describe('注册测试', () => {
-  it('注册成功', () => {
+  it('注册成功', (done) => {
     const postUser = {
       body: {
         email: 'test01@qq.com',
@@ -18,7 +18,12 @@ describe('注册测试', () => {
       }
     };
     register(postUser, null, app).then((res) => {
-      expect(res.success).to.eq(true);
+      expect(res.success).eq(true);
+      done();
+    }, (res) => {
+      console.log(`register:${res}`);
+      expect(res.success).eq(false);
+      done();
     });
   });
 });

@@ -1,26 +1,46 @@
 import { Request } from '../dbSchema';
+import moment from 'moment';
+moment.locale('zh-CN');
 
 export const load = (req, pars) => {
-  console.log(`Request req.query: ${JSON.stringify(req.query)}`);
+  // console.log('load in');
+  // console.log(`Request req.query: ${JSON.stringify(req.query)}`);
+  return Request.find(req.query).exec();
 
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      Request.find(req.query).exec().then((requests) => {
-        resolve(requests);
-      });
-    }, 500);
+  // return new Promise((resolve, reject) => {
+  //  // setTimeout(() => {
+  //     Request.find(req.query).exec().then((requests) => {
+  //       resolve(requests);
+  //     });
+  //  // }, 500);
+  // });
+};
+export const race = (req, pars) => {
+  return Request.findOne(req.query).exec().then((err, request) => {
+    const promi = new Promise();
+    if (err) return Promise.reject(err);
+
+    const currentUser = req.session.user;
+    request.raceTime = new Date();
+
+    currentUser.raceTime = new Date();
+    request.raceVendors.push(currentUser);
+
+    request.save((saveErr) => {
+      if (saveErr) promi.reject(saveErr);
+      promi.resolve(true);
+    });
+    return promi;
   });
 };
 
 export const post = (req, pars, app) => {
-  console.log(`request post: ${JSON.stringify(req.body)}`);
-
+  // console.log(`request post: ${JSON.stringify(req.body)}`);
   const { request } = req.body;
   request.created = (new Date()).toLocaleString();
   request.completeTime = (new Date()).toLocaleString();
   request.states = '招标中';
   request.raceDay = request.raceDay || 10;
-
   const newRequest = new Request(request);
 
   return new Promise((resolve, reject) => {
@@ -32,14 +52,13 @@ export const post = (req, pars, app) => {
       });
     });
   });
-
-
-  // return Promise.reject('any reason to reject by promise test :) ! ');
-  // return Promise.resolve(req.body);
 };
 
 export const remove = (req, pars, app) => {
-
-  console.log(`request remove: ${req.body}`)
-  return Promise.resolve(req.body);
+  return new Promise((resolve, reject) => {
+    Request.remove(req.query, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    });
+  });
 };

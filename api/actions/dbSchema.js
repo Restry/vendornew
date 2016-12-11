@@ -41,28 +41,13 @@ const requestSchema = new Schema({
   'acceptTime ': Date
 });
 
-requestSchema.virtual('leftRaceDay').get(()=> {
+requestSchema.virtual('leftRaceDay').get(function(){
   if (this.raceTime) {
     return moment(this.raceTime).toNow();  // 多久之内      fromNow 多久之前
   }
   return null;
 });
-// 实例方法
-requestSchema.methods.race = (id, currentUser) => {
-  return new Promise((resolve, reject) => {
-    this.model('Request').findById(id, (err, req) => {
-      if (err) reject(err);
-      req.raceTime = new Date();
-      req.raceVendors.push(currentUser);
 
-      req.save((saveERR) => {
-        if (saveERR) reject(saveERR);
-        console.log('Race Done!');
-        resolve(req);
-      });
-    });
-  });
-};
 
 const informationSchema = new Schema({
   'enterprise': Number,

@@ -62,7 +62,7 @@
 .odr-items .odr-b-c dd{line-height:24px; color:#757575;}
 .odr-items .odr-b-b{margin:0; padding:8px 0;}
 .odr-items .odr-b-b dd{height:24px; line-height:24px; color:#8a8a8a; position:relative; padding-left:23px;}
-.odr-items .odr-b-b dd span{padding:0 5px 0 20px;}
+.odr-items .odr-b-b dd span{/*padding:0 5px 0 20px;*/}
 .odr-items .odr-b-b dd i{position:absolute; left:0; width:14px; height:14px; top:5px; background:url(../images/odr-icon.jpg) no-repeat;}
 .odr-items .odr-b-b dd i.jbqx{background-position:0 -42px;}
 .odr-items .odr-b-b dd i.ti{background-position:0 0;}

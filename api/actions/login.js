@@ -30,16 +30,16 @@ export default function login(req, params, app) {
               expiresIn: 60000      // 修复 error with new express
             });
 
-            console.log('create token end');
+            // console.log('create token end');
             const userIdentity = {
               success: true,
               message: 'Successfully authenticated!',
               token: token,
               user: user
             };
-            console.log('set session start');
+            // console.log('set session start');
             req.session.user = userIdentity.user;
-            console.log('set session end');
+            // console.log('set session end');
             // send token
             resolve(userIdentity);
           }

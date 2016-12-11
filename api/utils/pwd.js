@@ -16,8 +16,8 @@ module.exports = {
       const md5 = crypto.createHash('md5');
       md5.update(pwd);
       const encodePwd = md5.digest('hex');
-      console.log(pwd + ':' + cpwd);
-      console.log(encodePwd + ':' + cpwd);
+      // console.log(pwd + ':' + cpwd);
+      // console.log(encodePwd + ':' + cpwd);
       resolve(cpwd === encodePwd);
     });
   }

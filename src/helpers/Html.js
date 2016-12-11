@@ -38,6 +38,7 @@ class Html extends Component {
             <link href={assets.styles[style]} key={key} media="screen, projection"
               rel="stylesheet" type="text/css" charSet="UTF-8" />
           )}
+<script src="//cdn.bootcss.com/moment.js/2.17.1/moment-with-locales.min.js"></script>
 
           {/* (will be present only in development mode) */}
           {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}

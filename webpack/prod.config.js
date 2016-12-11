@@ -30,6 +30,7 @@ module.exports = {
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: '/dist/'
   },
+  externals: { moment: true },
 
   module: {
     loaders: [
