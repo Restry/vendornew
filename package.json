@@ -158,9 +158,7 @@
     "violet-paginator": "^1.8.1",
     "warning": "^2.1.0",
     "webpack-isomorphic-tools": "^2.2.18",
-    "webpack-visualizer-plugin": "^0.1.5"
-  },
-  "devDependencies": {
+    "webpack-visualizer-plugin": "^0.1.5",
     "autoprefixer-loader": "^3.1.0",
     "babel-eslint": "^5.0.0-beta6",
     "babel-plugin-react-transform": "^2.0.0",
