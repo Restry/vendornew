@@ -11,8 +11,10 @@ import { push } from 'react-router-redux';
   (state) => ({
     user: state.auth.user
   }),
-  { initialize, pushState: push,
-    ...requestActions })
+  { initialize, 
+    pushState: push,
+    ...requestActions 
+  })
 export default class Register extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired,

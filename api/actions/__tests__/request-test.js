@@ -17,11 +17,11 @@ const postData = {
 describe('提交需求测试', () => {
   it('提交成功', (done) => {
     request.post(postData, null, null).then((res) => {
-      console.error('request post success? :' + JSON.stringify(res));
+      // console.error('request post success? :' + JSON.stringify(res));
       expect(res.success).eq(true);
       done();
     }, (err) => {
-      console.error('request post error :' + err);
+      // console.error('request post error :' + err);
       expect(err.success).to.be.false();
       done();
     });
@@ -37,8 +37,16 @@ describe('提交需求测试', () => {
     });
   });
 
-  it('投标需求', (done) => {
+  it('投标需求-用户未登陆', (done) => {
+    request.race({
+      query: { title: postData.body.request.title }, session: {}
+    }).catch((err) => {
+      expect(err.success).eq(false);
+      done();
+    });
+  });
 
+  it('投标需求', (done) => {
     request.race({
       query: { title: postData.body.request.title }, session: {
         user: {

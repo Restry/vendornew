@@ -13,7 +13,9 @@ import {
   NotFound,
   Request,
   Trans,
+  Trade,
   Settled,
+  RequestDetail,
   PostRequest
 } from 'containers';
 
@@ -54,10 +56,12 @@ export default (store) => {
 
         { /* Routes */}
         <Route path="about" component={About} />
+        <Route path="trade" component={Trade} />
         <Route path="trans" component={Trans} />
         <Route path="settled" component={Settled} />
         <Route path="login" component={Login} />
         <Route path="request" component={Request} />
+          <Route path="request/:id" component={RequestDetail} />
         <Route path="survey" component={Survey} />
         <Route path="widgets" component={Widgets} />
 

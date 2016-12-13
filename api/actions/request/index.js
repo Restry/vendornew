@@ -16,6 +16,10 @@ export const load = (req, pars) => {
   // });
 };
 export const race = (req, pars) => {
+  if (!req.session.user) {
+    return Promise.reject({ success: false, msg: '用户未登陆！' });
+  }
+
   return Request.findOne(req.query).exec().then((err, request) => {
     const promi = new Promise();
     if (err) return Promise.reject(err);
