@@ -7,6 +7,9 @@ const ADD_FAIL = 'redux-example/request/ADD_FAIL';
 const REMOVE = 'redux-example/request/REMOVE';
 const REMOVE_SUCCESS = 'redux-example/request/REMOVE_SUCCESS';
 const REMOVE_FAIL = 'redux-example/request/REMOVE_FAIL';
+const DETAIL = 'redux-example/request/DETAIL';
+const DETAIL_SUCCESS = 'redux-example/request/DETAIL_SUCCESS';
+const DETAIL_FAIL = 'redux-example/request/DETAIL_FAIL';
 
 const initialState = {
   loaded: false,
@@ -69,6 +72,26 @@ export default function reducer(state = initialState, action = {}) {
         removing: false,
         removeError: action.error
       };
+
+    case DETAIL:
+      return {
+        ...state,
+        loading: true
+      };
+    case DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        request: action.result[0]
+      };
+    case DETAIL_FAIL:
+      return {
+        ...state,
+        loading: false,
+        request: null,
+        detailError: action.error
+      };
+
     default:
       return state;
   }
@@ -91,6 +114,14 @@ export function add(request) {
     })
   };
 }
+
+export const detail = (_id) => {
+  return {
+    types: [ADD, ADD_SUCCESS, ADD_FAIL],
+    promise: (client) => client.get('/request/load?_id=' + _id)
+  };
+};
+
 
 export function remove(request) {
   return {
