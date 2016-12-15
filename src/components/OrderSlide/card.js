@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 moment.locale('zh-CN');
+import { Link } from 'react-router';
 
 const OrderCard = ({item, type}) => {
   if (type === 'min') {
@@ -10,7 +11,7 @@ const OrderCard = ({item, type}) => {
           <span className="gsname">{item.creator}</span>
           <span className="pri fr">参考价：￥<em>{item.price || '无'}</em></span></div>
         <div className="con">
-          {item.title}
+          <Link to={"/request/detail/" + item._id}> {item.title} </Link>
         </div>
         <div className="location">
           <div className="time fl">{moment(item.created).format('YYYY/MM/DD HH:mm')}</div>
@@ -24,14 +25,14 @@ const OrderCard = ({item, type}) => {
       <div className="odr-items">
         <div className="odr-lx zbd"></div>
         <div className="odr-b-t">
-          <div className="name">{item.title}</div>
+          <div className="name"><Link to={"/request/detail/" + item._id}> {item.title} </Link></div>
           <div className="people"><span>发标人：</span><span>{item.creator}</span></div>
         </div>
         <div className="odr-b-c">
           <dl className="odr-b-list">
             <dt>邀请竞标商家</dt>
             {item.raceVendors.map((vendor, i) => {
-              return <dd key={i}>{vendor.user}:{moment(vendor.raceTime).toNow()}</dd>;
+              return <dd key={i}>{vendor.name}:{moment(vendor.raceTime).toNow()}</dd>;
             })}
           </dl>
         </div>

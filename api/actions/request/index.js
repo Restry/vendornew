@@ -5,7 +5,7 @@ moment.locale('zh-CN');
 export const load = (req, pars) => {
   // console.log('load in');
   // console.log(`Request req.query: ${JSON.stringify(req.query)}`);
-  return Request.find(req.query).exec();
+  return Request.find(req.query).sort('-created').exec();
 
   // return new Promise((resolve, reject) => {
   //  // setTimeout(() => {
@@ -19,22 +19,24 @@ export const race = (req, pars) => {
   if (!req.session.user) {
     return Promise.reject({ success: false, msg: '用户未登陆！' });
   }
+  return new Promise((resolve, reject) => {
+    Request.findOne(req.query).exec().then((request, err) => {
 
-  return Request.findOne(req.query).exec().then((err, request) => {
-    // console.log(`query:${JSON.stringify(req.query)}，request：${JSON.stringify(request)},err:${JSON.stringify(err)}`);
-    const promi = new Promise();
-    if (err) return Promise.reject(err);
-    const currentUser = req.session.user;
-    request.raceTime = new Date();
-    currentUser.raceTime = new Date();
-    request.raceVendors.push(currentUser);
+      if (err) reject(err);
+      const currentUser = req.session.user;
+      request.raceTime = new Date();
+      currentUser.raceTime = new Date();
+      request.raceVendors.push(currentUser);
 
-    request.save((saveErr) => {
-      if (saveErr) promi.reject(saveErr);
-      promi.resolve(true);
+      // console.log(`query:${JSON.stringify(req.query)}，request：${JSON.stringify(request)},err:${JSON.stringify(err)}`);
+      request.save((saveErr) => {
+        console.log('save ok?:' + JSON.stringify(saveErr));
+        if (saveErr) reject(saveErr);
+        resolve(request);
+      });
     });
-    return promi;
   });
+
 };
 
 export const post = (req, pars, app) => {

@@ -21,6 +21,7 @@ const postData = {
       'states': '招标中',
       'creator': '@cname()',
       'created': '@datetime()',
+      'raceVendors': [],
       'price|1': [
         500,
         1000, 5000, 300, 2559, 689, 20000
@@ -67,17 +68,16 @@ describe('提交需求测试', () => {
   it('投标需求', (done) => {
     request.race({
       query: { title: postData.body.request.title }, session: {
-        user: mock({
-          name: '@cname()'
-        })
+        user: mock({ name: '@cname()' })
       }
-    }).then((err, res) => {
+    }).then((res) => {
+      console.log('race done:' + JSON.stringify(res));
       expect(res.raceVendors.length).gt(0);
       done();
-    }).catch((err) => {
+    }, (err) => {
       console.log('race error:' + JSON.stringify(err));
       done();
-    });
+    })
   });
 
   it('竟标期限值', (done) => {

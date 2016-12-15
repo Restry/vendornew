@@ -10,6 +10,7 @@ const REMOVE_FAIL = 'redux-example/request/REMOVE_FAIL';
 const DETAIL = 'redux-example/request/DETAIL';
 const DETAIL_SUCCESS = 'redux-example/request/DETAIL_SUCCESS';
 const DETAIL_FAIL = 'redux-example/request/DETAIL_FAIL';
+const RACE_SUCCESS = 'redux-example/request/RACE_SUCCESS';
 
 const initialState = {
   loaded: false,
@@ -93,6 +94,12 @@ export default function reducer(state = initialState, action = {}) {
         detailError: action.error
       };
 
+    case RACE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        request: action.result
+      };
     default:
       return state;
   }
@@ -123,6 +130,12 @@ export const detail = (_id) => {
   };
 };
 
+export const race = (_id) => {
+  return {
+    types: [RACE_SUCCESS],
+    promise: (client) => client.get('/request/race?_id=' + _id)
+  };
+};
 
 export function remove(request) {
   return {
