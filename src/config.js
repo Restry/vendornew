@@ -11,7 +11,7 @@ const environment = {
 
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
-  port: process.env.PORT || 8001,
+  port: process.env.PORT || 80,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT || 3030,
   db: 'mongodb://42.121.119.36/vendor-db',
