@@ -14,4 +14,5 @@ export Trans from './Trans';
 export Settled from './Settled';
 export Trade from './Trade';
 export RequestDetail from './Request/detail';
+export RequestMore from './Request/more';
 

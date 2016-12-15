@@ -16,7 +16,8 @@ import {
   Trade,
   Settled,
   RequestDetail,
-  PostRequest
+  PostRequest,
+  RequestMore
 } from 'containers';
 
 export default (store) => {
@@ -61,7 +62,8 @@ export default (store) => {
         <Route path="settled" component={Settled} />
         <Route path="login" component={Login} />
         <Route path="request" component={Request} />
-          <Route path="request/:id" component={RequestDetail} />
+        <Route path="request/detail/:_id" component={RequestDetail} />
+        <Route path="request/more" component={RequestMore} />
         <Route path="survey" component={Survey} />
         <Route path="widgets" component={Widgets} />
 

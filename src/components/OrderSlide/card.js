@@ -2,7 +2,23 @@ import React from 'react';
 import moment from 'moment';
 moment.locale('zh-CN');
 
-const OrderCard = ({item}) => {
+const OrderCard = ({item, type}) => {
+  if (type === 'min') {
+    return (
+      <li>
+        <div className="tit"><span className="name">来源：</span>
+          <span className="gsname">{item.creator}</span>
+          <span className="pri fr">参考价：￥<em>{item.price || '无'}</em></span></div>
+        <div className="con">
+          {item.title}
+        </div>
+        <div className="location">
+          <div className="time fl">{moment(item.created).format('YYYY/MM/DD HH:mm')}</div>
+          <div className="weiz fr"></div>
+        </div>
+      </li>
+    );
+  }
   return (
     <li rel="zbd">
       <div className="odr-items">

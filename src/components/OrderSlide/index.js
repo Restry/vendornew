@@ -1,14 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import config from '../../config';
 import Card from './card';
-import { connect } from 'react-redux';
-import { load } from 'redux/modules/request';
+import { Link } from 'react-router';
 
-@connect(
-  state => ({
-    loading: state.request.loading,
-    categoryOfRequestOrders: state.request.requests || []
-  }), { load })
 class OrderSlide extends Component {
   constructor(props, context) {
     super(props, context);
@@ -23,7 +16,27 @@ class OrderSlide extends Component {
   }
   render() {
     const {selectedClass} = this.state;
-    const {categoryOfRequestOrders, loading} = this.props;
+    const {categoryOfRequestOrders, loading, categories, type} = this.props;
+
+    if (type === 'min') {
+      return (<div className="main-data">
+        <h1 className="newdate">最新定制需求</h1>
+        <div>
+            <ul className="order-sx-tit">
+              {categories.map((item, index) => {
+                return <li onClick={this.chooseCategory.bind(this, item)} className={(item.class === selectedClass) ? 'selected' : ''} key={index}> <a>{item.title}</a></li>;
+              })}
+            </ul>
+        </div>
+        <div className="news-oder-date">
+          <ul>
+            {categoryOfRequestOrders.map((item, index) => {
+              return <Card key={index} item={item} type={type} />;
+            })}
+          </ul>
+        </div>
+      </div>);
+    }
 
     return (
       <div className="actionWrap action-gray">
@@ -34,19 +47,21 @@ class OrderSlide extends Component {
           <div className="con">
 
             <ul className="order-sx-tit">
-              {config.categories.map((item, index) => {
+              {categories.map((item, index) => {
                 return <li onClick={this.chooseCategory.bind(this, item)} className={(item.class === selectedClass) ? 'selected' : ''} key={index}> <a>{item.title}</a></li>;
               })}
             </ul>
 
             <ul className="order-sx-con clearfixfix">
               {categoryOfRequestOrders.map((item, index) => {
-                return <Card key={index} item={item} />;
+                return <Card key={index} item={item} type={type} />;
               })}
             </ul>
             <div className="clearfix"></div>
           </div>
         </div>
+        <div className="ck-more"><Link to="/request/more">查看更多<i className="sj"></i></Link></div>
+
       </div>
     );
   }
@@ -54,8 +69,10 @@ class OrderSlide extends Component {
 
 OrderSlide.propTypes = {
   loading: PropTypes.bool,
-  categoryOfRequestOrders: PropTypes.func,
-  load: PropTypes.func
+  categoryOfRequestOrders: PropTypes.array,
+  load: PropTypes.func,
+  categories: PropTypes.array,
+  type: PropTypes.string
 };
 
 export default OrderSlide;

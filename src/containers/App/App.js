@@ -10,7 +10,6 @@ import { NavBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
-import Loader from 'react-loader';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 var options = {

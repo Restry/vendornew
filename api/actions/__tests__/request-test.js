@@ -1,16 +1,34 @@
 import { expect } from 'chai';
 import { request } from '../index';
+import moment from 'moment';
+moment.locale('zh-CN');
+import { mock } from 'mockjs';
 // require('./enableConnection');
 const postData = {
   body: {
-    request: {
-      title: `[需求]Unit Tests:${(new Date()).getTime()}`,
-      category: 'wechat',
-      type: 'zbd',
-      notes: `[需求]Unit Tests :${(new Date()).getTime()} Notes description`,
-      process: 0,
-      states: '招标中'
-    }
+    request: mock({
+      'category|1': [
+        'wechat',
+        'taobao'
+      ],
+      'title': '@city()的@cname()要刷@integer(60, 100)单',
+      'type|1': [
+        'zbd',
+        'zjxd'
+      ],
+      'notes': '@cparagraph()',
+      'process': '@integer(1, 100)',
+      'states': '招标中',
+      'creator': '@cname()',
+      'created': '@datetime()',
+      'price|1': [
+        500,
+        1000, 5000, 300, 2559, 689, 20000
+      ],
+      'order': '@integer(0, 100)',
+      'raceDay': '@integer(5, 100)'
+    })
+
   }
 };
 
@@ -30,8 +48,8 @@ describe('提交需求测试', () => {
 
   it('获取微信需求', (done) => {
     // expect(1).to.gt(0);
-    request.load({ query: { category: 'wechat' } }).then((res) => {
-      console.log(`all wechat list : ${JSON.stringify(res)}`);
+    request.load({ query: { category: 'taobao' } }).then((res) => {
+      console.log(`all wechat list : ${JSON.stringify(res.length)}`);
       expect(res.length).gt(0);
       done();
     });
@@ -49,9 +67,9 @@ describe('提交需求测试', () => {
   it('投标需求', (done) => {
     request.race({
       query: { title: postData.body.request.title }, session: {
-        user: {
-          name: 'test-user'
-        }
+        user: mock({
+          name: '@cname()'
+        })
       }
     }).then((err, res) => {
       expect(res.raceVendors.length).gt(0);
@@ -60,23 +78,6 @@ describe('提交需求测试', () => {
       console.log('race error:' + JSON.stringify(err));
       done();
     });
-
-    // request.load({ query: { category: 'wechat' } }).then((res) => {
-    //   // expect(res[0].race).to.not.null();
-    //   // console.dir(res);
-    //   expect(res[0].race).not.equal(null);
-
-    //   res[0].race(res[0]._id, { user: 'restry', raceTime: new Date() })
-    //     .then((raceResult) => {
-    //       console.log(JSON.stringify(raceResult));
-    //       expect(raceResult.raceVendors.length).gt(0);
-    //       done();
-    //     }).catch((err) => {
-    //       console.dir(err);
-    //       return next(err);
-    //     });
-
-    // });
   });
 
   it('竟标期限值', (done) => {

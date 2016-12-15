@@ -21,12 +21,11 @@ export const race = (req, pars) => {
   }
 
   return Request.findOne(req.query).exec().then((err, request) => {
+    // console.log(`query:${JSON.stringify(req.query)}，request：${JSON.stringify(request)},err:${JSON.stringify(err)}`);
     const promi = new Promise();
     if (err) return Promise.reject(err);
-
     const currentUser = req.session.user;
     request.raceTime = new Date();
-
     currentUser.raceTime = new Date();
     request.raceVendors.push(currentUser);
 
@@ -41,9 +40,8 @@ export const race = (req, pars) => {
 export const post = (req, pars, app) => {
   // console.log(`request post: ${JSON.stringify(req.body)}`);
   const { request } = req.body;
-  request.created = (new Date()).toLocaleString();
-  request.completeTime = (new Date()).toLocaleString();
-  request.states = '招标中';
+  request.created = req.body.created || (new Date()).toLocaleString();
+  request.states = req.body.states || '招标中';
   request.raceDay = request.raceDay || 10;
   const newRequest = new Request(request);
 

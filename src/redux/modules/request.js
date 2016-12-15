@@ -13,7 +13,8 @@ const DETAIL_FAIL = 'redux-example/request/DETAIL_FAIL';
 
 const initialState = {
   loaded: false,
-  requests:[]
+  requests: [],
+  categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }]
 };
 
 export default function reducer(state = initialState, action = {}) {
