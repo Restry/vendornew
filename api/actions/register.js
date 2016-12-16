@@ -28,7 +28,7 @@ export default function register(req, params, app) {
         }
         // create token
         const token = jwt.sign(newUser, app.get('superSecret'), {
-         // expiresInminutes: 1440
+          expiresIn: 1440
         });
 
         newUser.password = undefined;
