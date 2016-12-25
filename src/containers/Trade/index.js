@@ -1,8 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 if (__CLIENT__) { require('../../assets/css/amend.css'); }
+import { mock, Random } from 'mockjs';
+import { connect } from 'react-redux';
+import toastr from 'toastr';
+import * as requestActions from 'redux/modules/request';
 
+@connect(
+  (state, ownProps) => {
+    const { requests} = state.info;
+    const { user } = state.auth;
+    return {
+      myRequests: requests.filter((item)=>{ return item.creator === user.email; }),
+      myVendors: []//requests.filter((item)=>{ return item.vendor !== null && item.vendor.email === user.email; })
+    };
+  },
+  {
+    ...requestActions
+  })
 class Trade extends Component {
   render() {
+    const { myRequests, myVendors} = this.props;
     return (
       <div className="egc-container">
   <div className="find-wrap">
@@ -25,18 +42,7 @@ class Trade extends Component {
                 </div>
                 <div className="fenshu"><em>5.0</em>分</div>
               </div>
-              <div className="md-pf-info">
-                <div className="md-pf-tit"> <span>综合评分</span><span>评分细则</span><span>相比行业</span> </div>
-                <div className="md-pf-con">
-                  <div className="z-sum"> <span>5.0</span>分 </div>
-                  <div className="pf-xz">
-                    <div className="list-sum"><span className="list-pf">资质<em>5.0</em></span></div>
-                    <div className="list-sum"><span className="list-pf">案例<em>5.0</em></span></div>
-                    <div className="list-sum"><span className="list-pf">服务<em>5.0</em></span></div>
-                  </div>
-                  <div className="pf-qs"> <span className="pf-qx-icon up"></span> </div>
-                </div>
-              </div>
+
             </div>
             <div className="supAttention"> <a id="btnAttentionSupplier">+关注</a> <span>已关注：<s id="spNumAttentionSupplier">1</s></span> </div>
           </div>
@@ -51,17 +57,7 @@ class Trade extends Component {
           </div>
           <div className="supAttention"><a target="_blank">查看案例</a> </div>
         </div>
-        <div className="sup-abt-zs fl">
-          <div className="sup-zzzs">
-            <div className="zzzs-img"><img src="images/yyzz.jpg" width="110" height="80" /></div>
-            <div className="zzzs-img"><img src="images/yyzz.jpg" width="109" height="80" /></div>
-            <div className="zzzs-img"><img src="images/yyzz.jpg" width="109" height="80" /></div>
-          </div>
-          <div className="model-sup-items">
-            <p className="jjfw-tit">主营产品：</p>
-            <div className="jjfw-con"> <span>司旗</span> <span>挂绳</span> <span>纸杯</span> <span>X展架</span> </div>
-          </div>
-        </div>
+
       </div>
       <div className="factorAbout">
         <div className="abt-tit">企业介绍</div>
@@ -77,37 +73,37 @@ class Trade extends Component {
     </div>
     <div className="factorVirtueBox">
       <div className="factor-ser box-radius fl">
-        <div className="tit-find"><span className="font-find fl">上传的模板</span>
-          <div className="fr fac-orders">模板总数<em>1000</em>单</div>
+        <div className="tit-find"><span className="font-find fl">我发布的</span>
+          <div className="fr fac-orders">投标总数<em>{myRequests.length}</em>单</div>
           <div className="clearfix"></div>
         </div>
         <div className="con-find">
-          <table border="0" cellspacing="0" cellpadding="0" className="egc-tab">
+          <table border="0" cellSpacing="0" cellPadding="0" className="egc-tab">
             <tbody>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
+
+            {myRequests.map((item, index)=>{
+              let {raceVendors} = item;
+              raceVendors = raceVendors || [];
+              return (<tr key={index}>
+                <td><a className="fac-odr-img">
+                <img src={Random.image('70x70')} width="70" height="70" /></a>
+                <a className="fac-odr-name">{item.title}</a>
+                <ul>
+                 { raceVendors.map((rv, ri)=>{return <li key={ri}>{rv.name}</li>;})}
+                </ul>
+                </td>
                 <td align="center"><div className="fac-items-name">
-                    <p>上传时间</p>
-                    <p>2015-10-11 10:44</p>
+                    <p>发布时间时间</p>
+                    <p>{item.created}</p>
                   </div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">已定制数量</div></td>
+                <td align="center"><span className="fac-dz-num"><em>{raceVendors.length}</em>件</span>
+                  <div className="fac-items-name">投标人数量</div></td>
                 <td align="center"><div className="star mgwz xing-5"></div>
                   <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><div className="fac-items-name">
-                    <p>上传时间</p>
-                    <p>2015-10-11 10:44</p>
-                  </div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">已定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td colspan="4"><div className="listPage">
+              </tr>);
+            })}
+              <tr className="die">
+                <td colSpan="4"><div className="listPage">
                     <div className="pageBtn"> <span className="prev">上一页</span> <a >1</a> <a >2</a> <a >3</a> <a >4</a> <a >5</a> <span className="noneb">....</span> <span className="next">下一页</span> <span className="page-skip"><em>&nbsp;&nbsp;共100页&nbsp;&nbsp;&nbsp;&nbsp;到第</em>&nbsp;&nbsp;
                       <input className="jumpto" type="text" value="1"/>
                       &nbsp;&nbsp;<em>页</em>&nbsp;&nbsp;&nbsp;&nbsp;<a className="btn-skipsearch">确定</a></span> </div>
@@ -116,105 +112,33 @@ class Trade extends Component {
             </tbody>
           </table>
         </div>
-        <div className="tit-find"><span className="font-find fl">服务记录</span>
-          <div className="fr fac-orders">订单总数<em>1000</em>单</div>
+        <div className="tit-find"><span className="font-find fl">我服务过的</span>
+          <div className="fr fac-orders">订单总数<em>{myVendors.length}</em>单</div>
           <div className="clearfix"></div>
         </div>
         <div className="con-find">
-          <table border="0" cellspacing="0" cellpadding="0" className="egc-tab">
+          <table border="0" cellSpacing="0" cellPadding="0" className="egc-tab">
             <tbody>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
+            {myVendors.map((item, index)=>{
+               let {raceVendors} = item;
+              raceVendors = raceVendors || [];
+              return (<tr key={index}>
+                <td><a className="fac-odr-img">
+                <img src={Random.image('70x70')} width="70" height="70" /></a>
+                <a className="fac-odr-name">{item.title}</a>
+                </td>
+                <td align="center"><div className="fac-items-name">
+                    <p>发布人</p>
+                    <p>item.creator</p>
+                  </div></td>
+                <td align="center"><span className="fac-dz-num"><em>{raceVendors.length}</em>件</span>
+                  <div className="fac-items-name">投标人数量</div></td>
                 <td align="center"><div className="star mgwz xing-5"></div>
                   <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td><a className="fac-odr-img"><img src="upload/ek-pro-list.jpg" width="70" height="70" /></a> <a className="fac-odr-name">精美企业画册印刷</a></td>
-                <td align="center"><span className="fac-kh-name">华展候车厅</span>
-                  <div className="fac-items-name">服务客户</div></td>
-                <td align="center"><span className="fac-dz-num"><em>100</em>件</span>
-                  <div className="fac-items-name">定制数量</div></td>
-                <td align="center"><div className="star mgwz xing-5"></div>
-                  <div className="fac-items-name">客户综价（满分五星）</div></td>
-              </tr>
-              <tr>
-                <td colspan="4"><div className="listPage">
+              </tr>);
+            })}
+              <tr className="die">
+                <td colSpan="4"><div className="listPage">
                     <div className="pageBtn"> <span className="prev">上一页</span> <a >1</a> <a >2</a> <a >3</a> <a >4</a> <a >5</a> <span className="noneb">....</span> <span className="next">下一页</span> <span className="page-skip"><em>&nbsp;&nbsp;共100页&nbsp;&nbsp;&nbsp;&nbsp;到第</em>&nbsp;&nbsp;
                       <input className="jumpto" type="text" value="1"/>
                       &nbsp;&nbsp;<em>页</em>&nbsp;&nbsp;&nbsp;&nbsp;<a className="btn-skipsearch">确定</a>
@@ -234,10 +158,10 @@ class Trade extends Component {
           </div>
           <div className="con-find">
             <div className="honor">
-              <div className="imgList"><a><img src="upload/honor.jpg" /></a></div>
-              <div className="imgList"><a><img src="upload/honor.jpg" /></a></div>
-              <div className="imgList"><a><img src="upload/honor.jpg" /></a></div>
-              <div className="imgList"><a><img src="upload/honor.jpg" /></a></div>
+              <div className="imgList"><a><img src={Random.image('100x100')} /></a></div>
+              <div className="imgList"><a><img src={Random.image('100x100')} /></a></div>
+              <div className="imgList"><a><img src={Random.image('100x100')} /></a></div>
+              <div className="imgList"><a><img src={Random.image('100x100')} /></a></div>
               <div className="clearfix"></div>
             </div>
           </div>

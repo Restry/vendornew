@@ -12,11 +12,12 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
-//import './assets/css/antd.css';
+// import './assets/css/antd.css';
 import './assets/css/base.css';
 import './assets/css/index.css';
 import './assets/css/list.css';
 import './assets/css/complex.css';
+import 'toastr/build/toastr.css'
 import getRoutes from './routes';
 
 const client = new ApiClient();

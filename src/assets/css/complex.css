@@ -1,4 +1,4 @@
- 
+
 .border-top{border-top:2px solid #0078b5;}
 .ek-manageBox.border-top{padding-top:15px;}
 .modelsXiajia{border:1px solid #ddd; background:#eee; padding:10px; font-size:16px; color:#666; margin:15px 0;}
@@ -82,12 +82,15 @@
 .industNew .con ul li span em{font-family:Arial; color:#ff7800; padding-left:5px;}
 
 
-.industCon{width:1090px; margin:30px auto;}
+.industCon{width:1090px; margin:30px auto; min-height: 500px}
 .industCon .conRight{width:820px; float:left;}
 .industCon .conRight .caseItims{width:818px; height:245px; background:#fff; border:1px solid #eaeaea; margin-bottom:20px; zoom:1; overflow:hidden; transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out;}
 .industCon .conRight .caseItims:hover,.conLeft .subItms:hover{box-shadow:#888 0 2px 15px; -moz-box-shadow:#666 0 2px 15px; -ms-box-shadow:#666 0 2px 15px; -o-box-shadow:#666 0 2px 15px; -webkit-box-shadow:#666 0 2px 15px;}
 .industCon .conRight .caseItims .case-txt{width:215px; padding:20px; overflow:hidden; float:left;}
 .industCon .conRight .caseItims .case-txt h1{font-size:18px; color:#333; padding-bottom:12px;}
+.indcaseinfo .con ul { padding:0; margin:1em 0 0 0;}
+.indcaseinfo .con ul li{ padding:10px; margin:0; line-height: 20px; border-bottom: 1px dashed #ccc;}
+
 .infoIndustTxt{margin:0; color:#666; float:left;}
 .infoIndustTxt .tab{padding:5px 0;}
 .infoIndustTxt .tab span{color:#333;}

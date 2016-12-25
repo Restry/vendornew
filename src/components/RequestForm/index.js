@@ -57,8 +57,8 @@ export default
 
         <div className="normalInput">
           <span className="tit-reg">类别</span>
-          {config.categories.map((item) => {
-            return <span> <input type="radio" id={item.class} {...category} value={item.class}
+          {config.categories.map((item,index) => {
+            return <span key={index}> <input type="radio" id={item.class} {...category} value={item.class}
               checked={category.value === item.class} />
               <label htmlFor={item.class}>{item.title}</label>
             </span>;

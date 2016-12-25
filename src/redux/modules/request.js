@@ -7,15 +7,15 @@ const ADD_FAIL = 'redux-example/request/ADD_FAIL';
 const REMOVE = 'redux-example/request/REMOVE';
 const REMOVE_SUCCESS = 'redux-example/request/REMOVE_SUCCESS';
 const REMOVE_FAIL = 'redux-example/request/REMOVE_FAIL';
-const DETAIL = 'redux-example/request/DETAIL';
+
 const DETAIL_SUCCESS = 'redux-example/request/DETAIL_SUCCESS';
-const DETAIL_FAIL = 'redux-example/request/DETAIL_FAIL';
 const RACE_SUCCESS = 'redux-example/request/RACE_SUCCESS';
 
 const initialState = {
   loaded: false,
   requests: [],
-  categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }]
+  categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }],
+  item: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -75,30 +75,19 @@ export default function reducer(state = initialState, action = {}) {
         removeError: action.error
       };
 
-    case DETAIL:
-      return {
-        ...state,
-        loading: true
-      };
+
     case DETAIL_SUCCESS:
       return {
         ...state,
         loading: false,
-        request: action.result[0]
-      };
-    case DETAIL_FAIL:
-      return {
-        ...state,
-        loading: false,
-        request: null,
-        detailError: action.error
+        item: action.result[0]
       };
 
     case RACE_SUCCESS:
       return {
         ...state,
         loading: false,
-        request: action.result
+        item: action.result
       };
     default:
       return state;
@@ -125,14 +114,14 @@ export function add(request) {
 
 export const detail = (_id) => {
   return {
-    types: [ADD, ADD_SUCCESS, ADD_FAIL],
+    types: [LOAD, DETAIL_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/request/load?_id=' + _id)
   };
 };
 
 export const race = (_id) => {
   return {
-    types: [RACE_SUCCESS],
+    types: [LOAD, RACE_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/request/race?_id=' + _id)
   };
 };

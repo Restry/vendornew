@@ -41,10 +41,15 @@ export const race = (req, pars) => {
 
 export const post = (req, pars, app) => {
   // console.log(`request post: ${JSON.stringify(req.body)}`);
+  if (!req.session.user) {
+    return Promise.reject({ success: false, msg: '用户未登陆！' });
+  }
+
   const { request } = req.body;
   request.created = req.body.created || (new Date()).toLocaleString();
   request.states = req.body.states || '招标中';
   request.raceDay = request.raceDay || 10;
+  request.creator = req.session.user.email;
   const newRequest = new Request(request);
 
   return new Promise((resolve, reject) => {

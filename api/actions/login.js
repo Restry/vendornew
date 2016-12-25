@@ -2,7 +2,7 @@ import { User } from './dbSchema';
 const jwt = require('jsonwebtoken');
 import utils from '../utils/pwd';
 
-export default function login(req, params, app) {
+export default function login(req, params, app, res) {
   // add back the password field for this query
   const query = User.findOne({
     email: req.body.email
@@ -37,8 +37,9 @@ export default function login(req, params, app) {
               token: token,
               user: user
             };
+            res.setHeader('Set-Cookie', 'user=' + token);
             // console.log('set session start');
-            req.session.user = userIdentity.user;
+            // req.session.user = userIdentity.user;
             // console.log('set session end');
             // send token
             resolve(userIdentity);
@@ -49,33 +50,3 @@ export default function login(req, params, app) {
   });
 }
 
-
-// middleware
-function authenticate(req, res, next) {
-  const token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  console.log(req.headers);
-  if (token) {
-
-    // verify token validity
-    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
-      if (err) {
-        return res.json({
-          success: false,
-          message: 'Failed to authenticate token.'
-        });
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-
-  } else {
-
-    return res.status(403).send({
-      success: false,
-      message: 'No token provided.'
-    });
-
-  }
-}

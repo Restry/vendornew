@@ -63,7 +63,7 @@ app.use((req, res) => {
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
-    action(req, params, app)
+    action(req, params, app, res)
       .then((result) => { // 从API中的Promise对象来Promise.resolve() || Promise.reject() || new Promise(){ resolve or reject } ;
         if (result instanceof Function) {
           result(res);
@@ -121,3 +121,5 @@ if (config.apiPort) {
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
 }
+
+

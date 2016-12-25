@@ -28,7 +28,7 @@ const requestSchema = new Schema({
   'notes': { type: String, required: true },
   'process': Number,
   'states': { type: String, required: true },
-  'vendor': String, // 接标人
+  'vendor': Object, // 接标人
   'order': Number,
   'price': Number,
   'creator': String,
