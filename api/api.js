@@ -17,7 +17,7 @@ let mongoose = require('mongoose'),
 
 const pretty = new PrettyError();
 const app = express();
-const server = new http.Server(app);
+// const server = new http.Server(app);
 
 // const io = new SocketIo(server);
 // io.path('/ws');
@@ -33,11 +33,11 @@ app.use(session({
 // ENVIRONMENT CONFIG
 
 mongoose.connect(config.db);
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  console.log('Open connection at : ' + (new Date()).toLocaleString());
-});
+// db.once('open', (callback)=> {
+//   console.log('Open connection at : ' + (new Date()).toLocaleString());
+// });
 mongoose.Promise = global.Promise;
 // 不使用原生的Promise， 修复这个问题：(node:14396) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com
 // /docs/promises.html
@@ -52,7 +52,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 
 // JWT config
-let jwtSecret = 'thupers3crT$12';
+const jwtSecret = 'thupers3crT$12';
 app.set('superSecret', jwtSecret);
 
 

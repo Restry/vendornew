@@ -1,15 +1,16 @@
-const LOAD = 'redux-example/request/LOAD';
-const LOAD_SUCCESS = 'redux-example/request/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/request/LOAD_FAIL';
-const ADD = 'redux-example/request/ADD';
-const ADD_SUCCESS = 'redux-example/request/ADD_SUCCESS';
-const ADD_FAIL = 'redux-example/request/ADD_FAIL';
-const REMOVE = 'redux-example/request/REMOVE';
-const REMOVE_SUCCESS = 'redux-example/request/REMOVE_SUCCESS';
-const REMOVE_FAIL = 'redux-example/request/REMOVE_FAIL';
+const LOAD = 'chengbt-platform/request/LOAD';
+const LOAD_SUCCESS = 'chengbt-platform/request/LOAD_SUCCESS';
+const LOAD_FAIL = 'chengbt-platform/request/LOAD_FAIL';
+const ADD = 'chengbt-platform/request/ADD';
+const ADD_SUCCESS = 'chengbt-platform/request/ADD_SUCCESS';
+const ADD_FAIL = 'chengbt-platform/request/ADD_FAIL';
+const REMOVE = 'chengbt-platform/request/REMOVE';
+const REMOVE_SUCCESS = 'chengbt-platform/request/REMOVE_SUCCESS';
+const REMOVE_FAIL = 'chengbt-platform/request/REMOVE_FAIL';
 
-const DETAIL_SUCCESS = 'redux-example/request/DETAIL_SUCCESS';
-const RACE_SUCCESS = 'redux-example/request/RACE_SUCCESS';
+const DETAIL_SUCCESS = 'chengbt-platform/request/DETAIL_SUCCESS';
+const RACE_SUCCESS = 'chengbt-platform/request/RACE_SUCCESS';
+const CONFIRM_VENDOR_SUCCESS = 'chengbt-platform/request/CONFIRM_VENDOR_SUCCESS';
 
 const initialState = {
   loaded: false,
@@ -89,6 +90,13 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         item: action.result
       };
+
+    case CONFIRM_VENDOR_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: action.result.success
+      };
     default:
       return state;
   }
@@ -112,10 +120,10 @@ export function add(request) {
   };
 }
 
-export const confirmVendor = (_id,vendor) => {
+export const confirmVendor = (_id, vendor) => {
   return {
-    types: [LOAD, DETAIL_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.post('/request/confirmVendor?_id='+_id, {data: { vendor }})
+    types: [LOAD, CONFIRM_VENDOR_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.post('/request/confirmVendor?_id=' + _id, { data: { ...vendor } })
   };
 };
 

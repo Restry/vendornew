@@ -2,7 +2,7 @@ import { Information, Request } from './dbSchema';
 import auth from '../utils/auth';
 // ('vendor.email').equals(user.email).or
 export default function loadInfo(req, params, app, res) {
-  console.log(req.cookies);
+  // console.log(req.cookies);
   const returnObj = { success: true, info: {}, requests: [] };
 
   return Information.getSiteInfo().then((result) => {

@@ -2,6 +2,7 @@ import { Request } from '../dbSchema';
 import moment from 'moment';
 moment.locale('zh-CN');
 import auth from '../../utils/auth';
+// import { loadInfo } from '../index';
 
 export const load = (req, pars) => {
   // console.log('load in');

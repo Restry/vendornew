@@ -16,6 +16,7 @@ export default function authenticate(req, app) {
             message: 'Failed to authenticate token.'
           });
         } else {
+          console.log('decode user:',decoded);
           req.decodeToken = decoded;
           resolve(decoded);
         }

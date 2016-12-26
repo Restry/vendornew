@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-if (__CLIENT__) { require('../../assets/css/amend.css'); }
 import { mock, Random } from 'mockjs';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import * as requestActions from 'redux/modules/request';
+import { load } from 'redux/modules/info';
+
+if (__CLIENT__) { require('../../assets/css/amend.css'); }
 
 @connect(
   (state, ownProps) => {
@@ -11,16 +13,18 @@ import * as requestActions from 'redux/modules/request';
     const { user } = state.auth;
     return {
       myRequests: requests.filter((item)=>{ return item.creator === user.email; }),
-      myVendors: []//requests.filter((item)=>{ return item.vendor !== null && item.vendor.email === user.email; })
+      myVendors: requests.filter((item)=>{ return item.vendor !== null && item.vendor.email === user.email; })
     };
-  },
-  {
-    ...requestActions
-  })
+  }, { loadInfo: load, ...requestActions})
 class Trade extends Component {
-  chooseVendor=(_id,vendor)=>{
+  chooseVendor = (_id, vendor)=>{
     return ()=>{
-      this.props.confirmVendor(_id, vendor);
+      const { confirmVendor, loadInfo} = this.props;
+      confirmVendor(_id, vendor).then(res=>{
+        if (res.success) {
+          loadInfo();
+        }
+      });
     }
   }
   render() {
@@ -34,7 +38,7 @@ class Trade extends Component {
         <div className="modelSupplier sup-abt fl">
           <div className="model-sup-items">
             <div className="mod-sup">
-              <div className="sup-md-logo"> <img src="http://www.egc.cn/upload/201512/08/20151281555549140.png" width="60" height="60"/>
+              <div className="sup-md-logo"> <img src={Random.image('60x60')} width="60" height="60"/>
                 <div className="renzheng">认证</div>
               </div>
               <h2><a className="pf-info-btn open"></a><span>小尼商城自营</span></h2>
@@ -89,7 +93,7 @@ class Trade extends Component {
                 <img src={Random.image('70x70')} width="70" height="70" /></a>
                 <a className="fac-odr-name">{item.title}</a>
                 <ul>
-                 { raceVendors.map((rv, ri)=>{
+                 { !item.vendor.email && raceVendors.map((rv, ri)=>{
                    return (<li key={ri}>{rv.name} <a onClick={this.chooseVendor(item._id, rv)} className="ipt-btn-small-qd">选你了</a></li>);
                   })}
                 </ul>
@@ -122,7 +126,7 @@ class Trade extends Component {
           <table border="0" cellSpacing="0" cellPadding="0" className="egc-tab">
             <tbody>
             {myVendors.map((item, index)=>{
-               let {raceVendors} = item;
+              let {raceVendors} = item;
               raceVendors = raceVendors || [];
               return (<tr key={index}>
                 <td><a className="fac-odr-img">
@@ -179,27 +183,6 @@ class Trade extends Component {
                 <li><a>精英工厂每日战报</a>
                   <div className="news-time">2015-10-22</div>
                 </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
-                <li><a>精英工厂每日战报</a>
-                  <div className="news-time">2015-10-22</div>
-                </li>
               </ul>
             </div>
           </div>
@@ -214,7 +197,8 @@ class Trade extends Component {
 }
 
 Trade.propTypes = {
-
+  confirmVendor: PropTypes.func,
+  loadInfo:PropTypes.func
 };
 
 export default Trade;
