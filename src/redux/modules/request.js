@@ -112,6 +112,14 @@ export function add(request) {
   };
 }
 
+export const confirmVendor = (_id,vendor) => {
+  return {
+    types: [LOAD, DETAIL_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.post('/request/confirmVendor?_id='+_id, {data: { vendor }})
+  };
+};
+
+
 export const detail = (_id) => {
   return {
     types: [LOAD, DETAIL_SUCCESS, LOAD_FAIL],

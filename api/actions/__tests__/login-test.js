@@ -16,7 +16,9 @@ describe('登陆测试', () => {
         return 'key' + par;
       }
     };
-    Login(postUser, null, app).then((res) => {
+    const response = { setHeader: () => { } }
+
+    Login(postUser, null, app, response).then((res) => {
       console.log(`res.success:${res.success}`);
       expect(res.success).eq(true);
       // expect(res.user).to.be.not.null();
