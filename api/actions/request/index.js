@@ -33,9 +33,7 @@ export const race = (req, pars, app) => {
     return request.save();
   }).then((saveErr) => {
     if (saveErr) Promise.reject(saveErr);
-    return {
-      success: true
-    };
+    return Request.find({}).sort('-created').exec();
   });
 };
 
@@ -56,10 +54,7 @@ export const post = (req, pars, app) => {
     return Promise.reject({ success: false, msg: '用户未登陆！' });
   }).then((item, err) => {
     if (err) return Promise.reject(err);
-    return ({
-      success: true,
-      message: 'Successfully added!'
-    });
+    return Request.find({}).sort('-created').exec();
   });
 };
 

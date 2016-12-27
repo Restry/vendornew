@@ -49,7 +49,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         adding: false,
-        requests: action.result
+        requests: action.result || [],
+        item: {}
       };
     case ADD_FAIL:
       return {

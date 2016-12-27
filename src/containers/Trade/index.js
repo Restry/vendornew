@@ -27,6 +27,10 @@ class Trade extends Component {
       });
     }
   }
+  componentDidMount() {
+    this.props.loadInfo();
+  }
+
   render() {
     const { myRequests, myVendors} = this.props;
     return (
@@ -111,7 +115,7 @@ class Trade extends Component {
               <tr className="die">
                 <td colSpan="4"><div className="listPage">
                     <div className="pageBtn"> <span className="prev">上一页</span> <a >1</a> <a >2</a> <a >3</a> <a >4</a> <a >5</a> <span className="noneb">....</span> <span className="next">下一页</span> <span className="page-skip"><em>&nbsp;&nbsp;共100页&nbsp;&nbsp;&nbsp;&nbsp;到第</em>&nbsp;&nbsp;
-                      <input className="jumpto" type="text" value="1"/>
+                      <input className="jumpto" type="text"/>
                       &nbsp;&nbsp;<em>页</em>&nbsp;&nbsp;&nbsp;&nbsp;<a className="btn-skipsearch">确定</a></span> </div>
                   </div></td>
               </tr>
@@ -135,7 +139,7 @@ class Trade extends Component {
                 </td>
                 <td align="center"><div className="fac-items-name">
                     <p>发布人</p>
-                    <p>item.creator</p>
+                    <p>{item.creator}</p>
                   </div></td>
                 <td align="center"><span className="fac-dz-num"><em>{raceVendors.length}</em>件</span>
                   <div className="fac-items-name">投标人数量</div></td>
@@ -146,7 +150,7 @@ class Trade extends Component {
               <tr className="die">
                 <td colSpan="4"><div className="listPage">
                     <div className="pageBtn"> <span className="prev">上一页</span> <a >1</a> <a >2</a> <a >3</a> <a >4</a> <a >5</a> <span className="noneb">....</span> <span className="next">下一页</span> <span className="page-skip"><em>&nbsp;&nbsp;共100页&nbsp;&nbsp;&nbsp;&nbsp;到第</em>&nbsp;&nbsp;
-                      <input className="jumpto" type="text" value="1"/>
+                      <input className="jumpto" type="text" />
                       &nbsp;&nbsp;<em>页</em>&nbsp;&nbsp;&nbsp;&nbsp;<a className="btn-skipsearch">确定</a>
                       </span>
                       </div>
@@ -198,7 +202,7 @@ class Trade extends Component {
 
 Trade.propTypes = {
   confirmVendor: PropTypes.func,
-  loadInfo:PropTypes.func
+  loadInfo: PropTypes.func
 };
 
 export default Trade;

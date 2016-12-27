@@ -226,6 +226,4 @@ export function Request() {
   );
 }
 
-export default connect(
-  undefined
-)(Request);
+export default Request;

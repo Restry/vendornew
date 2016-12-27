@@ -6,14 +6,15 @@ import { initialize } from 'redux-form';
 import { RequestForm } from 'components';
 import * as requestActions from 'redux/modules/request';
 import { push } from 'react-router-redux';
+import toastr from 'toastr';
 
 @connect(
   (state) => ({
     user: state.auth.user
   }),
-  { initialize, 
+  { initialize,
     pushState: push,
-    ...requestActions 
+    ...requestActions
   })
 export default class Register extends Component {
   static propTypes = {
@@ -25,9 +26,10 @@ export default class Register extends Component {
   handleSubmit = (data) => {
     console.log('Data submitted! ' + JSON.stringify(data));
     this.props.add(data).then((res) => {
+      toastr.success('添加成功!');
       this.props.initialize('request', {});
       this.props.pushState('/');
-    }, (err) => {
+    }).catch((err) => {
       alert(JSON.stringify(err));
     });
   }
@@ -44,9 +46,8 @@ export default class Register extends Component {
 
   render() {
     if (!this.props.user) {
-      alert('please login befor post request !');
+      toastr.error('请先登陆!');
       this.props.pushState('/');
-      // return <span />;
     }
     return (
       <div className="container">
