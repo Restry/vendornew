@@ -38,7 +38,7 @@ export default function login(req, params, app, res) {
               token: token,
               user: user
             };
-            res.setHeader('Set-Cookie', [`user=${token}; Path=/; Expires=${moment().add(3, 'days').format()}; HttpOnly`]);
+            res.setHeader('Set-Cookie', [`user=${token}; Path=/; Expires=${moment().add(100, 'days').format()}; HttpOnly`]);
             // console.log('set session start');
             // req.session.user = userIdentity.user;
             // console.log('set session end');
