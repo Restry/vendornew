@@ -15,7 +15,7 @@ const userSchema = new Schema({
   'acceptCount': Number,
   'needsCount': Number,
   'name': String,
-  'residence': Array,
+  'safeCode': String,
   'phone': String,
   'captcha': String,
   'agreement': Boolean

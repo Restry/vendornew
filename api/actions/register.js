@@ -11,7 +11,7 @@ export default function register(req, params, app) {
         password: hashedPwd,
         admin: false,
         name: req.body.name,
-        residence: req.body.residence,
+        safeCode: req.body.safeCode,
         phone: req.body.phone,
         captcha: req.body.captcha,
         agreement: req.body.agreement
@@ -21,7 +21,7 @@ export default function register(req, params, app) {
         if (err) {
           reject({
             success: false,
-            message: '添加用户失败!',
+            message: '添加用户失败，用户邮箱重复。',
             token: null,
             user: null
           });

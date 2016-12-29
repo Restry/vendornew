@@ -5,21 +5,29 @@ import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
 import { RegisterForm } from 'components';
 import * as authActions from 'redux/modules/auth';
+import { push } from 'react-router-redux';
+import toastr from 'toastr';
 
 @connect(
   () => ({}),
-  { initialize,...authActions })
+  { initialize, ...authActions })
 export default class Register extends Component {
   static propTypes = {
-    initialize: PropTypes.func.isRequired
+    initialize: PropTypes.func.isRequired,
+    register: PropTypes.func
   }
 
   handleSubmit = (data) => {
-    console.log('Data submitted! ' + JSON.stringify(data));
-    this.props.register(data).then((res)=>{
-      this.props.initialize('survey', {});
-      alert(JSON.stringify(res))
-    })
+    if (data.password === data.cpassword && data.safeCode === data.csafeCode) {
+      this.props.register(data).then((res) => {
+        toastr.success('注册成功！一秒后返回首页！');
+        setTimeout(() => { push('/'); }, 1000);
+      }).catch((err)=>{
+        toastr.error(err.message);
+      });
+    } else {
+      toastr.error('请检查安全码或密码是否输入一致！');
+    }
   }
 
   handleInitialize = () => {
@@ -40,7 +48,7 @@ export default class Register extends Component {
           <div className="head">
             <div className="main">
               <div className="fr tel">服务热线：400-710-8886</div>
-              <div className="logo reg"><Link to="/"><img src={require('assets/images/logo-indx.png')} width="107" height="60" /></Link><span>诚宝通设计师注册</span></div>
+              <div className="logo reg"><Link to="/"><img src={require('assets/images/logo.png')} width="107" height="60" /></Link><span>诚宝通设计师注册</span></div>
               <div className="clearfix"></div>
             </div>
           </div>
@@ -64,7 +72,7 @@ export default class Register extends Component {
                 <div id="bg-overlay" className="bg-img bg-img-1"></div>
 
 
-                      <RegisterForm onSubmit={this.handleSubmit} />
+                <RegisterForm onSubmit={this.handleSubmit} />
 
 
               </div>

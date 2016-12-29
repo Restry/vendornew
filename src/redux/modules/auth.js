@@ -69,6 +69,12 @@ export default function reducer(state = initialState, action = {}) {
         loggingOut: false,
         logoutError: action.error
       };
+    case REGISTER:
+      return {
+        ...state,
+        loading: false,
+        loaded: true
+      };
     default:
       return state;
   }
@@ -94,19 +100,19 @@ export function login(data) {
 
 export function register(data) {
   return {
-    types: [REGISTER],
-    promise: (client) => client.post('/register', {data})
+    types: [LOAD, REGISTER, LOAD_FAIL],
+    promise: (client) => client.post('/register', { data })
   };
 }
 
-export function isValidEmail(data) {
-  return {
-    types: [IS_VALID, IS_VALID_SUCCESS, IS_VALID_FAIL],
-    promise: (client) => client.post('/survey/isValid', {
-      data
-    })
-  };
-}
+// export function isValidEmail(data) {
+//   return {
+//     types: [IS_VALID, IS_VALID_SUCCESS, IS_VALID_FAIL],
+//     promise: (client) => client.post('/survey/isValid', {
+//       data
+//     })
+//   };
+// }
 
 export function logout() {
   return {

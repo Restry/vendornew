@@ -17,7 +17,7 @@ function asyncValidate(data, dispatch, {isValidEmail}) {
 )
 @reduxForm({
   form: 'survey',
-  fields: ['name', 'email', 'phone', 'password', 'occupation', 'currentlyEmployed', 'sex'],
+  fields: ['name', 'email', 'phone', 'password', 'cpassword', 'safeCode', 'csafeCode'],
   validate: surveyValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -40,7 +40,7 @@ export default
     const {
       asyncValidating,
       dirty,
-      fields: {name, password, email, phone, occupation, currentlyEmployed, sex},
+      fields: {name, password, cpassword, email, phone, safeCode, csafeCode},
       active,
       handleSubmit,
       invalid,
@@ -59,18 +59,19 @@ export default
       </div>;
 
 
-
     return (
       <form className="mainForm" onSubmit={handleSubmit}>
         {renderInput(name, '姓名')}
         {renderInput(email, '邮箱', true)}
         {renderInput(password, '密码', false, 'password')}
+        {renderInput(cpassword, '确认密码', false, 'password')}
+        {renderInput(safeCode, '安全码', false, 'password')}
+        {renderInput(csafeCode, '确认安全码', false, 'password')}
         {renderInput(phone, '联系电话')}
-        {renderInput(occupation, 'Occupation')}
 
         <div className="rememberField"> <span className="check_chk fl"> <i className="sec"></i></span>
           <label className="pointer fl">我已阅读并接受</label>
-          <a href="#" target="_blank" className="linkABlue">《EGC服务协议条款》</a> </div>
+          <a href="#" target="_blank" className="linkABlue">《服务协议条款》</a> </div>
 
         <div className="rememberField"> <a onClick={handleSubmit} className="fullBtnBlue">注册</a> </div>
       </form>

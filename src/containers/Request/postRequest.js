@@ -12,7 +12,8 @@ import toastr from 'toastr';
   (state) => ({
     user: state.auth.user
   }),
-  { initialize,
+  {
+    initialize,
     pushState: push,
     ...requestActions
   })
@@ -25,6 +26,8 @@ export default class Register extends Component {
 
   handleSubmit = (data) => {
     console.log('Data submitted! ' + JSON.stringify(data));
+    data.notes = UE.getEditor('content').getContent();
+
     this.props.add(data).then((res) => {
       toastr.success('添加成功!');
       this.props.initialize('request', {});

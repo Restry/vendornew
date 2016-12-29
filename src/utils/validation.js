@@ -4,13 +4,13 @@ const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).fi
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
   if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    return 'Invalid email address';
+    return '错误的邮箱地址';
   }
 }
 
 export function required(value) {
   if (isEmpty(value)) {
-    return 'Required';
+    return '必填项';
   }
 }
 
@@ -25,7 +25,7 @@ export function minLength(min) {
 export function maxLength(max) {
   return value => {
     if (!isEmpty(value) && value.length > max) {
-      return `Must be no more than ${max} characters`;
+      return `不能超过 ${max} 位字符`;
     }
   };
 }

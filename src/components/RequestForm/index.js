@@ -57,7 +57,7 @@ export default
 
         <div className="normalInput">
           <span className="tit-reg">类别</span>
-          {config.categories.map((item,index) => {
+          {config.categories.map((item, index) => {
             return <span key={index}> <input type="radio" id={item.class} {...category} value={item.class}
               checked={category.value === item.class} />
               <label htmlFor={item.class}>{item.title}</label>
@@ -67,6 +67,7 @@ export default
         </div>
 
         {renderInput(notes, '描述')}
+
 
         <div className="rememberField">
           <span className="check_chk fl">
