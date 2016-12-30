@@ -48,7 +48,7 @@ export default class Home extends Component {
           <div className="bd">
             <ul>
               <li>
-                <div className="m-width"> <a><img src={require('../../assets/adv/ban-ind-01.jpg')} /></a> </div>
+                <div className="m-width"> <a><img src={require('../../assets/images/banner1.jpg')} /></a> </div>
               </li>
               <li>
                 <div className="m-width"> <a><img src={require('../../assets/adv/ban-ind-01.jpg')} /></a> </div>
