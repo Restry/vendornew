@@ -9,7 +9,8 @@ export default function loadInfo(req, params, app, res) {
     returnObj.info = result;
     return auth(req, app);
   }).then((user) => {
-    if (!user) {
+    if (!user || user.error) {
+      res.setHeader('Set-Cookie', [`user=; Path=/; HttpOnly`]);
       return [];
     }
     console.log(user._doc.email);

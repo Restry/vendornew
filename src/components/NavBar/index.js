@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 
 @connect(
   state => ({
-    searchHistory: state.info.data.searchHistory || []
+    searchHistory: state.info.data.searchHistory || [],
+    user: state.auth.user
   }), {})
 class NavBar extends Component {
   render() {
@@ -22,7 +23,7 @@ class NavBar extends Component {
                 {config.app.title}
                 &nbsp;&nbsp;&nbsp;&nbsp;一单起订</span></div>
             <div className="hd-nav facade">
-              <Link to="trade">我的资料<em>new<s></s></em></Link>
+             { this.props.user && <Link to="trade">我的资料<em>new<s></s></em></Link>}
 
               <Link to="trans">交易数据</Link>
               <Link to="settled">商家入驻</Link>
@@ -36,7 +37,7 @@ class NavBar extends Component {
               <div className="sear-keys">
                 <span>热门搜索：</span>
                 {// 这里会引起前端报警，Server-side React render was discarded，因为同构出错
-                  searchHistory&&searchHistory.map((res, i) => {
+                  searchHistory && searchHistory.map((res, i) => {
                     return <a key={i}>{res}</a>;
                   })
                 }
@@ -50,6 +51,8 @@ class NavBar extends Component {
   }
 }
 NavBar.propTypes = {
-  time: PropTypes.number
+  time: PropTypes.number,
+  searchHistory: PropTypes.array,
+  user: PropTypes.object
 };
 export default NavBar;

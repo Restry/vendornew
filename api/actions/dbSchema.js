@@ -18,6 +18,7 @@ const userSchema = new Schema({
   'safeCode': String,
   'phone': String,
   'captcha': String,
+  'points': Number, // 我的点数
   'agreement': Boolean
 });
 
@@ -31,6 +32,10 @@ const requestSchema = new Schema({
   'vendor': Object, // 接标人
   'order': Number,
   'price': Number,
+  'points': Number, // 任务点数
+  'claims': Array, // 要求
+  'buyerCredit': Number, // 买方信誉要求
+  'sellCredit': Number, // 卖家信誉
   'creator': String,
   'raceVendors': Array, // 所有竟标人
   'created': { type: Date, required: true },

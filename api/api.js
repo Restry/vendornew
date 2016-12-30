@@ -1,5 +1,5 @@
 import express from 'express';
-import session from 'express-session';
+// import session from 'express-session';
 import config from '../src/config';
 import * as actions from './actions/index';
 import { mapUrl } from 'utils/url.js';
@@ -22,12 +22,12 @@ const app = express();
 // const io = new SocketIo(server);
 // io.path('/ws');
 
-app.use(session({
-  secret: 'react and redux rule!!!!',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
-}));
+// app.use(session({
+//   secret: 'react and redux rule!!!!',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 60000 }
+// }));
 
 
 // ENVIRONMENT CONFIG
