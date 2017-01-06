@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
 import { RegisterForm } from 'components';
 import * as authActions from 'redux/modules/auth';
-import { push } from 'react-router-redux';
 import toastr from 'toastr';
 
 @connect(
@@ -14,15 +13,16 @@ import toastr from 'toastr';
 export default class Register extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired,
-    register: PropTypes.func
+    register: PropTypes.func,
+    history: PropTypes.object
   }
 
   handleSubmit = (data) => {
     if (data.password === data.cpassword && data.safeCode === data.csafeCode) {
       this.props.register(data).then((res) => {
         toastr.success('注册成功！一秒后返回首页！');
-        setTimeout(() => { push('/'); }, 1000);
-      }).catch((err)=>{
+        setTimeout(() => { this.props.history.push('/'); }, 1000);
+      }).catch((err) => {
         toastr.error(err.message);
       });
     } else {

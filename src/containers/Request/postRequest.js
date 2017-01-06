@@ -26,7 +26,7 @@ export default class Register extends Component {
 
   handleSubmit = (data) => {
     console.log('Data submitted! ' + JSON.stringify(data));
-    data.notes = UE.getEditor('content').getContent();
+    /// data.notes = UE.getEditor('content').getContent();
 
     this.props.add(data).then((res) => {
       toastr.success('添加成功!');
@@ -58,8 +58,8 @@ export default class Register extends Component {
         <div>
           <div className="head">
             <div className="main">
-              <div className="fr tel">服务热线：400-710-8886</div>
-              <div className="logo reg"><Link to="/"><img src={require('assets/images/logo-indx.png')} width="107" height="60" /></Link><span>诚宝通设计师注册</span></div>
+              <div className="fr tel">服务热线：400-710-0000</div>
+              <div className="logo reg"><Link to="/"><img src={require('assets/images/logo.png')} width="170" height="59" /></Link><span>诚宝通提交订单</span></div>
               <div className="clearfix"></div>
             </div>
           </div>

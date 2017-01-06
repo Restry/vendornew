@@ -11,7 +11,7 @@ const OrderCard = ({item, type}) => {
           <span className="gsname">{item.creator}</span>
           <span className="pri fr">参考价：￥<em>{item.price || '无'}</em></span></div>
         <div className="con">
-          <Link to={'/request/detail/' + item._id}> {item.title} </Link>
+          <Link to={'/request/detail/' + item.bid}> {item.title} </Link>
         </div>
         <div className="location">
           <div className="time fl">{moment(item.created).format('YYYY/MM/DD HH:mm')}</div>
@@ -25,7 +25,7 @@ const OrderCard = ({item, type}) => {
       <div className="odr-items">
         <div className="odr-lx zbd"></div>
         <div className="odr-b-t">
-          <div className="name"><Link to={'/request/detail/' + item._id}> {item.title} </Link></div>
+          <div className="name"><Link to={'/request/detail/' + item.bid}> {item.title} </Link></div>
           <div className="people"><span>发标人：</span><span>{item.creator}</span></div>
         </div>
         <div className="odr-b-c">

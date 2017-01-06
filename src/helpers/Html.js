@@ -40,10 +40,9 @@ class Html extends Component {
           )}
           <script src="//cdn.bootcss.com/moment.js/2.17.1/moment-with-locales.min.js"></script>
           <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-          <link href="//ueditor.baidu.com/umeditor/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet" />
-          <script type="text/javascript" src="//ueditor.baidu.com/umeditor/umeditor.config.js"></script>
-          <script type="text/javascript" src="//ueditor.baidu.com/umeditor/umeditor.min.js"></script>
-          <script type="text/javascript" src="//ueditor.baidu.com/umeditor/lang/zh-cn/zh-cn.js"></script>
+
+          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
 
           {/* (will be present only in development mode) */}
           {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}

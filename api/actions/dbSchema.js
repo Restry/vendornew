@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 import moment from 'moment';
 moment.locale('zh-CN');
 import { mock, Random } from 'mockjs';
+import autoIncrement from 'mongoose-auto-increment';   // 自增ID 模块
+autoIncrement.initialize(mongoose.connection);
+
 
 // email, pwd are required
 // email must be unique
@@ -46,7 +49,14 @@ const requestSchema = new Schema({
   'acceptTime ': Date
 });
 
-requestSchema.virtual('leftRaceDay').get(function(){
+requestSchema.plugin(autoIncrement.plugin, {               // 自增ID配置
+  model: 'Request',
+  field: 'bid',
+  startAt: 1000000,
+  incrementBy: 1
+});
+
+requestSchema.virtual('leftRaceDay').get(function () {
   if (this.raceTime) {
     return moment(this.raceTime).toNow();  // 多久之内      fromNow 多久之前
   }

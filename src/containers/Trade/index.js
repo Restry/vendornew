@@ -36,49 +36,7 @@ class Trade extends Component {
     return (
       <div className="egc-container">
   <div className="find-wrap">
-    <div className="factorBox box-radius">
-      <div className="factorText">
-        <div className="fac-info-name"><span>艾德尼广告服务有限公司</span></div>
-        <div className="modelSupplier sup-abt fl">
-          <div className="model-sup-items">
-            <div className="mod-sup">
-              <div className="sup-md-logo"> <img src={Random.image('60x60')} width="60" height="60"/>
-                <div className="renzheng">认证</div>
-              </div>
-              <h2><a className="pf-info-btn open"></a><span>小尼商城自营</span></h2>
-            </div>
-            <div className="md-pf-box">
-              <div className="egc-score mg-t-b">
-                <div className="scorename">综合评分：</div>
-                <div className="scorenum"><span></span>
-                  <div className="score-line"></div>
-                </div>
-                <div className="fenshu"><em>5.0</em>分</div>
-              </div>
 
-            </div>
-            <div className="supAttention"> <a id="btnAttentionSupplier">+关注</a> <span>已关注：<s id="spNumAttentionSupplier">1</s></span> </div>
-          </div>
-          <div className="model-sup-items model-cont">
-            <div className="ctt-list wz"><span>江苏省</span>　<span>宿迁市</span></div>
-            <div className="ctt-list tel"><span>0527-88888888</span></div>
-            <div className="ctt-list email"><span>admin@xiaoni.com</span></div>
-          </div>
-          <div className="md-r-tel">客服电话:400-710-8886</div>
-          <div className="model-sup-items"> <a className="model-kf-btn">咨询客服</a> <a id="btnAttentionSupplier" className="model-gz-btn">关注商家</a>
-            <div className="clearfix"></div>
-          </div>
-          <div className="supAttention"><a target="_blank">查看案例</a> </div>
-        </div>
-
-      </div>
-      <div className="factorAbout">
-        <div className="abt-tit">企业介绍</div>
-        <div className="abt-con"> “小尼 XIAONI.COM”原为“艾德尼 adneeds”广告需要的意思，后简化为“小尼”品牌，是以“满足经营所需”为宗旨，以“服务政企类客户”为目标的一站式网上采购平台，采取区域电商＋全网电商和O2O的运营模式，从形态上，我们称之为“网上商贸城”。 <br />
-          小尼区别于其它的B2B信息网站和综合分类别于其它B2C电商平台，更具专业性，分别从满足办公所需（办公用品、办公家具）、满足营销所需（广告、印刷、礼品）、满足生产（工业品）、生活（福利商品）所需等诸多方面考虑，商品涉及除核心采购（原材料等）之外的标准品和订制类商品。</div>
-      </div>
-      <div className="clearfix"></div>
-    </div>
     <div className="factorVirtueBox">
       <div className="factor-ser box-radius fl">
         <div className="tit-find"><span className="font-find fl">我发布的</span>
@@ -195,6 +153,7 @@ class Trade extends Component {
       <div className="clearfix"></div>
     </div>
   </div>
+
 </div>
     );
   }

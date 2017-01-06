@@ -124,7 +124,7 @@ export function add(request) {
 export const confirmVendor = (_id, vendor) => {
   return {
     types: [LOAD, CONFIRM_VENDOR_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.post('/request/confirmVendor?_id=' + _id, { data: { ...vendor } })
+    promise: (client) => client.post('/request/confirmVendor?bid=' + _id, { data: { ...vendor } })
   };
 };
 
@@ -132,20 +132,20 @@ export const confirmVendor = (_id, vendor) => {
 export const detail = (_id) => {
   return {
     types: [LOAD, DETAIL_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/request/load?_id=' + _id)
+    promise: (client) => client.get('/request/load?bid=' + _id)
   };
 };
 
 export const race = (_id) => {
   return {
     types: [LOAD, RACE_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/request/race?_id=' + _id)
+    promise: (client) => client.get('/request/race?bid=' + _id)
   };
 };
 
 export function remove(request) {
   return {
     types: [REMOVE, REMOVE_SUCCESS, REMOVE_FAIL],
-    promise: (client) => client.get(`/request/remove?id=${request._id}`)
+    promise: (client) => client.get(`/request/remove?bid=${request._id}`)
   };
 }

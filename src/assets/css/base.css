@@ -139,7 +139,7 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #b3
 
 
 /*搜索*/
-.nav-search{width:290px; background:#fff; height:30px; position:absolute; right:0; top:30px; border:3px solid #ff7800;}
+.nav-search{width:290px; background:#fff; position:absolute; right:0; top:30px; border:3px solid #ff7800;}
 .nav-search .nav-sea-ipt{width:230px; padding:5px; height:20px; line-height:20px; color:#333; border:0; outline:none; box-shadow:#ccc 1px 1px 3px inset; -moz-box-shadow:#ccc 1px 1px 3px inset; -webkit-box-shadow:#ccc 1px 1px 3px inset; -o-box-shadow:#ccc 1px 1px 3px inset; -ms-box-shadow:#ccc 1px 1px 3px inset;}
 .nav-search .nav-sea-sub{width:50px; height:30px; font-size:14px; color:#fff; line-height:30px; background:#ff7800; border:0; outline:none; cursor:pointer;}
 .nav-search .nav-sea-sub:hover{background:#F60;}
