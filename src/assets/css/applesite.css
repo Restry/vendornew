@@ -340,7 +340,7 @@ img{vertical-align:middle;border:0 none;}
 .lie_ind1 td {border-top:1px dashed #ccc;padding:3px 0px;}
 .lie_ind1 {background:#fafafa;}
 .lie_b1 {background:#fafafa;}
-.dt_b4 {padding:3px 12px;font-size:14px;border-radius:3px;border:1px solid #ff6400;width: 58px;}
+.dt_b4 {padding:3px 12px;font-size:14px;border-radius:3px;border:1px solid #ff6400;width: 83px;}
 .lie_a1 tr:hover {background:#fafafa;}
 .ind_a1 {width:298px;}
 .lie_a2 img {float:left;margin-right:7px;cursor:pointer;}
@@ -362,18 +362,18 @@ img{vertical-align:middle;border:0 none;}
 .xinxi span {color:#888;float:left;}
 .xinxi img {float:left;margin-top:4px;}
 .rw_a1_head {background:#fff;font-size:14px;overflow:hidden;}
-.rw_a2 {background:#fff;width:881px;float:left;margin-top:10px;height:290px;}
+.rw_a2 {background:#fff;width:881px;float:left;margin-top:10px;height:280px;}
 .rw_a3 {background:#fff;width:310px;float:right;margin-top:10px;height:280px;border:1px solid #CCC;border-radius:5px;}
 .rw_a4 {border:1px solid #CCC;border-top:0px;margin:0px 0px 10px 0px;}
-.rw_a5 {border:1px solid #CCC;border-radius:5px;height:240px;}
+.rw_a5 {border:1px solid #CCC;border-radius:5px;height:275px;}
 .rw_c1 {border:1px solid #CCC;border-radius:5px;padding:5px;}
 .rw_a6 {border:1px solid #CCC;border-radius:5px;margin-top:10px;background:#fff;height:60px;overflow:hidden;}
 .rw_a6 table {height:38px;background:#fff;width:488px;text-align:center;position: absolute;border-radius:5px;}
 .rw_b1 {border-right:1px solid #ccc;height:37px;float:left;width:100px;}
 .a6_td1 {border-right:1px solid #ccc;cursor:pointer;border-bottom:1px solid #fff;}
 .a6_td2 {cursor:pointer;border-bottom:1px solid #CCC;}
-.sm_zw1 {background:#fff;border-top:1px solid #CCC;padding-bottom:50px;}
-.sm_zw2 {background:#fff;border-top:1px solid #CCC;padding-bottom:50px;min-height:600px;}
+.sm_zw1 {background:#fff;border:1px solid #CCC;border-top:0px;margin-bottom:50px;}
+.sm_zw2 {background:#fff;border:1px solid #CCC;border-top:0px;padding-bottom:50px;min-height:600px;}
 .canyu1 {float:left;line-height:32px;margin:10px 0px 0px 15px;font-size:16px;}
 .canyu1 span {color:#666;font-size:14px;}
 .canyu2 {float:right;line-height:32px;margin:10px 0px 0px 0px;color:#666;}
@@ -397,7 +397,7 @@ img{vertical-align:middle;border:0 none;}
 .rw_a7 {margin:0px;float:left;}
 .rw_a8 {margin:0px;background:#ccc;border-color:#ccc;}
 .a9_td1 {text-align:right;width:118px;padding-right:8px;color:#888;}
-.bu_biaoti {border-bottom:2px solid #ccc;margin:20px 10px 10px 10px;padding:10px 10px 10px 3px;font-size:16px;}
+.bu_biaoti {border-bottom:2px solid #ccc;margin:0px 10px 10px 10px;padding:10px 10px 10px 3px;font-size:16px;}
 .bu_biaoti span {border-left:3px solid #ff7900;padding-left:18px;font-weight:bold;}
 .bu_tab {margin:15px 10px 10px 50px;}
 .bu_tab td {padding:6px 3px;font-size:15px;line-height:23px;}

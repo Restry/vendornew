@@ -14,7 +14,6 @@ import Helmet from 'react-helmet';
  */
 class Html extends Component {
 
-
   render() {
     const {assets, component, store} = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
@@ -23,6 +22,8 @@ class Html extends Component {
     return (
       <html>
         <head>
+          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
           {head.base.toComponent()}
           {head.title.toComponent()}
           {head.meta.toComponent()}
@@ -40,9 +41,6 @@ class Html extends Component {
           )}
           <script src="//cdn.bootcss.com/moment.js/2.17.1/moment-with-locales.min.js"></script>
           <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-
-          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-          <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" />
 
           {/* (will be present only in development mode) */}
           {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}

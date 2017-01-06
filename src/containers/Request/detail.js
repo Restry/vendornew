@@ -44,11 +44,20 @@ class RequestDetail extends Component {
 
     return (
       <div className="m-cnt">
-        <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-          <Tab eventKey={1} title="Tab 1">Tab 1 content</Tab>
-          <Tab eventKey={2} title="Tab 2">Tab 2 content</Tab>
-        </Tabs>
         <Helmet title="需求详情" />
+        <div className="subjWrap supper-app xqzb" >
+          <div className="tit" >
+            <h1 style={{ fontSize: '28px' }} >如何解决您的需求</h1>
+          </div><div className="jjxq-lc" >
+            <div className="list on" >
+              <span className="radius" >1</span><p >选择类别</p></div><div className="list" >
+              <span className="radius" >2</span><p >填写需求</p></div><div className="list" >
+              <span className="radius" >3</span><p >选择供应商</p></div><div className="list" >
+              <span className="radius" >4</span><p >提交需求</p></div><div className="list" >
+              <span className="radius" >5</span><p >等待报价</p></div><div className="clearfix" >
+            </div></div><div className="xqzbBtnBox" >
+            <a className="fbxqBtn btn" href="postRequest" >立即发布需求</a></div></div>
+
         <div className="rw_a1_head">
           <div className="rw_c1">
             <span>
@@ -100,16 +109,6 @@ class RequestDetail extends Component {
                 </tbody>
               </table>
             </div>
-            <div className="rw_a6">
-              <table border="0" cellSpacing="0">
-                <tbody>
-                  <tr>
-                    <td className="a6_td1" >任务步骤</td>
-                    <td className="a6_td2" >参与人员</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
           <div id="rw_13">
             <table className="lctb1" border="0" cellSpacing="0">
@@ -141,100 +140,104 @@ class RequestDetail extends Component {
             </table>
           </div>
         </div>
-        <div className="rw_a4">
-          <div className="sm_zw1">
-            <div className="bu_biaoti">
-              <span>第1步：确认单子信息</span>
 
-            </div>
-            <table className="bu_tab" border="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td className="n1_td1">单子类型:</td>
-                  <td>
-                    远程托管单<span>（由平台管理人员远程付款）</span>									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">刷单方式:</td>
-                  <td>
-                    全程电脑刷单									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">二次任务间隔:</td>
-                  <td>做过这个店铺的单子的，10天以内不可以重复做！</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">地区要求:</td>
-                  <td>
-                    不限制									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">小号要求:</td>
-                  <td>
-                    买家累积信用1心以上，一星期内交易量不超过7笔，一个月内交易量不超过15笔。									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">浏览要求:</td>
-                  <td>
-                    做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">收货要求:</td>
-                  <td>
-                    成功拍下宝贝后即可收货。收到货后2天后再好评！好评内容自由发挥即可！									</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="bu_biaoti">
-              <span>第2步：搜索并找到宝贝</span>
-            </div>
-            <table className="bu_tab" border="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td className="n1_td1 anniu">搜索方式:</td>
-                  <td className="anniu">使用淘宝搜索</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1 anniu" >搜索关键词:</td>
-                  <td>
-                    <span >[ 已经有人在做任务了 ]</span>									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1 anniu">筛选方式:</td>
-                  <td className="anniu">
-                    自然搜索，禁止筛选。									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1 anniu">店铺旺旺:</td>
-                  <td>
-                    <span >[ 已经有人在做任务了 ]</span>									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1 anniu" >主宝贝价格:</td>
-                  <td>
-                    <span >[ 已经有人在做任务了 ]</span>									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1 anniu">搜索结果图:</td>
-                  <td className="anniu">
-                    <span >[ 已经有人在做任务了 ]</span>									</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="bu_biaoti">
-              <span>第3步：浏览并拍下宝贝</span>
-            </div>
-            <table className="bu_tab" border="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td className="n1_td1">浏览要求:</td>
-                  <td>
-                    做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">假聊要求:</td>
-                  <td>
-                    浏览完后需要进行假聊。<br />假聊内容：
+        <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+          <Tab eventKey={1} title="任务步骤">
+
+
+            <div className="sm_zw1">
+              <div className="bu_biaoti">
+                <span>第1步：确认单子信息</span>
+
+              </div>
+              <table className="bu_tab" border="0" cellSpacing="0">
+                <tbody>
+                  <tr>
+                    <td className="n1_td1">单子类型:</td>
+                    <td>
+                      远程托管单<span>（由平台管理人员远程付款）</span>									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">刷单方式:</td>
+                    <td>
+                      全程电脑刷单									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">二次任务间隔:</td>
+                    <td>做过这个店铺的单子的，10天以内不可以重复做！</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">地区要求:</td>
+                    <td>
+                      不限制									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">小号要求:</td>
+                    <td>
+                      买家累积信用1心以上，一星期内交易量不超过7笔，一个月内交易量不超过15笔。									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">浏览要求:</td>
+                    <td>
+                      做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">收货要求:</td>
+                    <td>
+                      成功拍下宝贝后即可收货。收到货后2天后再好评！好评内容自由发挥即可！									</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="bu_biaoti">
+                <span>第2步：搜索并找到宝贝</span>
+              </div>
+              <table className="bu_tab" border="0" cellSpacing="0">
+                <tbody>
+                  <tr>
+                    <td className="n1_td1 anniu">搜索方式:</td>
+                    <td className="anniu">使用淘宝搜索</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1 anniu" >搜索关键词:</td>
+                    <td>
+                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1 anniu">筛选方式:</td>
+                    <td className="anniu">
+                      自然搜索，禁止筛选。									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1 anniu">店铺旺旺:</td>
+                    <td>
+                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1 anniu" >主宝贝价格:</td>
+                    <td>
+                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1 anniu">搜索结果图:</td>
+                    <td className="anniu">
+                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="bu_biaoti">
+                <span>第3步：浏览并拍下宝贝</span>
+              </div>
+              <table className="bu_tab" border="0" cellSpacing="0">
+                <tbody>
+                  <tr>
+                    <td className="n1_td1">浏览要求:</td>
+                    <td>
+                      做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">假聊要求:</td>
+                    <td>
+                      浏览完后需要进行假聊。<br />假聊内容：
                     买：你好，教育网30级1.7w的有吗？
                     卖：发一堆游戏名称给你选
                     买：复制一行发给卖家
@@ -246,77 +249,88 @@ class RequestDetail extends Component {
                     买：号没问题，我确认收货了密保发给我吧,卖家发完密保后交易就完成了。
                     评价根据要求评。（注意：账号都是假的没必要真的去验证）
                     </td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">拍宝贝数量:</td>
-                  <td>
-                    只拍一个宝贝									</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="bu_biaoti">
-              <span>第4步：等待物流</span>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">拍宝贝数量:</td>
+                    <td>
+                      只拍一个宝贝									</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="bu_biaoti">
+                <span>第4步：等待物流</span>
+              </div>
+              <table className="bu_tab" border="0" cellSpacing="0">
+                <tbody>
+                  <tr>
+                    <td className="n1_td1">物流状态:</td>
+                    <td>
+                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="bu_biaoti">
+                <span>第5步：确认收货并按要求进行好评</span>
+              </div>
+              <table className="bu_tab" border="0" cellSpacing="0">
+                <tbody>
+                  <tr>
+                    <td className="n1_td1">收货时间:</td>
+                    <td>
+                      成功拍下宝贝后即可收货。									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">好评方式:</td>
+                    <td>
+                      自由发挥									</td>
+                  </tr>
+                  <tr>
+                    <td className="n1_td1">追评晒图:</td>
+                    <td>
+                      自由发挥									</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <table className="bu_tab" border="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td className="n1_td1">物流状态:</td>
-                  <td>
-                    <span >[ 已经有人在做任务了 ]</span>									</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="bu_biaoti">
-              <span>第5步：确认收货并按要求进行好评</span>
-            </div>
-            <table className="bu_tab" border="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td className="n1_td1">收货时间:</td>
-                  <td>
-                    成功拍下宝贝后即可收货。									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">好评方式:</td>
-                  <td>
-                    自由发挥									</td>
-                </tr>
-                <tr>
-                  <td className="n1_td1">追评晒图:</td>
-                  <td>
-                    自由发挥									</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="sm_zw2" style={{ display: 'none' }}>
-            <table border="0" cellSpacing="0" >
-              <tbody>
-                <tr>
-                  <td width="770px" ></td>
-                </tr>
 
-                {item.raceVendors && item.raceVendors.map((vendor, index) => {
-                  return (<tr key={index}>
-                    <td width="770px" >
-                      <img src="/images/head.jpg" className="rw_head2" />
-                      <div className="canyu1">
-                        {vendor.name} <img src={require('../../assets/images/person.jpg')} />
-                        <span ><b>(进行中)</b></span>
-                        <br />
-                        <span>{vendor.raceTime}</span>
-                      </div>
-                      <div className="canyu2">
-                        <b>+ {item.price}</b> 元
+
+          </Tab>
+          <Tab eventKey={2} title="参与人员">
+
+
+            <div className="sm_zw2">
+              <table border="0" cellSpacing="0" >
+                <tbody>
+                  <tr>
+                    <td width="770px" ></td>
+                  </tr>
+
+                  {item.raceVendors && item.raceVendors.map((vendor, index) => {
+                    return (<tr key={index}>
+                      <td width="770px" >
+                        <img src="/images/head.jpg" className="rw_head2" />
+                        <div className="canyu1">
+                          {vendor.name} <img src={require('../../assets/images/person.jpg')} />
+                          <span ><b>(进行中)</b></span>
+                          <br />
+                          <span>{vendor.raceTime}</span>
+                        </div>
+                        <div className="canyu2">
+                          <b>+ {item.price}</b> 元
 											</div>
-                    </td>
-                  </tr>);
-                })}
+                      </td>
+                    </tr>);
+                  })}
 
-              </tbody>
-            </table>
-          </div>
-        </div>
+                </tbody>
+              </table>
+            </div>
+
+          </Tab>
+        </Tabs>
+
+
+
       </div>
     );
   }

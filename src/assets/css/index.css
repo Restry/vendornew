@@ -1,4 +1,4 @@
-﻿/* 首页大图广告 */
+/* 首页大图广告 */
 .banner-box{min-width:1210px;height:500px;position:relative;overflow:hidden;}
 .banner-box.ekchange{height:300px;}
 .banner-box .bd{ width:100% !important;}
@@ -31,7 +31,7 @@
 
 /* 今日数据 */
 .actionWrap .date-box{width:1270px;}
-.actionWrap .date-box .date-itms{width:250px; height:75px; float:left; margin-right:66px;  _margin-right:33px; cursor:default;}
+.actionWrap .date-box .date-itms{width:250px; height:75px; float:left; margin-right:17px; cursor:default;}
 .actionWrap .date-box .date-itms h2{font-weight:normal; color:#fff; padding:13px 0 0 0; text-align:center; font-size:14px;}
 .actionWrap .date-box .date-itms p{padding-top:2px; color:#fff; text-align:center;}
 .actionWrap .date-box .date-itms p span{font-family:Arial; font-size:28px;}
@@ -81,7 +81,7 @@
 
 /* 流程 */
 .ind-dz-lc{margin:0;padding:0 24px; position:relative;}
-.ind-dz-lc ul li{height:200px; float:left; width:192px;  perspective: 83px; -webkit-perspective: 83px; -moz-webkit-perspective: 83px; -o-webkit-perspective: 83px; -ms-webkit-perspective: 83px;}
+.ind-dz-lc ul li{height:200px; float:left; width:171px;  perspective: 83px; -webkit-perspective: 83px; -moz-webkit-perspective: 83px; -o-webkit-perspective: 83px; -ms-webkit-perspective: 83px;}
 .ind-dz-lc ul li .circle{width:83px; height:83px; border:2px solid #58b9e4; position:relative; margin:0 auto;}
 .ind-dz-lc ul li .circle i{width:43px; height:40px; background:url(../images/cl-icon.png) no-repeat; position:absolute; left:20px; top:21px;
 transform-style: preserve-3d;
@@ -109,8 +109,8 @@ transition:1s ease;
 .ind-dz-lc ul li .txt h4{font-size:14px; color:#5d5d5d;}
 .ind-dz-lc ul li .txt p{color:#a4a4a4; padding:5px 30px 0 30px;}
 
-.ind-dz-lc .arrow-l{width:24px; height:13px; background:url(../images/arror-w.png) no-repeat; position:absolute; left:0; top:102px; *top:132px; /*IE7*/}
-.ind-dz-lc .arrow-r{width:24px; height:15px; background:url(../images/arror-t.png) no-repeat; position:absolute; right:0; top:102px; *top:132px; /*IE7*/}
+.ind-dz-lc .arrow-l{width:24px; height:13px; background:url(../images/arror-w.png) no-repeat; position:absolute; left:0; top:96px; }
+.ind-dz-lc .arrow-r{width:24px; height:15px; background:url(../images/arror-t.png) no-repeat; position:absolute; right:0; top:96px;  }
 
 /* 关于诚宝通 */
 .mac-ban{width:416px; height:250px; padding:18px 112px 129px 20px; background:url(../images/mac-bj.png) no-repeat; position:relative; margin-left:100px;}

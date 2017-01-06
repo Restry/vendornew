@@ -141,7 +141,7 @@
 .zb-news{width:260px; float:left;}
 .activityBox{height:290px;width:260px;position:relative;}
 .activityBox a{color:#C30;}
-.activityBox .title{width:240px;height:34px;line-height:34px;padding:0 10px;background:#f2f2f2;}
+.activityBox .title{height:34px;line-height:34px;padding:0 10px;background:#f2f2f2;}
 .activityBox .title h2{font-size:14px;line-height:34px;color:#333;font-weight:normal;}
 .activityBox .title .pageState{margin-left:5px;}
 .activityBox .content{width:260px;position:relative;}
@@ -179,7 +179,7 @@
 .xqzb-tel a.baojia{width:130px; margin:20px auto auto auto; text-align:center; padding:5px 0; font-size:14px; color:#fff; background:#ff7200; display:block;}
 .xqzb-tel a.baojia:hover{background:#E52;}
 .xqzb-tel .tel a.online-kf:hover{border-color:#E52;}
-.zbxq-lc-itms{width:200px; padding:40px 100px 0 100px;}
+.zbxq-lc-itms{padding:40px 100px 0 100px;}
 .zbxq-lc-itms .radius{width:198px; height:198px; border:2px solid #7f7f7f;}
 .zbxq-lc-itms .radius i{height:87px; background:url(../images/zb-lc.jpg) no-repeat; display:block; margin:52px auto auto auto;}
 .zbxq-lc-itms .gpjj i{background-position:-8px 0; width:100px;}
