@@ -16,4 +16,5 @@ export WidgetForm from './WidgetForm/WidgetForm';
 export RegisterForm from './RegisterForm';
 export RequestForm from './RequestForm';
 export LoginForm from './LoginForm';
-export UEditor from './Editor'
+export UEditor from './Editor';
+export FlowMap from './Common/FlowMap'

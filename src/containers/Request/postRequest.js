@@ -46,12 +46,15 @@ export default class Register extends Component {
       sex: 'male'
     });
   }
-
-  render() {
+  componentDidMount() {
     if (!this.props.user) {
       toastr.error('请先登陆!');
       this.props.pushState('/');
     }
+  }
+
+
+  render() {
     return (
       <div className="container">
         <Helmet title="提交新的需求" />

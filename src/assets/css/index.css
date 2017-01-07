@@ -217,7 +217,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr=
 .tit-reg{width:100px; display:block; height:36px; line-height:36px; float:left; text-align:right; padding-right:10px;}
 .normalInput .error{ color:#ff7800; position:relative; float:left; margin-left:20px; line-height:36px; font-size:14px; padding-left:20px;}
 .normalInput .error i{ width:14px; height:14px; position:absolute; left:0px; top:12px;}
-.normalInput input.ipt{font-size: 14px; padding: 9px 9px;height:18px; line-height:18px; border:0; outline:none; border: 1px solid #dadada; float:left; display:block;}
+.normalInput input.ipt{font-size: 14px; padding: 9px 9px;  line-height:18px; border:0; outline:none; border: 1px solid #dadada; float:left; display:block;}
 .normalInput .error.adr-errpr{display:none; margin-left:110px; clear:both;}
 .errorC input{border-color:#ff7800; color:#ff7800; transition:border-color 0.5s ease; -moz-transition:border-color 0.5s ease; -o-transition:border-color 0.5s ease; -webkit-transition:border-color 0.5s ease;}
 .normalInput.checkedN .error{display:block; color:#b4e069;}

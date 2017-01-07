@@ -35,6 +35,11 @@ const requestSchema = new Schema({
   'vendor': Object, // 接标人
   'order': Number,
   'price': Number,
+  'productPrice': Number,
+  'productKeywords': String,
+  'wangwang': String,
+  'chatContent': String,
+  'qq': String,
   'points': Number, // 任务点数
   'claims': Array, // 要求
   'buyerCredit': Number, // 买方信誉要求

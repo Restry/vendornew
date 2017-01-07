@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import { Tabs, Tab } from 'react-bootstrap';
+import { FlowMap } from 'components';
 
 if (__CLIENT__) {
   require('../../assets/css/applesite.css');
@@ -45,18 +46,7 @@ class RequestDetail extends Component {
     return (
       <div className="m-cnt">
         <Helmet title="需求详情" />
-        <div className="subjWrap supper-app xqzb" >
-          <div className="tit" >
-            <h1 style={{ fontSize: '28px' }} >如何解决您的需求</h1>
-          </div><div className="jjxq-lc" >
-            <div className="list on" >
-              <span className="radius" >1</span><p >选择类别</p></div><div className="list" >
-              <span className="radius" >2</span><p >填写需求</p></div><div className="list" >
-              <span className="radius" >3</span><p >选择供应商</p></div><div className="list" >
-              <span className="radius" >4</span><p >提交需求</p></div><div className="list" >
-              <span className="radius" >5</span><p >等待报价</p></div><div className="clearfix" >
-            </div></div><div className="xqzbBtnBox" >
-            <a className="fbxqBtn btn" href="postRequest" >立即发布需求</a></div></div>
+
 
         <div className="rw_a1_head">
           <div className="rw_c1">
@@ -68,26 +58,9 @@ class RequestDetail extends Component {
           </div>
           <div className="rw_a2">
             <div className="rw_a5">
-              <div className="lc_c1">
 
-                <div className=" lc_yd"></div>
-                <div className=" lc_c2">已审核</div>
-                <div className=" lc_yd lc2"></div>
-                <div className=" lc_c2">已做完</div>
-                <div className=" lc_yd lc2"></div>
-                <div className=" lc_c2">已发货</div>
-                <div className=" lc_yd lc2"></div>
-                <div className=" lc_c2">已签收</div>
-                <div className=" lc_yd lc2"></div>
-                <div className=" lc_c2">成功</div>
-              </div>
-              <div className="lc3_a0">
-                <div className=" lc3_a1">第1步<br /><b>申请任务</b></div>
-                <div className=" lc3_a1 lc3_a2">第2步<br /><b>做任务</b></div>
-                <div className=" lc3_a1 lc3_a2">第3步<br /><b>商家发货</b></div>
-                <div className=" lc3_a1 lc3_a4">第4步<br /><b>签收好评</b></div>
-                <div className=" lc3_a1 lc3_a4">第5步<br /><b>佣金提现</b></div>
-              </div>
+              <FlowMap />
+
               <table className="lc3_b2">
                 <tbody>
                   <tr>
@@ -101,7 +74,7 @@ class RequestDetail extends Component {
                       <div >
                         <div className="qqlx2">QQ号:</div>
                         <div className="qqlx3">
-                          <span >[ 申请通过后可见 ]</span>
+                          <span >[ {item.qq} ]</span>
                         </div>
                       </div>
                     </td>
@@ -119,7 +92,7 @@ class RequestDetail extends Component {
                 </tr>
                 <tr>
                   <td className="a9_td1">任务佣金:</td>
-                  <td className="a9_td2"><b >{item.price}</b> 元</td>
+                  <td className="a9_td2"><b >{item.points}</b> 元</td>
                 </tr>
                 <tr>
                   <td className="a9_td1">任务本金:</td>
@@ -200,7 +173,7 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1 anniu" >搜索关键词:</td>
                     <td>
-                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                      <span >[ {item.productKeywords} ]</span>									</td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu">筛选方式:</td>
@@ -215,7 +188,7 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1 anniu" >主宝贝价格:</td>
                     <td>
-                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                      <span >[ {item.productPrice} ]</span>									</td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu">搜索结果图:</td>
@@ -238,15 +211,9 @@ class RequestDetail extends Component {
                     <td className="n1_td1">假聊要求:</td>
                     <td>
                       浏览完后需要进行假聊。<br />假聊内容：
-                    买：你好，教育网30级1.7w的有吗？
-                    卖：发一堆游戏名称给你选
-                    买：复制一行发给卖家
-                    卖：发链接让买家拍
-                    买：拍好了，请改价
-                    卖：好了请付款
-                    买家：付款了
-                    卖：发账号密码并发注意事项；过十分钟后，，
-                    买：号没问题，我确认收货了密保发给我吧,卖家发完密保后交易就完成了。
+                    <div className="chatcontent">
+                    {item.chatContent}
+                    </div>
                     评价根据要求评。（注意：账号都是假的没必要真的去验证）
                     </td>
                   </tr>
@@ -331,7 +298,7 @@ class RequestDetail extends Component {
 
 
 
-      </div>
+      </div >
     );
   }
 }
