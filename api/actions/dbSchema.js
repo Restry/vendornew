@@ -29,21 +29,19 @@ const requestSchema = new Schema({
   'title': { type: String, required: true },
   'category': { type: String, required: true },
   'type': String, // 招标单 还是直接下单（不投入精力来比对哪一家的钱更少）
-  'notes': { type: String, required: true },
+  'notes': String,
   'process': Number,
   'states': { type: String, required: true },
   'vendor': Object, // 接标人
   'order': Number,
   'price': Number,
-  'productPrice': Number,
-  'productKeywords': String,
-  'wangwang': String,
-  'chatContent': String,
-  'qq': String,
+
+  'billInfo': Object,
+  'searchWay': Object,
+  'buyWay': Object,
+  'favorableWay': Object,
+
   'points': Number, // 任务点数
-  'claims': Array, // 要求
-  'buyerCredit': Number, // 买方信誉要求
-  'sellCredit': Number, // 卖家信誉
   'creator': String,
   'raceVendors': Array, // 所有竟标人
   'created': { type: Date, required: true },

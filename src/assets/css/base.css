@@ -248,3 +248,59 @@ a.lg-btn:hover{background:#F90; color:#fff; transition:background-color 0.3s eas
 .head .setting a em{position:absolute; left:18px; top:-18px; padding:0 5px; border-radius:2px; background:#ff5454; color:#fff; font-size:12px; font-family:Arial;}
 
 .die{display: none;}
+
+
+.bs-callout {
+    padding: 7px;
+    padding-left: 1em;
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+    /* border-left-width: 5px; */
+    border-radius: 3px;
+    border-left: 3px solid;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bs-callout code {
+    border-radius: 3px
+}
+
+.bs-callout+.bs-callout {
+    margin-top: -5px
+}
+
+.bs-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bs-callout-danger h4 {
+    color: #d9534f
+}
+
+.bs-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bs-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bs-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bs-callout-info h4 {
+    color: #5bc0de
+}
+
+.request-form{padding: 0 2em;
+    border: 1px solid #ccc;
+    border-radius: 3px;}

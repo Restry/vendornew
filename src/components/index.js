@@ -14,7 +14,10 @@ export NavBar from './NavBar';
 export SurveyForm from './SurveyForm/SurveyForm';
 export WidgetForm from './WidgetForm/WidgetForm';
 export RegisterForm from './RegisterForm';
-export RequestForm from './RequestForm';
+
+export RequestForm from './RequestForm/main';
+
 export LoginForm from './LoginForm';
 export UEditor from './Editor';
 export FlowMap from './Common/FlowMap'
+export CusMap from './Common/CusMap'

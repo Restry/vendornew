@@ -16,7 +16,34 @@ const initialState = {
   loaded: false,
   requests: [],
   categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }],
-  item: {}
+  item: {
+    billInfo: {
+      type: '远程付款单（由商户远程付款）',
+      brushType: '全程电脑刷单',
+      taskGap: '做过这个店铺的单子的，15天以内不可以重复做！',
+      areaLimit: '不限制',
+      smallAccount: '买家累积信用3心以上，一星期内交易量不超过7笔，一个月内交易量不超过15笔。',
+      acceptRequire: '必须按物流收货，物流没有到一律禁止提前收货！收到货后2天后再好评！好评内容自由发挥即可！'
+    },
+    searchWay: {
+      type: '用淘宝搜索或其它？',
+      keyWords: '输入你宝贝的搜索关键字',
+      filterType: '自然搜索，禁止筛选',
+      wangwang: '你的旺旺号是多少？',
+      price: '宝贝价格？',
+      screenshots: ''
+    },
+    buyWay: {
+      browse: '做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。收藏店铺和收藏宝贝（双收藏）。',
+      fakeChat: '可以随便问，以正常买家问题提问就可以5个问题以上就可以',
+      count: '只拍一个宝贝'
+    },
+    favorableWay: {
+      checkTime: '查看物流是否显示已签收，如果已签收，则可以签收评价。否则禁止提前！提前收货的一律黑名单处理！',
+      fav: '自由发挥',
+      favAgain: '自由发挥'
+    },
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {
