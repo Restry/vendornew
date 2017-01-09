@@ -16,8 +16,8 @@ import { LoginForm, InfoBar, OrderSlide, CusMap } from 'components';
   }),
   {
     ...authActions,
-  ...requestActions
-    })
+    ...requestActions
+  })
 export default class Home extends Component {
   static propTypes = {
     user: PropTypes.object,

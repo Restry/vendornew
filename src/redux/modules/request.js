@@ -1,3 +1,4 @@
+import config from 'config';
 const LOAD = 'chengbt-platform/request/LOAD';
 const LOAD_SUCCESS = 'chengbt-platform/request/LOAD_SUCCESS';
 const LOAD_FAIL = 'chengbt-platform/request/LOAD_FAIL';
@@ -15,7 +16,7 @@ const CONFIRM_VENDOR_SUCCESS = 'chengbt-platform/request/CONFIRM_VENDOR_SUCCESS'
 const initialState = {
   loaded: false,
   requests: [],
-  categories: [{ title: '微信', class: 'wechat' }, { title: '淘宝', class: 'taobao' }],
+  categories: config.categories,
   item: {
     billInfo: {
       type: '远程付款单（由商户远程付款）',

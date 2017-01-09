@@ -34,11 +34,11 @@ class MoreRequest extends Component {
 
   render() {
     const { activeKey } = this.state;
-    const { categories, loading, categoryOfRequestOrders} = this.props;
+    const { categories, loading, categoryOfRequestOrders, title} = this.props;
 
     return (<div className="m-cnt">
       <Helmet title="需求列表页面" />
-
+      <h1 className="center-title">{title || '最新定制需求'}</h1>
       <Nav bsStyle="tabs" activeKey={activeKey} onSelect={this.handleSelect}>
         {categories.map((cate, index) => {
           return (<NavItem key={index} eventKey={index} title={cate.title}>{cate.title}</NavItem>);
@@ -61,13 +61,13 @@ class MoreRequest extends Component {
                 return (<tr key={key}>
                   <td>
                     <span>
-                    <Link to={'/request/detail/' + item.bid}> {item.bid} </Link>
+                      <Link to={'/request/detail/' + item.bid}> {item.bid} </Link>
                     </span>
                   </td>
                   <td><span >远程托管</span></td>
                   <td>
                     <div className="mx_a3" >
-                    <Link to={'/request/detail/' + item.bid}> {item.title} </Link>
+                      <Link to={'/request/detail/' + item.bid}> {item.title} </Link>
                     </div>
                   </td>
                   <td>
@@ -85,7 +85,7 @@ class MoreRequest extends Component {
                     <span >无需本金</span>									</td>
                   <td><b >{item.price}</b>元</td>
                   <td className="kgdjskl">
-                        <Link to={'/request/detail/' + item.bid}><div id="faburenwu" className="jiaru_but dt_b4">已有人</div> </Link>
+                    <Link to={'/request/detail/' + item.bid}><div id="faburenwu" className="jiaru_but dt_b4">已有人</div> </Link>
 
                   </td>
                 </tr>);
@@ -119,7 +119,10 @@ class MoreRequest extends Component {
 }
 
 MoreRequest.propTypes = {
-  categories: PropTypes.array
+  categories: PropTypes.array,
+  loading: PropTypes.object,
+  categoryOfRequestOrders: PropTypes.array,
+  title: PropTypes.string
 };
 
 export default MoreRequest;

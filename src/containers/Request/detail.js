@@ -13,8 +13,19 @@ if (__CLIENT__) {
 
 @connect(
   (state, ownProps) => {
+    const {auth, request} = state;
+    if (!request.item.bid) return {};
+
+    const reqInfo = { alreadyRace: false, process: 1, me: {} };
+    if (auth.user) {
+      const vendors = request.item.raceVendors.filter((vendor) => vendor.name === auth.user.name);
+      reqInfo.alreadyRace = vendors.length > 0;
+      reqInfo.process = reqInfo.alreadyRace ? vendors[0].process : 1;
+      reqInfo.me = reqInfo.alreadyRace ? vendors[0] : {};
+    }
     return {
-      item: state.request.item
+      item: request.item,
+      reqInfo
     };
   },
   {
@@ -32,21 +43,20 @@ class RequestDetail extends Component {
   }
   onRace = () => {
     const {race, pushState} = this.props;
-    race(this.props.params._id).then(res => {
-      toastr.error('投标成功！');
+    race(this.props.params._id).then((res) => {
+      toastr.success('投标成功！');
       pushState('/');
     }).catch((err) => {
       toastr.error(err.msg);
     });
   }
   render() {
-    const {item} = this.props;
-    if (!item) return <div />;
+    const {item, reqInfo} = this.props;
+    if (!item) return <h1 className="center-title">Processing...</h1>;
 
     return (
       <div className="m-cnt">
         <Helmet title="需求详情" />
-
 
         <div className="rw_a1_head">
           <div className="rw_c1">
@@ -59,16 +69,17 @@ class RequestDetail extends Component {
           <div className="rw_a2">
             <div className="rw_a5">
 
-              <FlowMap />
+              <FlowMap process={reqInfo.process} />
 
               <table className="lc3_b2">
                 <tbody>
                   <tr>
                     <td className="td1" width="239px">
                       <span >开始时间：</span>
-                      <span>您已做过此单</span><br />
+                      <span>{reqInfo.me.raceTime || '您还没有开始'}</span><br />
                       <span >完成时间：</span>
-                      <span>任务还未完成</span>										</td>
+                      <span>{reqInfo.me.doneTime || '任务还未完成'}</span>
+                    </td>
                     <td className="td2" width="239px">
                       商家联系方式：<br />
                       <div >
@@ -106,7 +117,8 @@ class RequestDetail extends Component {
                 <tr>
                   <td className="a9_td1">操作:</td>
                   <td className="a9_td2">
-                    <div id="jierenwu" onClick={this.onRace} className="jiaru_but dt_b4 rw_a8">申请接单</div>
+                    <div id="jierenwu" onClick={reqInfo.alreadyRace || this.onRace}
+                      className={'jiaru_but dt_b4' + (reqInfo.alreadyRace ? ' rw_a8' : '')}>申请接单</div>
                   </td>
                 </tr>
               </tbody>
@@ -128,36 +140,43 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1">单子类型:</td>
                     <td>
-                      远程托管单<span>（由平台管理人员远程付款）</span>									</td>
+                      {item.billInfo.type}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">刷单方式:</td>
                     <td>
-                      全程电脑刷单									</td>
+                      {item.billInfo.brushType}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">二次任务间隔:</td>
-                    <td>做过这个店铺的单子的，10天以内不可以重复做！</td>
+                    <td>
+
+                      {item.billInfo.taskGap}
+
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">地区要求:</td>
                     <td>
-                      不限制									</td>
+
+                      {item.billInfo.areaLimit}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">小号要求:</td>
                     <td>
-                      买家累积信用1心以上，一星期内交易量不超过7笔，一个月内交易量不超过15笔。									</td>
-                  </tr>
-                  <tr>
-                    <td className="n1_td1">浏览要求:</td>
-                    <td>
-                      做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
+
+                      {item.billInfo.smallAccount}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">收货要求:</td>
                     <td>
-                      成功拍下宝贝后即可收货。收到货后2天后再好评！好评内容自由发挥即可！									</td>
+
+                      {item.billInfo.acceptRequire}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -168,32 +187,45 @@ class RequestDetail extends Component {
                 <tbody>
                   <tr>
                     <td className="n1_td1 anniu">搜索方式:</td>
-                    <td className="anniu">使用淘宝搜索</td>
+                    <td className="anniu">
+                      {item.searchWay.type}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu" >搜索关键词:</td>
                     <td>
-                      <span >[ {item.productKeywords} ]</span>									</td>
+                      <span >
+                        {item.searchWay.keyWords}
+
+                      </span>									</td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu">筛选方式:</td>
                     <td className="anniu">
-                      自然搜索，禁止筛选。									</td>
+                      {item.searchWay.filterType}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu">店铺旺旺:</td>
                     <td>
-                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                      <span >
+                        {item.searchWay.wangwang}
+                      </span>									</td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu" >主宝贝价格:</td>
                     <td>
-                      <span >[ {item.productPrice} ]</span>									</td>
+                      <span >
+                        {item.searchWay.price}
+
+                      </span>									</td>
                   </tr>
                   <tr>
                     <td className="n1_td1 anniu">搜索结果图:</td>
                     <td className="anniu">
-                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                      <span >
+                        {item.searchWay.screenshots}
+                      </span>									</td>
                   </tr>
                 </tbody>
               </table>
@@ -205,22 +237,27 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1">浏览要求:</td>
                     <td>
-                      做单过程需要全程截图。货比三家后再进店，货比时每家店铺浏览3分钟以上。货比三家完成后，需要浏览店铺宝贝2-5款。									</td>
+
+                      {item.buyWay.browse}
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">假聊要求:</td>
                     <td>
                       浏览完后需要进行假聊。<br />假聊内容：
                     <div className="chatcontent">
-                    {item.chatContent}
-                    </div>
-                    评价根据要求评。（注意：账号都是假的没必要真的去验证）
+                        {item.buyWay.fakeChat}
+                      </div>
+                      评价根据要求评。（注意：账号都是假的没必要真的去验证）
                     </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">拍宝贝数量:</td>
                     <td>
-                      只拍一个宝贝									</td>
+
+                      {item.buyWay.count}
+
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -232,7 +269,7 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1">物流状态:</td>
                     <td>
-                      <span >[ 已经有人在做任务了 ]</span>									</td>
+                      <span >[]</span>									</td>
                   </tr>
                 </tbody>
               </table>
@@ -244,17 +281,23 @@ class RequestDetail extends Component {
                   <tr>
                     <td className="n1_td1">收货时间:</td>
                     <td>
-                      成功拍下宝贝后即可收货。									</td>
+
+                      {item.favorableWay.checkTime}
+
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">好评方式:</td>
                     <td>
-                      自由发挥									</td>
+                      {item.favorableWay.fav}
+
+                    </td>
                   </tr>
                   <tr>
                     <td className="n1_td1">追评晒图:</td>
                     <td>
-                      自由发挥									</td>
+                      {item.favorableWay.favAgain}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -295,9 +338,6 @@ class RequestDetail extends Component {
 
           </Tab>
         </Tabs>
-
-
-
       </div >
     );
   }
@@ -308,7 +348,8 @@ RequestDetail.propTypes = {
   item: PropTypes.object,
   detail: PropTypes.func,
   race: PropTypes.func,
-  pushState: PropTypes.func
+  pushState: PropTypes.func,
+  reqInfo: PropTypes.object
 };
 
 export default RequestDetail;

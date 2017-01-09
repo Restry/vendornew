@@ -14,7 +14,8 @@ export default function register(req, params, app) {
         safeCode: req.body.safeCode,
         phone: req.body.phone,
         captcha: req.body.captcha,
-        agreement: req.body.agreement
+        agreement: req.body.agreement,
+        myBills: []
       });
 
       newUser.save(function (err) {

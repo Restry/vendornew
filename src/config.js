@@ -14,9 +14,9 @@ module.exports = Object.assign({
   port: process.env.PORT || 8001,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT || 3030,
-  db: 'mongodb://usa.chengbt.com/vendor-db',
+  db: 'mongodb://usa.chengbt.com/vendor-db1',
   categories: [
-    { title: '微信', class: 'wechat', text: '微信', value: 'wechat' },
+    { title: '天猫', class: 'tmall', text: '天猫', value: 'tmall' },
     { title: '淘宝', class: 'taobao', text: '淘宝', value: 'taobao' }
   ],
   app: {

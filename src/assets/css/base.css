@@ -304,3 +304,11 @@ a.lg-btn:hover{background:#F90; color:#fff; transition:background-color 0.3s eas
 .request-form{padding: 0 2em;
     border: 1px solid #ccc;
     border-radius: 3px;}
+
+.center-title {
+    font-size: 22px;
+    color: #434343;
+    font-weight: 700;
+    text-align: center;
+    margin: 2em 0 0.5em;
+}

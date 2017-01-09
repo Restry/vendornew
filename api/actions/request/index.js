@@ -1,4 +1,4 @@
-import { Request } from '../dbSchema';
+import { Request, User } from '../dbSchema';
 import moment from 'moment';
 moment.locale('zh-CN');
 import auth from '../../utils/auth';
@@ -20,17 +20,25 @@ export const load = (req, pars) => {
 export const race = (req, pars, app) => {
   return auth(req, app).then((result) => {
     if (result) {
-      return Request.findOne(req.query).exec();
+      return Promise.all([
+        Request.findOne(req.query).exec(),
+        User.findOne({ name: result.name })]);
     }
     return Promise.reject({ success: false, msg: '用户未登陆！' });
-  }).then((request, err) => {
+  }).then((results, err) => {
     if (err) return Promise.reject(err);
+    let request = results[0];
+    let user = results[1];
 
-    const currentUser = req.decodeToken._doc;
+    const raceUser = req.decodeToken._doc;
     request.raceTime = new Date();
-    currentUser.raceTime = new Date();
-    request.raceVendors.push(currentUser);
-    return request.save();
+    raceUser.raceTime = new Date();
+    raceUser.process = 1;
+
+    user.myBills.push({ bid: request.bid, title: request.title });
+
+    request.raceVendors.push(raceUser);
+    return Promise.all([request.save(), user.save()]);
   }).then((saveErr) => {
     if (saveErr) Promise.reject(saveErr);
     return Request.find({}).sort('-created').exec();
@@ -44,6 +52,7 @@ export const post = (req, pars, app) => {
   request.states = req.body.states || '招标中';
   request.raceDay = request.raceDay || 10;
   request.vendor = { email: '' };
+  request.raceVendors = [];
 
   return auth(req, app).then((result) => {
     if (result) {
@@ -76,6 +85,9 @@ export const confirmVendor = (req, pars, app) => {
   }).then((request, err) => {
     if (err) return Promise.reject(err);
     request.vendor = req.body;
+    const vendor = request.raceVendors.filter((item) => item.name === req.body.name)[0];
+    vendor.process = vendor.process + 1;
+
     return request.save();
   }).then((saveErr) => {
     if (saveErr) Promise.reject(saveErr);

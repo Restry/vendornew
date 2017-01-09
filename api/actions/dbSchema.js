@@ -18,6 +18,7 @@ const userSchema = new Schema({
   'acceptCount': Number,
   'needsCount': Number,
   'name': String,
+  'myBills': Array,
   'safeCode': String,
   'phone': String,
   'captcha': String,
@@ -65,7 +66,6 @@ requestSchema.virtual('leftRaceDay').get(function () {
   }
   return null;
 });
-
 
 const informationSchema = new Schema({
   'enterprise': Number,

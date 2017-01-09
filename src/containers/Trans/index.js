@@ -1,7 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import { OrderSlide } from 'components';
+import { RequestMore } from 'containers';
+import { connect } from 'react-redux';
 
+@connect(
+  state => ({
+    categories: state.request.categories,
+    loading: state.request.loading,
+    categoryOfRequestOrders: state.request.requests || []
+  }), {})
 class Trans extends Component {
+  static propTypes = {
+    loading: PropTypes.bool,
+    categories: PropTypes.array,
+    categoryOfRequestOrders: PropTypes.array,
+    load: PropTypes.func,
+  }
+
   render() {
+    const {loading, categories, categoryOfRequestOrders, load} = this.props;
     return (
       <div>
 
@@ -33,314 +50,11 @@ class Trans extends Component {
             </div>
           </div>
         </div>
-        <div className="actionWrap action-gray">
-          <div className="main">
-            <div className="tit">
-              <h1>今日最新订单</h1>
-            </div>
-            <div className="con">
-              <ul className="order-sx-tit">
-                <li className="selected"><a rel="all">所有订单</a></li>
-                <li><a rel="zjxd">直接下单</a></li>
-                <li><a rel="xjd">询价订单</a></li>
-                <li><a rel="zbd">招标订单</a></li>
-              </ul>
-              <ul className="order-sx-con clearfix">
-                <li rel="zbd">
-                  <div className="odr-items">
-                    <div className="odr-lx zbd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请竞标商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-12-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zjxd">
-                  <div className="odr-items">
-                    <div className="odr-lx zjxd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>接单商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="sl"></i>数量　　<span>1000</span>个</dd>
-                        <dd><i className="je"></i>总金额　<span>156.00</span>元</dd>
-                        <dd><i className="ti"></i>下单时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </li>
-                <li rel="xjd">
-                  <div className="odr-items">
-                    <div className="odr-lx xjd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请报价商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zbd">
-                  <div className="odr-items">
-                    <div className="odr-lx zbd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请竞标商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zjxd">
-                  <div className="odr-items">
-                    <div className="odr-lx zjxd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>接单商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="sl"></i>数量　　<span>1000</span>个</dd>
-                        <dd><i className="je"></i>总金额　<span>156.00</span>元</dd>
-                        <dd><i className="ti"></i>下单时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </li>
-                <li rel="xjd">
-                  <div className="odr-items">
-                    <div className="odr-lx xjd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请报价商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zbd">
-                  <div className="odr-items">
-                    <div className="odr-lx zbd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请竞标商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zjxd">
-                  <div className="odr-items">
-                    <div className="odr-lx zjxd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>接单商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="sl"></i>数量　　<span>1000</span>个</dd>
-                        <dd><i className="je"></i>总金额　<span>156.00</span>元</dd>
-                        <dd><i className="ti"></i>下单时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </li>
-                <li rel="xjd">
-                  <div className="odr-items">
-                    <div className="odr-lx xjd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请报价商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zbd">
-                  <div className="odr-items">
-                    <div className="odr-lx zbd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请竞标商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>竞标期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>发标时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-                <li rel="zjxd">
-                  <div className="odr-items">
-                    <div className="odr-lx zjxd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>接单商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="sl"></i>数量　　<span>1000</span>个</dd>
-                        <dd><i className="je"></i>总金额　<span>156.00</span>元</dd>
-                        <dd><i className="ti"></i>下单时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </li>
-                <li rel="xjd">
-                  <div className="odr-items">
-                    <div className="odr-lx xjd"></div>
-                    <div className="odr-b-t">
-                      <div className="name">1000个一次性水杯定制</div>
-                      <div className="people"><span>发标人：</span><span>小尼惠商有******有限公司</span></div>
-                    </div>
-                    <div className="odr-b-c">
-                      <dl className="odr-b-list">
-                        <dt>邀请报价商家</dt>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>小尼惠商有******有限公司</dd>
-                        <dd>*****</dd>
-                      </dl>
-                    </div>
-                    <div className="odr-b-b">
-                      <dl>
-                        <dd><i className="jbqx"></i>报价期限<span>5</span>天</dd>
-                        <dd><i className="ti"></i>询价时间<span>2015-10-09  12:13</span></dd>
-                      </dl>
-                      <div className="lxftime" endtime="2015-10-12 00:00:00"></div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <div className="clearfix"></div>
-              <div className="ck-more"><a href="javascript:;">查看更多<i className="sj"></i></a></div>
-            </div>
-          </div>
-        </div>
 
+        <OrderSlide loading={loading} categories={categories}
+          categoryOfRequestOrders={categoryOfRequestOrders} load={load} />
+
+        <RequestMore />
         <div className="actionWrap">
           <div className="main-data">
             <div className="tit">
@@ -544,118 +258,9 @@ class Trans extends Component {
           </div>
         </div>
 
-        <div className="main-data">
-          <h1 className="newdate">最新定制需求</h1>
-          <div className="news-oder-date">
-            <ul>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-              <li>
-                <div className="tit"><span className="name">公司：</span><span className="gsname">江苏***公司</span><span className="pri fr">参考价：￥<em>125.00</em></span></div>
-                <div className="con"><span>100</span>件衬衫单间定制LOGO印刷</div>
-                <div className="location">
-                  <div className="time fl">2015-10-30 9:21</div>
-                  <div className="weiz fr"><span>江苏</span><span>宿迁</span></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-
       </div>
     );
   }
 }
-
-Trans.propTypes = {
-
-};
 
 export default Trans;
