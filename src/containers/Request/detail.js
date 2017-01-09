@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import { Tabs, Tab } from 'react-bootstrap';
-import { FlowMap } from 'components';
+import { FlowMap, LoadingDots } from 'components';
 
 if (__CLIENT__) {
   require('../../assets/css/applesite.css');
@@ -52,7 +52,7 @@ class RequestDetail extends Component {
   }
   render() {
     const {item, reqInfo} = this.props;
-    if (!item) return <h1 className="center-title">Processing...</h1>;
+    if (!item) return <h1 className="center-title">Processing<LoadingDots /></h1>;
 
     return (
       <div className="m-cnt">

@@ -12,9 +12,10 @@ if (__CLIENT__) { require('../../assets/css/amend.css'); }
   (state, ownProps) => {
     const { requests} = state.info;
     const { user } = state.auth;
+    if (!user) return {};
     return {
       myRequests: requests.filter((item) => { return item.creator === user.email; }),
-      myVendors: user.myBills // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
+      myVendors: user.myBills || [] // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
     };
   }, { loadInfo: load, ...requestActions })
 class Trade extends Component {
@@ -83,7 +84,7 @@ class Trade extends Component {
                 </table>
               </div>
               <div className="tit-find"><span className="font-find fl">我服务过的</span>
-                <div className="fr fac-orders">订单总数<em>{myVendors.length}</em>单</div>
+                <div className="fr fac-orders">订单总数<em>{myVendors && myVendors.length}</em>单</div>
                 <div className="clearfix"></div>
               </div>
               <div className="con-find">

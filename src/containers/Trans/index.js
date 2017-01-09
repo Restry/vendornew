@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { OrderSlide } from 'components';
+// import { OrderSlide } from 'components';
 import { RequestMore } from 'containers';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 @connect(
   state => ({
     categories: state.request.categories,
     loading: state.request.loading,
-    categoryOfRequestOrders: state.request.requests || []
+    categoryOfRequestOrders: state.request.requests || [],
+    info: state.info.data
   }), {})
 class Trans extends Component {
   static propTypes = {
@@ -18,7 +20,7 @@ class Trans extends Component {
   }
 
   render() {
-    const {loading, categories, categoryOfRequestOrders, load} = this.props;
+    const {loading, categories, categoryOfRequestOrders, load, info} = this.props;
     return (
       <div>
 
@@ -26,33 +28,33 @@ class Trans extends Component {
           <div className="main">
             <div className="adv-mac"><img src={require('assets/images/jysj-mac.png')} /></div>
             <div className="date-last-month">
-              <div className="txt"><h1>上月交易数据</h1><p><span>2015-10-01  0:00</span>至<span>2015-11-01  0:00</span></p></div>
+              <div className="txt"><h1>上月交易数据</h1>
+                <p><span>{moment().subtract(1, 'months').startOf('month').calendar()}</span>
+                  至<span>{moment().subtract(1, 'months').endOf('month').calendar()}</span></p>
+              </div>
             </div>
             <div className="date-list">
               <ul>
                 <li>
                   <h2>直接下单</h2>
-                  <p>5998</p>
+                  <p>{info.enterprise}</p>
                 </li>
                 <li>
                   <h2>询价定单</h2>
-                  <p>5998</p>
+                  <p>{info.services}</p>
                 </li>
                 <li>
                   <h2>发布需求</h2>
-                  <p>5998</p>
+                  <p>{info.designer}</p>
                 </li>
                 <li>
                   <h2>订单总金额</h2>
-                  <p>5998.31</p>
+                  <p>{info.totalAmount}</p>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-
-        <OrderSlide loading={loading} categories={categories}
-          categoryOfRequestOrders={categoryOfRequestOrders} load={load} />
 
         <RequestMore />
         <div className="actionWrap">
@@ -73,77 +75,7 @@ class Trans extends Component {
                 <tbody>
                   <tr>
                     <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
+                    <td><div className="info">1000个纸杯，质量好，速度快</div></td>
                     <td><div className="pri-tab">￥<em>21.00</em></div></td>
                     <td>
                       <div className="super"><span>共3家商家报价</span><i></i>
@@ -169,77 +101,7 @@ class Trans extends Component {
                 <tbody>
                   <tr>
                     <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">定制1000个纸杯，质量好，速度快</div></td>
+                    <td><div className="info">1000个纸杯，质量好，速度快</div></td>
                     <td><div className="pri-tab">￥<em>21.00</em></div></td>
                     <td>
                       <div className="super"><span>共3家商家报价</span><i></i>

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Card from './card';
 import { Link } from 'react-router';
+import { LoadingDots } from 'components';
 
 class OrderSlide extends Component {
   constructor(props, context) {
@@ -42,7 +43,7 @@ class OrderSlide extends Component {
       <div className="actionWrap action-gray">
         <div className="main">
           <div className="tit">
-            <h1>今日最新订单 {loading && '...'}</h1>
+            <h1>今日最新订单 {loading && <LoadingDots interval={100} dots={20}/>}</h1>
           </div>
           <div className="con">
 

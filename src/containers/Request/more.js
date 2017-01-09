@@ -3,8 +3,9 @@ import Helmet from 'react-helmet';
 import * as requestActions from 'redux/modules/request';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { LoadingDots } from 'components';
 
 @connect(
   (state, ownProps) => {
@@ -22,15 +23,20 @@ class MoreRequest extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { activeKey: 0 };
+    this.state = { activeKey: 'tmall', activePage: 1 };
   }
 
 
   handleSelect = (activeKey) => {
     event.preventDefault();
     this.setState({ activeKey });
+    this.props.load(activeKey);
   }
-
+  handlePagination = (eventKey) => {
+    this.setState({
+      activePage: eventKey
+    });
+  }
 
   render() {
     const { activeKey } = this.state;
@@ -38,10 +44,10 @@ class MoreRequest extends Component {
 
     return (<div className="m-cnt">
       <Helmet title="需求列表页面" />
-      <h1 className="center-title">{title || '最新定制需求'}</h1>
+      <h1 className="center-title">{title || '最新定制需求'} {loading && <LoadingDots interval={100} dots={20} />}</h1>
       <Nav bsStyle="tabs" activeKey={activeKey} onSelect={this.handleSelect}>
         {categories.map((cate, index) => {
-          return (<NavItem key={index} eventKey={index} title={cate.title}>{cate.title}</NavItem>);
+          return (<NavItem key={index} eventKey={cate.class} title={cate.title}>{cate.title}</NavItem>);
         })}
       </Nav>
       <div className="dt_left_a4 dt_a5" >
@@ -51,7 +57,7 @@ class MoreRequest extends Component {
               <td width="108px"><b>编号</b></td>
               <td width="94px"><b>任务类型</b></td>
               <td width="110px"><b>发布人</b></td>
-              <td width="365px"><b>任务要求</b></td>
+              <td><b>任务要求</b></td>
               <td width="93px"><b>任务本金</b></td>
               <td width="83px"><b>可赚佣金</b></td>
               <td width="88px"><b>操作</b></td>
@@ -67,12 +73,13 @@ class MoreRequest extends Component {
                   <td><span >远程托管</span></td>
                   <td>
                     <div className="mx_a3" >
-                      <Link to={'/request/detail/' + item.bid}> {item.title} </Link>
+                      <Link to={'/request/detail/' + item.bid}> {item.creator} </Link>
                     </div>
                   </td>
                   <td>
                     <div className="dt_b3">
-                      <a title={item.notes}>{item.notes}</a>										</div>
+                      <a title={item.title}>{item.title}</a>
+                    </div>
                     <div className="lie_a2">
                       <span title="只拍一个宝贝" className="lie_zhou lie_dan">单</span>
                       <span title="周交易量不超过7单" className="lie_zhou ">周7</span>
@@ -83,9 +90,11 @@ class MoreRequest extends Component {
                   </td>
                   <td>
                     <span >无需本金</span>									</td>
-                  <td><b >{item.price}</b>元</td>
+                  <td><b >{item.points}</b>元</td>
                   <td className="kgdjskl">
-                    <Link to={'/request/detail/' + item.bid}><div id="faburenwu" className="jiaru_but dt_b4">已有人</div> </Link>
+                    <Link to={'/request/detail/' + item.bid}>
+                      <div id="faburenwu" className="jiaru_but dt_b4">已有人</div>
+                    </Link>
 
                   </td>
                 </tr>);
@@ -95,22 +104,19 @@ class MoreRequest extends Component {
 
           </tbody>
         </table>
-        <div className="fanye">
-          <b><a className="now_page">1</a>
-            <a >2</a>
-            <a >3</a>
-            <a >4</a>
-            <a >5</a>
-            <a >6</a>
-            <a >7</a>
-            <a >8</a>
-            <a >9</a>
-            <a >10</a>
-            <a >11</a>
-            <a >下页</a>
-            <a >末页</a>
-          </b>
-        </div>
+
+        <Pagination
+          prev
+          next
+          first
+          last
+          ellipsis
+          boundaryLinks
+          items={categoryOfRequestOrders.length}
+          maxButtons={5}
+          activePage={this.state.activePage}
+          onSelect={this.handleSelect} />
+
       </div>
 
 

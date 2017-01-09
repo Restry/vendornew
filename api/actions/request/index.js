@@ -20,9 +20,10 @@ export const load = (req, pars) => {
 export const race = (req, pars, app) => {
   return auth(req, app).then((result) => {
     if (result) {
+      console.log(result._doc.email);
       return Promise.all([
         Request.findOne(req.query).exec(),
-        User.findOne({ name: result.name })]);
+        User.findOne({ email: result._doc.email }).exec()]);
     }
     return Promise.reject({ success: false, msg: '用户未登陆！' });
   }).then((results, err) => {
@@ -35,6 +36,7 @@ export const race = (req, pars, app) => {
     raceUser.raceTime = new Date();
     raceUser.process = 1;
 
+    user.myBills = user.myBills || [];
     user.myBills.push({ bid: request.bid, title: request.title });
 
     request.raceVendors.push(raceUser);
