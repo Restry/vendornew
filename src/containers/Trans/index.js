@@ -3,24 +3,30 @@ import React, { Component, PropTypes } from 'react';
 import { RequestMore } from 'containers';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import * as requestActions from 'redux/modules/request';
 
 @connect(
   state => ({
     categories: state.request.categories,
     loading: state.request.loading,
     categoryOfRequestOrders: state.request.requests || [],
-    info: state.info.data
-  }), {})
+    info: state.info.data,
+    statesRequest: state.request.StatesRequest,
+  }), { actions: requestActions })
 class Trans extends Component {
   static propTypes = {
     loading: PropTypes.bool,
     categories: PropTypes.array,
     categoryOfRequestOrders: PropTypes.array,
+    statesRequest: PropTypes.array,
     load: PropTypes.func,
   }
 
+  componentDidMount() {
+    this.props.actions.getByStates('已完成');
+  }
   render() {
-    const {loading, categories, categoryOfRequestOrders, load, info} = this.props;
+    const {loading, categories, statesRequest, load, info} = this.props;
     return (
       <div>
 
@@ -57,6 +63,7 @@ class Trans extends Component {
         </div>
 
         <RequestMore />
+
         <div className="actionWrap">
           <div className="main-data">
             <div className="tit">
@@ -66,53 +73,42 @@ class Trans extends Component {
               <table className="odr-data-tab fl">
                 <thead>
                   <tr>
-                    <th>公司名称</th>
                     <th>订单需求</th>
                     <th>订单金额</th>
                     <th>报价商家</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
+
+                  {statesRequest && statesRequest.map((item, index) => {
+                    return (<tr key={index + 'SS'}>
+                      <td><div className="name">{item.title}</div></td>
+                      <td><div className="pri-tab">￥<em>{item.points}</em></div></td>
+                      <td>
+                        <div className="super"><span>共{item.raceVendors.length}家商家报价</span><i></i>
+                          <ul className="super-list">
+                            <li><span>小尼*****司</span></li>
+                            <li><span>小尼*****司</span></li>
+                            <li><span>小尼*****司</span></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>);
+                  })
+                  }
+
                 </tbody>
               </table>
               <table className="odr-data-tab fr">
                 <thead>
                   <tr>
-                    <th>公司名称</th>
                     <th>订单需求</th>
                     <th>订单金额</th>
                     <th>报价商家</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><div className="name">中国****行</div></td>
-                    <td><div className="info">1000个纸杯，质量好，速度快</div></td>
-                    <td><div className="pri-tab">￥<em>21.00</em></div></td>
-                    <td>
-                      <div className="super"><span>共3家商家报价</span><i></i>
-                        <ul className="super-list">
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                          <li><span>小尼*****司</span></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
+
                 </tbody>
               </table>
               <div className="clearfix"></div>

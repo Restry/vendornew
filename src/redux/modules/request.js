@@ -12,10 +12,12 @@ const REMOVE_FAIL = 'chengbt-platform/request/REMOVE_FAIL';
 const DETAIL_SUCCESS = 'chengbt-platform/request/DETAIL_SUCCESS';
 const RACE_SUCCESS = 'chengbt-platform/request/RACE_SUCCESS';
 const CONFIRM_VENDOR_SUCCESS = 'chengbt-platform/request/CONFIRM_VENDOR_SUCCESS';
+const GETBY_STATES_SUCCESS = 'chengbt-platform/request/GETBY_STATES_SUCCESS';
 
 const initialState = {
   loaded: false,
   requests: [],
+  StatesRequest:[],
   categories: config.categories,
   item: {
     billInfo: {
@@ -126,6 +128,14 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         success: action.result.success
       };
+
+    case GETBY_STATES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        StatesRequest: action.result
+      };
     default:
       return state;
   }
@@ -138,14 +148,17 @@ export function load(category) {
   };
 }
 
-export function add(request) {
+export function getByStates(states) {
+  return {
+    types: [LOAD, GETBY_STATES_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.get('/request/load?states=' + states)
+  };
+}
+
+export function add(data) {
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: (client) => client.post('/request/post', {
-      data: {
-        request
-      }
-    })
+    promise: (client) => client.post('/request/post', { data })
   };
 }
 

@@ -390,3 +390,9 @@ a.fullBtnBlue:hover{color:#fff; background-color:#39C; transition:background-col
 .example-leave.example-leave-active {
   opacity: 0;
 }
+
+.lie_b2{
+  width: 100%
+}
+
+.die{ display: none;}
