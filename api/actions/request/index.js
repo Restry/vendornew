@@ -90,8 +90,10 @@ export const confirmVendor = (req, pars, app) => {
     const vendor = request.raceVendors.filter((item) => item.name === req.body.name)[0];
     vendor.process = vendor.process + 1;
 
+    request.markModified('raceVendors');
     return request.save();
-  }).then((saveErr) => {
+  }).then((item, saveErr) => {
+    console.log(JSON.stringify(item));
     if (saveErr) Promise.reject(saveErr);
     return {
       success: true

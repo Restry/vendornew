@@ -306,36 +306,30 @@ class RequestDetail extends Component {
 
           </Tab>
           <Tab eventKey={2} title="参与人员">
-
-
             <div className="sm_zw2">
-              <table border="0" cellSpacing="0" >
-                <tbody>
-                  <tr>
-                    <td width="770px" ></td>
-                  </tr>
 
-                  {item.raceVendors && item.raceVendors.map((vendor, index) => {
-                    return (<tr key={index}>
-                      <td width="770px" >
-                        <img src="/images/head.jpg" className="rw_head2" />
-                        <div className="canyu1">
-                          {vendor.name} <img src={require('../../assets/images/person.jpg')} />
-                          <span ><b>(进行中)</b></span>
-                          <br />
-                          <span>{vendor.raceTime}</span>
-                        </div>
-                        <div className="canyu2">
-                          <b>+ {item.price}</b> 元
-											</div>
-                      </td>
-                    </tr>);
-                  })}
+              {item.raceVendors && item.raceVendors.map((vendor, index) => {
+                return (
+                  <div key={index} className="row">
+                    <div className="col-sm-2">
+                      <img className="rw_head2" src={require('../../assets/images/person.jpg')} />
+                    </div>
+                    <div className="col-sm-2">
+                      {vendor.name}
+                    </div>
+                    <div className="col-sm-2">
+                      {vendor.raceTime}
+                    </div>
+                    <div className="col-sm-2">
+                      进行中
+                    </div>
+                    <div className="col-sm-2">
+                      <b>+ {item.points}</b> 元
+										</div>
+                  </div>);
+              })}
 
-                </tbody>
-              </table>
             </div>
-
           </Tab>
         </Tabs>
       </div >

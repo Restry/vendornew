@@ -23,3 +23,5 @@ export FlowMap from './Common/FlowMap'
 export CusMap from './Common/CusMap'
 
 export LoadingDots from './Common/LoadingDots'
+export SLink from './Common/SLink'
+export Carousel from './Common/Carousel'

@@ -3,30 +3,24 @@ import React, { Component, PropTypes } from 'react';
 import { RequestMore } from 'containers';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import * as requestActions from 'redux/modules/request';
+import * as actions from 'redux/modules/request';
 
 @connect(
   state => ({
-    categories: state.request.categories,
-    loading: state.request.loading,
-    categoryOfRequestOrders: state.request.requests || [],
     info: state.info.data,
     statesRequest: state.request.StatesRequest,
-  }), { actions: requestActions })
+  }), { ...actions })
 class Trans extends Component {
   static propTypes = {
-    loading: PropTypes.bool,
-    categories: PropTypes.array,
-    categoryOfRequestOrders: PropTypes.array,
     statesRequest: PropTypes.array,
-    load: PropTypes.func,
+    getByStates: PropTypes.func
   }
 
   componentDidMount() {
-    this.props.actions.getByStates('已完成');
+    this.props.getByStates('已完成');
   }
   render() {
-    const {loading, categories, statesRequest, load, info} = this.props;
+    const { statesRequest, info} = this.props;
     return (
       <div>
 

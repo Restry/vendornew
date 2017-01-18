@@ -58,7 +58,7 @@ class Trade extends Component {
                           <Link className="fac-odr-name" to={'/request/detail/' + item.bid}> {item.title} </Link>
 
                           <ul>
-                            {!item.vendor.email && raceVendors.map((rv, ri) => {
+                            {raceVendors.filter(i => i.process == 1).map((rv, ri) => {
                               return (<li key={ri}>{rv.name} <a onClick={this.chooseVendor(item.bid, rv)} className="ipt-btn-small-qd">选你了</a></li>);
                             })}
                           </ul>

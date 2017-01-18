@@ -17,7 +17,7 @@ const GETBY_STATES_SUCCESS = 'chengbt-platform/request/GETBY_STATES_SUCCESS';
 const initialState = {
   loaded: false,
   requests: [],
-  StatesRequest:[],
+  StatesRequest: [],
   categories: config.categories,
   item: {
     billInfo: {
@@ -155,10 +155,10 @@ export function getByStates(states) {
   };
 }
 
-export function add(data) {
+export function add(request) {
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: (client) => client.post('/request/post', { data })
+    promise: (client) => client.post('/request/post', { data: { request } })
   };
 }
 

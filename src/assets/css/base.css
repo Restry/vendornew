@@ -312,3 +312,5 @@ a.lg-btn:hover{background:#F90; color:#fff; transition:background-color 0.3s eas
     text-align: center;
     margin: 2em 0 0.5em;
 }
+
+.sm_zw2 .row { line-height: 77px; border-bottom: 1px dashed #ccc; padding:0; margin:0}

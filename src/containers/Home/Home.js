@@ -5,7 +5,7 @@ import * as authActions from 'redux/modules/auth';
 import * as requestActions from 'redux/modules/request';
 import { connect } from 'react-redux';
 // import Login from '../Login/Login';
-import { LoginForm, InfoBar, OrderSlide, CusMap } from 'components';
+import { LoginForm, InfoBar, OrderSlide, CusMap, Carousel } from 'components';
 
 @connect(
   state => ({
@@ -62,6 +62,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
+        <Carousel />
         <LoginForm />
         <InfoBar />
         <OrderSlide loading={loading} categories={categories}
