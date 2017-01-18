@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { SLink } from 'components';
 import moment from 'moment';
 import Mock from 'mockjs';
 const {Random} = Mock;
@@ -31,9 +31,9 @@ class Request extends Component {
                       <ul>
                         <li>
                           <dl>
-                            {requests && requests.map((item) => {
-                              return (<dd><em>{item.states}</em>
-                                <Link to={'/request/detail/' + item.bid} title={item.title}> {item.title} </Link>
+                            {requests && requests.map((item, index) => {
+                              return (<dd key={index + 'RR'}><em>{item.states}</em>
+                                <SLink to={'/request/detail/' + item.bid} max={25} title={item.title}>{item.title}</SLink>
                                 <span>{moment(item.created).format('MM-DD')}</span>
                                 <span><i className="num">{item.raceVendors.length}</i>家服务商报价</span>
                               </dd>);
@@ -75,23 +75,24 @@ class Request extends Component {
           <div className="zbxq-lc-itms fl">
             <div className="radius gpjj"> <i></i> </div>
             <p>公平竞争</p>
-            <span>供应商公平参与接单</span> </div>
+            <span>公平且真实的参与接单</span> </div>
           <div className="zbxq-lc-itms fl">
             <div className="radius jgbh"> <i></i> </div>
             <p>价格保护</p>
-            <span>已报价格不随市场变化而增加</span> </div>
+            <span>已报价格不会因任何原因变化</span> </div>
           <div className="zbxq-lc-itms fl">
             <div className="radius zskf"> <i></i> </div>
             <p>专属客服</p>
             <span>您的专属客服为您服务</span> </div>
           <div className="clearfix"></div>
-          <Link to="postRequest" className="fbxqBtn btn">立即发布需求</Link> </div>
+          <SLink to="postRequest" className="fbxqBtn btn">立即发布需求</SLink> </div>
         <div className="subjWrap">
           <div className="xqzb-abt">
             <div className="xqzbTxt"> <i></i>
               <h5>什么是需求招标？</h5>
-              <p>如果，您要定制的东西，我们模板中心没有，哦！对不起，这一定是我们的工作还不够仔细...<br /> 如果，您要定制的东西，是你在大街上看到的，但是却不知道它叫什么名字....
-                    <br /> 如果，您没有心情在我们的模板中心进行搜索，就是想找个人能帮你把事情都干了....
+              <p>您要优化的宝贝，我们肯定能帮你做到...<br />
+                您要优化的需求，我们有海量员工为您达成....
+                    <br /> 如果，您就是想找个人能帮你把事情都干了....
                     <br /> 那么....
                     <br /> 来这里，自助和人工，随时恭候您。
                 </p>
@@ -145,7 +146,7 @@ class Request extends Component {
             </div>
             <div className="clearfix"></div>
           </div>
-          <div className="xqzbBtnBox"><Link to="postRequest" className="fbxqBtn btn">立即发布需求</Link></div>
+          <div className="xqzbBtnBox"><SLink to="postRequest" className="fbxqBtn btn">立即发布需求</SLink></div>
         </div>
         <div className="die proRecommend suj">
           <div className="tit"><span>猜你喜欢</span><em>根据您的喜好精心为您推荐！</em><a className="cutover fr">换一批</a>

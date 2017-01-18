@@ -38,7 +38,12 @@ export class RequestForm extends React.Component {
       const field = event.target.name;
       const request = this.state.request;
 
-      obj[field] = event.target.value;
+      if (event.target.type == 'checkbox') {
+        obj[field] = event.target.checked;
+      } else {
+        obj[field] = event.target.value;
+      }
+
       request[col] = obj;
       return this.setState({ request });
     };
@@ -96,12 +101,12 @@ export class RequestForm extends React.Component {
 
     return (
       <div>
-        <CusMap title="开始放单" description="提交自己的需求，确保安全真实有效！"/>
+        <CusMap title="开始放单" description="提交自己的需求，确保安全真实有效！" />
         <div className="clearfix"></div>
         <form onSubmit={this.saveRequest} className="request-form form-horizontal">
           <div className="bs-callout bs-callout-info">
             第1步：单子信息
-        </div>
+          </div>
 
           <TextInput
             name="title"
@@ -110,6 +115,63 @@ export class RequestForm extends React.Component {
             onChange={this.updateRequestState}
             error={errors.title} />
 
+          <div className="form-group">
+            <label className="col-sm-2 control-label">一些要求</label>
+            <div className="col-sm-8">
+              <label className="checkbox-inline">
+                <input
+                  name="single"
+                  type="checkbox"
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  defaultChecked={request.limits.single} /> 只拍一件
+              </label>
+              <label className="checkbox-inline">
+                <input
+                  name="week7"
+                  type="checkbox"
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  defaultChecked={request.limits.week7} />  周交易不超过7件
+              </label>
+              <label className="checkbox-inline">
+                <input
+                  name="month15"
+                  type="checkbox"
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  defaultChecked={request.limits.month15} /> 月交易不超过15件
+              </label>
+
+              <label className="radio-inline">
+                <input type="radio"
+                  name="stype"
+                  className="inlineRadioOptions"
+                  value="phone"
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  defaultChecked={request.limits.stype == 'phone'} />
+                手机刷
+              </label>
+              <label className="radio-inline">
+                <input
+                  name="stype"
+                  type="radio" className="inlineRadioOptions"
+                  value="computer"
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  defaultChecked={request.limits.stype == 'computer'} />
+                电脑刷
+              </label>
+
+
+            </div>
+            <div className="col-sm-2">
+              <div className="col-sm-8">
+                <input type="text"
+                  className="form-control"
+                  value={request.limits.level}
+                  onChange={this.updateSubState(request.limits || {}, 'limits')}
+                  name="level"
+                  placeholder="1" /></div>
+              <label className="col-sm-2 control-label">星</label>
+            </div>
+          </div>
 
           <SelectInput
             name="category"
@@ -160,7 +222,7 @@ export class RequestForm extends React.Component {
 
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
-              <button type="submit" className="btn btn-default">提交</button>
+              <button type="submit" className="btn btn-primary">提交</button>
             </div>
           </div>
 

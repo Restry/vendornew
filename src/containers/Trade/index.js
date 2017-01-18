@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import toastr from 'toastr';
 import * as requestActions from 'redux/modules/request';
 import { load } from 'redux/modules/info';
+import { load as loadAuth } from 'redux/modules/auth';
 import { Link } from 'react-router';
 
 if (__CLIENT__) { require('../../assets/css/amend.css'); }
@@ -17,8 +18,12 @@ if (__CLIENT__) { require('../../assets/css/amend.css'); }
       myRequests: requests.filter((item) => { return item.creator === user.email; }),
       myVendors: user.myBills || [] // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
     };
-  }, { loadInfo: load, ...requestActions })
+  }, { loadInfo: load, loadAuth, ...requestActions })
 class Trade extends Component {
+  componentDidMount() {
+    this.props.loadAuth();
+  }
+
   chooseVendor = (bid, vendor) => {
     return () => {
       const { confirmVendor, loadInfo} = this.props;
@@ -28,9 +33,6 @@ class Trade extends Component {
         }
       });
     };
-  }
-  componentDidMount() {
-    this.props.loadInfo();
   }
 
   render() {
@@ -55,7 +57,7 @@ class Trade extends Component {
                       return (<tr key={index}>
                         <td><a className="fac-odr-img">
                           <img src={Random.image('70x70')} width="70" height="70" /></a>
-                          <Link className="fac-odr-name" to={'/request/detail/' + item.bid}> {item.title} </Link>
+                          <Link className="fac-odr-name" to={'/request/detail/' + item.bid}>{item.title}</Link>
 
                           <ul>
                             {raceVendors.filter(i => i.process == 1).map((rv, ri) => {
@@ -96,7 +98,7 @@ class Trade extends Component {
                       return (<tr key={index}>
                         <td><a className="fac-odr-img">
                           <img src={Random.image('70x70')} width="70" height="70" /></a>
-                          <Link className="fac-odr-name" to={'/request/detail/' + item.bid}> {item.title} </Link>
+                          <Link className="fac-odr-name" to={'/request/detail/' + item.bid}>{item.title}</Link>
 
                         </td>
                         <td align="center"><div className="fac-items-name">
@@ -165,7 +167,8 @@ class Trade extends Component {
 
 Trade.propTypes = {
   confirmVendor: PropTypes.func,
-  loadInfo: PropTypes.func
+  loadInfo: PropTypes.func,
+  loadAuth: PropTypes.func
 };
 
 export default Trade;

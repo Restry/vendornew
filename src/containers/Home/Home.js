@@ -44,24 +44,6 @@ export default class Home extends Component {
     return (
       <div>
         <Helmet title="Home" />
-        <div className="banner-box">
-          <div className="bd">
-            <ul>
-              <li>
-                <div className="m-width"> <a><img src={require('../../assets/images/banner1.jpg')} /></a> </div>
-              </li>
-              <li>
-                <div className="m-width"> <a><img src={require('../../assets/adv/ban-ind-01.jpg')} /></a> </div>
-              </li>
-            </ul>
-          </div>
-          <div className="ban-ind-btn"> <a className="prev">{'<'}</a> <a className="next">></a>
-            <div className="hd">
-              <ul>
-              </ul>
-            </div>
-          </div>
-        </div>
         <Carousel />
         <LoginForm />
         <InfoBar />

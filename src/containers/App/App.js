@@ -5,8 +5,8 @@ import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-import {load as loadRequest} from 'redux/modules/request';
-import { NavBar } from 'components';
+import { load as loadRequest } from 'redux/modules/request';
+import { NavBar, Loading } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
@@ -53,11 +53,12 @@ class App extends Component {
   };
 
   render() {
-    const {user, loaded, children, location} = this.props;
+    const {user, loaded, children, location, routing} = this.props;
     const styles = require('./App.scss');
-
+    const loading = loaded && !routing;
     return (
       <div>
+        <Loading loading={loading} />
         <Helmet {...config.app.head} />
         <div className="egc-top">
           <div className="m-cnt">

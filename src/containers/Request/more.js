@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { Nav, NavItem, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { LoadingDots } from 'components';
+import { LoadingDots, LimitField } from 'components';
 
 @connect(
   (state, ownProps) => {
@@ -80,13 +80,7 @@ class MoreRequest extends Component {
                     <div className="dt_b3">
                       <a title={item.title}>{item.title}</a>
                     </div>
-                    <div className="lie_a2">
-                      <span title="只拍一个宝贝" className="lie_zhou lie_dan">单</span>
-                      <span title="周交易量不超过7单" className="lie_zhou ">周7</span>
-                      <span title="月交易量不超过15单" className="lie_zhou lie_yue">月15</span>
-                      <img title="使用电脑刷单" className="lie_img1" src={require('assets/images/computer.png')} height="28px" />
-                      <img title="小号要求1" className="lie_img2" src={require('assets/images/b_red_1.gif')} height="16px" />
-                    </div>
+                    <LimitField {...item.limits} />
                   </td>
                   <td>
                     <span >无需本金</span>									</td>

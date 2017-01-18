@@ -39,10 +39,11 @@ class RequestDetail extends Component {
 
   componentDidMount() {
     const {_id} = this.props.params;
-    this.props.detail(_id);
+    parseInt(_id) && this.props.detail(_id);
   }
   onRace = () => {
-    const {race, pushState} = this.props;
+    const {race, pushState, reqInfo} = this.props;
+    if (reqInfo.alreadyRace) { return; }
     race(this.props.params._id).then((res) => {
       toastr.success('投标成功！');
       pushState('/');
@@ -117,7 +118,7 @@ class RequestDetail extends Component {
                 <tr>
                   <td className="a9_td1">操作:</td>
                   <td className="a9_td2">
-                    <div id="jierenwu" onClick={reqInfo.alreadyRace || this.onRace}
+                    <div id="jierenwu" onClick={this.onRace}
                       className={'jiaru_but dt_b4' + (reqInfo.alreadyRace ? ' rw_a8' : '')}>申请接单</div>
                   </td>
                 </tr>

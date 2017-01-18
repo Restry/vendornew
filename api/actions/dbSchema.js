@@ -37,6 +37,7 @@ const requestSchema = new Schema({
   'order': Number,
   'price': Number,
 
+  'limits': Object,
   'billInfo': Object,
   'searchWay': Object,
   'buyWay': Object,

@@ -7,7 +7,7 @@ class OrderSlide extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      selectedClass: 'wechat'
+      selectedClass: 'tmall'
     };
   }
 

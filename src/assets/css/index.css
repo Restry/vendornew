@@ -43,7 +43,7 @@
 /* 今日最新订单 */
 .ind-order-box{width:720px;margin:0 auto;}
 .order-sx-tit{margin-left:15px;margin-bottom:20px;height:30px; margin:0 auto; width:320px;}
-.order-sx-tit li{float:left; padding:2px 15px;}
+.order-sx-tit li{float:left; padding:2px 15px; cursor: pointer;}
 .order-sx-tit li.selected{background:#2689bc;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
 .order-sx-tit li.selected a{color:#fff;}
 .order-sx-con{width:1270px; height:325px; overflow:hidden; padding-top:20px;}

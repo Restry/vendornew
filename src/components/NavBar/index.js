@@ -23,11 +23,11 @@ class NavBar extends Component {
                 {config.app.title}
                 &nbsp;&nbsp;&nbsp;&nbsp;一单起订</span></div>
             <div className="hd-nav facade">
-             { this.props.user && <Link to="trade">我的资料<em>new<s></s></em></Link>}
+             { this.props.user && <Link to="/trade">我的资料<em>new<s></s></em></Link>}
 
-              <Link to="trans">交易数据</Link>
+              <Link to="/trans">交易数据</Link>
            {  /* <Link to="settled">商家入驻</Link>*/}
-              <Link to="request">需求招标</Link>
+              <Link to="/request">需求招标</Link>
               <div className="clearfixfix"></div>
             </div>
             <div className="nav-search facade">

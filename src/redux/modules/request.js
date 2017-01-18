@@ -46,6 +46,13 @@ const initialState = {
       fav: '自由发挥',
       favAgain: '自由发挥'
     },
+    limits: {
+      single: true,
+      week7: true,
+      month15: true,
+      stype: 'phone',
+      level: 1
+    }
   }
 };
 
