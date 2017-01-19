@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Step from './step';
-import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
+import TextInput from '../Common/TextInput';
+import SelectInput from '../Common/SelectInput';
 import config from '../../config';
 import { CusMap } from 'components';
 
