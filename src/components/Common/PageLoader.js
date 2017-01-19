@@ -7,20 +7,20 @@ import React, { Component, PropTypes } from 'react';
 
 class Loader extends Component {
   componentDidMount() {
-    $(this.refs.fakeloader).fakeLoader({
-      timeToHide: 5200,
-      bgColor: '#34495e',
-      spinner: 'spinner1'
-    });
+    // $(this.refs.fakeloader).fakeLoader({
+    //   timeToHide: 5200,
+    //   bgColor: '#34495e',
+    //   spinner: 'spinner1'
+    // });
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.loading != nextProps.loading) {
-      if (nextProps.loading) {
-        $(this.refs.fakeloader).fadeIn();
-      } else {
-        $(this.refs.fakeloader).fadeOut();
-      }
-    }
+    // if (this.props.loading != nextProps.loading) {
+    //   if (nextProps.loading) {
+    //     $(this.refs.fakeloader).fadeIn();
+    //   } else {
+    //     $(this.refs.fakeloader).fadeOut();
+    //   }
+    // }
   }
 
 
