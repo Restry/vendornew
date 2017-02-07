@@ -87,7 +87,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         adding: false,
         requests: action.result || [],
-        item: {}
+        item: initialState.item
       };
     case ADD_FAIL:
       return {
@@ -133,7 +133,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        success: action.result.success
+        requests: action.result
       };
 
     case GETBY_STATES_SUCCESS:

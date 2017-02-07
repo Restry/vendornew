@@ -636,7 +636,7 @@
 .fac-orders i{font-size:18px; }
 .fac-orders em{color:#ff7800; padding:0 2px;}
 .fac-odr-img img{vertical-align:middle;}
-.fac-odr-name{font-size:14px; color:#5f5f5f; padding-left:10px;}
+.fac-odr-name{font-size:14px; color:#5f5f5f;}
 .fac-kh-name{font-size:14px; font-weight:700; color:#464646;}
 .fac-items-name{font-size:12px; color:#939393;}
 .fac-dz-num{font-size:14px; color:#666;}
@@ -738,3 +738,11 @@
 .flex-direction-nav li a{display:block;width:50px;height:50px;overflow:hidden;cursor:pointer;position:absolute;}
 .flex-direction-nav li a.flex-prev{left:40px;background:url(../images/prev.png) center center no-repeat;}
 .flex-direction-nav li a.flex-next{right:40px;background:url(../images/next.png) center center no-repeat;}
+
+td.request-item-title ul {
+    padding-left: 1em;
+}
+
+td.request-item-title div {
+    padding-top: 0.5em;
+}

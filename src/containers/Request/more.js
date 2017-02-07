@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Nav, NavItem, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { LoadingDots, LimitField } from 'components';
+const pageSize = 5;
 
 @connect(
   (state, ownProps) => {
@@ -39,8 +40,10 @@ class MoreRequest extends Component {
   }
 
   render() {
-    const { activeKey } = this.state;
+    const { activeKey, activePage } = this.state;
     const { categories, loading, categoryOfRequestOrders, title} = this.props;
+
+    let start = (activePage - 1) * pageSize;
 
     return (<div className="m-cnt">
       <Helmet title="需求列表页面" />
@@ -63,7 +66,7 @@ class MoreRequest extends Component {
               <td width="88px"><b>操作</b></td>
             </tr>
             {
-              categoryOfRequestOrders.map((item, key) => {
+              categoryOfRequestOrders.slice(start, start + pageSize).map((item, key) => {
                 return (<tr key={key}>
                   <td>
                     <span>
@@ -87,7 +90,7 @@ class MoreRequest extends Component {
                   <td><b >{item.points}</b>元</td>
                   <td className="kgdjskl">
                     <Link to={'/request/detail/' + item.bid}>
-                      <div id="faburenwu" className="jiaru_but dt_b4">已有人</div>
+                      <div id="faburenwu" className="jiaru_but dt_b4">已开始</div>
                     </Link>
 
                   </td>
@@ -104,12 +107,12 @@ class MoreRequest extends Component {
           next
           first
           last
-          ellipsis
-          boundaryLinks
-          items={categoryOfRequestOrders.length}
+          items={Math.round(categoryOfRequestOrders.length / pageSize)}
           maxButtons={5}
           activePage={this.state.activePage}
-          onSelect={this.handleSelect} />
+          onSelect={this.handlePagination} />
+
+
 
       </div>
 

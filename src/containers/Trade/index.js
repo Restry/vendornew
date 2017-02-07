@@ -6,44 +6,73 @@ import * as requestActions from 'redux/modules/request';
 import { load } from 'redux/modules/info';
 import { load as loadAuth } from 'redux/modules/auth';
 import { Link } from 'react-router';
+import { ActionButton, LoadingDots, SLink } from 'components';
 
 if (__CLIENT__) { require('../../assets/css/amend.css'); }
 
 @connect(
   (state, ownProps) => {
-    const { requests} = state.info;
-    const { user } = state.auth;
+    const { requests} = state.request;
+    const { user, myVendorRequest, myPostRequest} = state.auth;
     if (!user) return {};
     return {
-      myRequests: requests.filter((item) => { return item.creator === user.email; }),
-      myVendors: user.myBills || [] // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
+      user,
+      loading: state.request.loading,
+      myRequests: myPostRequest,
+      myVendors: myVendorRequest || [] // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
     };
   }, { loadInfo: load, loadAuth, ...requestActions })
 class Trade extends Component {
-  componentDidMount() {
-    this.props.loadAuth();
-  }
 
   chooseVendor = (bid, vendor) => {
     return () => {
-      const { confirmVendor, loadInfo} = this.props;
-      confirmVendor(bid, vendor).then(res => {
-        if (res.success) {
-          loadInfo();
-        }
+      const { confirmVendor, loadAuth } = this.props;
+      confirmVendor(bid, vendor).then(() => {
+        loadAuth();
       });
     };
   }
 
+  nextStep = (bid) => {
+    return () => {
+      const { confirmVendor, loadAuth } = this.props;
+      confirmVendor(bid).then(() => {
+        loadAuth();
+      });
+    };
+  }
+
+  getCurrentProcess = (item) => {
+    if (!item.raceVendors) return 1;
+    let currentVendor = item.raceVendors.filter((obj) => obj.email == this.props.user.email);
+
+    return currentVendor[0] && currentVendor[0].process;
+  }
+
+  getVendorStatus = (rv, bid) => {
+    switch (rv.process) {
+      case 1:
+        return <a onClick={this.chooseVendor(bid, rv)} title="用户申请接入此任务" className="ipt-btn-small-qd">批准</a>;
+      case 4:
+        return <a onClick={this.chooseVendor(bid, rv)} title="用户已完成此任务，请确认好评" className="ipt-btn-small-qd">确认</a>;
+      case 5:
+        return '已完成';
+      default:
+        return '---任务进行中---';
+    }
+  }
+  componentDidMount() {
+    this.props.loadAuth();
+  }
   render() {
-    const { myRequests, myVendors} = this.props;
+    const { myRequests, myVendors, loading} = this.props;
     return (
       <div className="egc-container">
         <div className="find-wrap">
 
           <div className="factorVirtueBox">
             <div className="factor-ser box-radius fl">
-              <div className="tit-find"><span className="font-find fl">我发布的</span>
+              <div className="tit-find"><span className="font-find fl">我发布的{loading && <LoadingDots interval={100} dots={20} />}</span>
                 <div className="fr fac-orders">投标总数<em>{myRequests.length}</em>单</div>
                 <div className="clearfix"></div>
               </div>
@@ -55,24 +84,26 @@ class Trade extends Component {
                       let {raceVendors} = item;
                       raceVendors = raceVendors || [];
                       return (<tr key={index}>
-                        <td><a className="fac-odr-img">
-                          <img src={Random.image('70x70')} width="70" height="70" /></a>
-                          <Link className="fac-odr-name" to={'/request/detail/' + item.bid}>{item.title}</Link>
 
-                          <ul>
-                            {raceVendors.filter(i => i.process == 1).map((rv, ri) => {
-                              return (<li key={ri}>{rv.name} <a onClick={this.chooseVendor(item.bid, rv)} className="ipt-btn-small-qd">选你了</a></li>);
-                            })}
-                          </ul>
+                        <td className="request-item-title">
+                          <SLink className="fac-odr-name" to={'/request/detail/' + item.bid} max={35} title={item.title}>{item.title}</SLink>
+                          <div>
+                            <h3>接单人列表</h3>
+                            <ul>
+                              {raceVendors.length > 0 ? raceVendors.map((rv, ri) => {
+                                return (<li key={ri}>{rv.name} {this.getVendorStatus(rv, item.bid)}</li>);
+                              }) : '无'}
+                            </ul>
+                          </div>
                         </td>
                         <td align="center"><div className="fac-items-name">
-                          <p>发布时间时间</p>
-                          <p>{item.created}</p>
+                          发布时间
+                          <p>{new Date(item.created).toLocaleDateString()}</p>
                         </div></td>
-                        <td align="center"><span className="fac-dz-num"><em>{raceVendors.length}</em>件</span>
-                          <div className="fac-items-name">投标人数量</div></td>
-                        <td align="center"><div className="star mgwz xing-5"></div>
-                          <div className="fac-items-name">客户综价（满分五星）</div></td>
+                        <td align="center">
+
+                          <div className="fac-items-name">投标人数:<em>{raceVendors.length}</em></div></td>
+
                       </tr>);
                     })}
                     <tr className="die">
@@ -96,19 +127,13 @@ class Trade extends Component {
                       // let {raceVendors} = item;
                       // raceVendors = raceVendors || [];
                       return (<tr key={index}>
-                        <td><a className="fac-odr-img">
-                          <img src={Random.image('70x70')} width="70" height="70" /></a>
+                        <td>
                           <Link className="fac-odr-name" to={'/request/detail/' + item.bid}>{item.title}</Link>
-
                         </td>
-                        <td align="center"><div className="fac-items-name">
-                          <p>发布人</p>
-                          <p>{item.creator}</p>
-                        </div></td>
-                        <td align="center"><span className="fac-dz-num"></span>
-                          <div className="fac-items-name">投标人数量</div></td>
-                        <td align="center"><div className="star mgwz xing-5"></div>
-                          <div className="fac-items-name">客户综价（满分五星）</div></td>
+                        <td>
+                          <ActionButton step={this.getCurrentProcess(item)} nextStep={this.nextStep(item.bid)} />
+                        </td>
+
                       </tr>);
                     })}
                     <tr className="die">

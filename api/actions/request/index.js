@@ -4,6 +4,7 @@ moment.locale('zh-CN');
 import auth from '../../utils/auth';
 // import { loadInfo } from '../index';
 
+
 export const load = (req, pars) => {
   // console.log('load in');
   // console.log(`Request req.query: ${JSON.stringify(req.query)}`);
@@ -37,7 +38,7 @@ export const race = (req, pars, app) => {
     raceUser.process = 1;
 
     user.myBills = user.myBills || [];
-    user.myBills.push({ bid: request.bid, title: request.title });
+    user.myBills.push({ bid: request.bid, title: request.title, process: 1 });
 
     request.raceVendors.push(raceUser);
     return Promise.all([request.save(), user.save()]);
@@ -79,6 +80,8 @@ export const remove = (req, pars, app) => {
 };
 
 export const confirmVendor = (req, pars, app) => {
+
+
   return auth(req, app).then((result) => {
     if (result) {
       return Request.findOne(req.query).exec();
@@ -87,16 +90,25 @@ export const confirmVendor = (req, pars, app) => {
   }).then((request, err) => {
     if (err) return Promise.reject(err);
     request.vendor = req.body;
-    const vendor = request.raceVendors.filter((item) => item.name === req.body.name)[0];
+
+    let email = req.body.email;
+    email = email || req.decodeToken._doc.email;
+
+    // console.log(req.decodeToken._doc);
+
+    const vendor = request.raceVendors.filter((item) => item.email === email)[0];
     vendor.process = vendor.process + 1;
 
     request.markModified('raceVendors');
     return request.save();
   }).then((item, saveErr) => {
-    console.log(JSON.stringify(item));
+    // console.log(JSON.stringify(item));
     if (saveErr) Promise.reject(saveErr);
-    return {
-      success: true
-    };
+    return Request.find({
+      $or: [{ 'vendor.email': req.decodeToken._doc.email },
+      { 'creator': req.decodeToken._doc.email }]
+    }).sort('-created').exec();
   });
 };
+
+// export nextStep from './nextStep'

@@ -25,7 +25,9 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        user: action.result
+        user: action.result[0],
+        myVendorRequest: action.result[1],
+        myPostRequest: action.result[2]
       };
     case LOAD_FAIL:
       return {

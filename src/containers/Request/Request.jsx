@@ -23,8 +23,7 @@ class Request extends Component {
               <div className="activityBox">
                 <div className="title">
                   <h2>最新招标需求</h2>
-                  <span className="ac_List"> <a href="#">全部</a> <span className="pageState"><span> </span>/</span>
-                  </span> <span className="prev"></span> <span className="next"></span> </div>
+                </div>
                 <div className="content">
                   <div className="contentInner">
                     <div className="tempWrap">
@@ -32,8 +31,12 @@ class Request extends Component {
                         <li>
                           <dl>
                             {requests && requests.map((item, index) => {
-                              return (<dd key={index + 'RR'}><em>{item.states}</em>
-                                <SLink to={'/request/detail/' + item.bid} max={25} title={item.title}>{item.title}</SLink>
+                              return (<dd key={index + 'RR'}>
+                                <em>{item.states}</em>
+                                <span>
+                                  <SLink to={'/request/detail/' + item.bid} max={25} title={item.title}>{item.title}</SLink>
+
+                                </span>
                                 <span>{moment(item.created).format('MM-DD')}</span>
                                 <span><i className="num">{item.raceVendors.length}</i>家服务商报价</span>
                               </dd>);

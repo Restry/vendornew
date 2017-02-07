@@ -20,8 +20,6 @@ class InfoBar extends Component {
               <h1>今日数据</h1>
               <p>诚宝通自上线以来深受市场欢迎，企业用户，服务商家，设计师不断入驻，<br />
                 我们每日的交易总额也不断增长，深受用户赞誉
-                
-              <button className="btn btn-primary" onClick={load}>Reload from server</button>
           </p>
             </div>
             <div className="con">
@@ -47,7 +45,7 @@ class InfoBar extends Component {
             </div>
           </div>
         </div>
-        
+
       </div>
     );
   }

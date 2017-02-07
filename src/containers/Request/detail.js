@@ -100,7 +100,7 @@ class RequestDetail extends Component {
               <tbody>
                 <tr>
                   <td className="a9_td1">任务状态:</td>
-                  <td className="a9_td2" ><b>已被申请 ...</b></td>
+                  <td className="a9_td2" ><b>正在进行 ...</b></td>
                 </tr>
                 <tr>
                   <td className="a9_td1">任务佣金:</td>
