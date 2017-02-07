@@ -1,6 +1,5 @@
 import React from 'react';
-import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
+import TextInput from '../Common/TextInput.js';
 import * as map from './fieldMap';
 
 const StepForm = ({item, field, onChange, errors}) => {
