@@ -12,7 +12,7 @@ export default function loadAuth(req, pars, app) {
   }).then((user, err) => {
     if (err) return Promise.reject(err);
     const bids = [];
-    user.myBills.map((item) => {
+    user.myBills && user.myBills.map((item) => {
       bids.push(item.bid);
     });
     return Promise.all([
