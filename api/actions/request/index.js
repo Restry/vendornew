@@ -20,8 +20,8 @@ export const load = (req, pars) => {
 };
 export const race = (req, pars, app) => {
   return auth(req, app).then((result) => {
-    if (result) {
-      console.log(result._doc.email);
+    if (result.success) {
+      // console.log(result._doc.email);
       return Promise.all([
         Request.findOne(req.query).exec(),
         User.findOne({ email: result._doc.email }).exec()]);
@@ -29,8 +29,8 @@ export const race = (req, pars, app) => {
     return Promise.reject({ success: false, msg: '用户未登陆！' });
   }).then((results, err) => {
     if (err) return Promise.reject(err);
-    let request = results[0];
-    let user = results[1];
+    const request = results[0];
+    const user = results[1];
 
     const raceUser = req.decodeToken._doc;
     request.raceTime = new Date();
@@ -58,7 +58,7 @@ export const post = (req, pars, app) => {
   request.raceVendors = [];
 
   return auth(req, app).then((result) => {
-    if (result) {
+    if (result.success) {
       request.creator = result._doc.email;
       const newRequest = new Request(request);
       return newRequest.save();
@@ -83,7 +83,7 @@ export const confirmVendor = (req, pars, app) => {
 
 
   return auth(req, app).then((result) => {
-    if (result) {
+    if (result.success) {
       return Request.findOne(req.query).exec();
     }
     return Promise.reject({ success: false, msg: '用户未登陆！' });

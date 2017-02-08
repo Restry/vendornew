@@ -41,7 +41,7 @@ export default function register(req, params, app) {
           user: newUser
         });
 
-        req.session.user = newUser;
+        // req.session.user = newUser;
       });
     });
   });

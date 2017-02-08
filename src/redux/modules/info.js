@@ -4,7 +4,8 @@ const LOAD_FAIL = 'redux-example/LOAD_FAIL';
 
 const initialState = {
   loaded: false,
-  requests: []
+  requests: [],
+  data: {}
 };
 
 export default function info(state = initialState, action = {}) {
@@ -19,7 +20,7 @@ export default function info(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        data: action.result.info,
+        data: action.result.info || {},
         requests: action.result.requests
       };
     case LOAD_FAIL:

@@ -16,15 +16,20 @@ export default function authenticate(req, app) {
             message: 'Failed to authenticate token.',
             error: err
           });
-          console.log(JSON.stringify(err));
+          // console.log(JSON.stringify(err));
         } else {
           // console.log('decode user:', decoded);
+          decoded.success = true;
           req.decodeToken = decoded;
           resolve(decoded);
         }
       });
     } else {
-      resolve(null);
+      resolve({
+        success: false,
+        message: 'Failed to authenticate token.',
+        error: true
+      });
     }
   });
 }
