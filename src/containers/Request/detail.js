@@ -319,7 +319,7 @@ class RequestDetail extends Component {
                       {vendor.name}
                     </div>
                     <div className="col-sm-2">
-                      {vendor.raceTime}
+                      {new Date(vendor.raceTime).toLocaleDateString()}
                     </div>
                     <div className="col-sm-2">
                       进行中
