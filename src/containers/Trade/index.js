@@ -3,8 +3,7 @@ import { mock, Random } from 'mockjs';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import * as requestActions from 'redux/modules/request';
-import { load } from 'redux/modules/info';
-import { load as loadAuth } from 'redux/modules/auth';
+import { load } from 'redux/modules/auth';
 import { Link } from 'react-router';
 import { ActionButton, LoadingDots, SLink } from 'components';
 
@@ -18,12 +17,18 @@ if (__CLIENT__) { require('../../assets/css/amend.css'); }
     return {
       user,
       loading: state.request.loading,
-      myRequests: myPostRequest,
+      myRequests: myPostRequest || [],
       myVendors: myVendorRequest || [] // requests.filter((item) => { return item.vendor !== null && item.vendor.email === user.email; })
     };
-  }, { loadInfo: load, loadAuth, ...requestActions })
+  }, { loadAuth: load, ...requestActions })
 class Trade extends Component {
 
+  getCurrentProcess = (item) => {
+    if (!item.raceVendors) return 1;
+    const currentVendor = item.raceVendors.filter((obj) => obj.email == this.props.user.email);
+
+    return currentVendor[0] && currentVendor[0].process;
+  }
   chooseVendor = (bid, vendor) => {
     return () => {
       const { confirmVendor, loadAuth } = this.props;
@@ -32,7 +37,6 @@ class Trade extends Component {
       });
     };
   }
-
   nextStep = (bid) => {
     return () => {
       const { confirmVendor, loadAuth } = this.props;
@@ -41,14 +45,6 @@ class Trade extends Component {
       });
     };
   }
-
-  getCurrentProcess = (item) => {
-    if (!item.raceVendors) return 1;
-    let currentVendor = item.raceVendors.filter((obj) => obj.email == this.props.user.email);
-
-    return currentVendor[0] && currentVendor[0].process;
-  }
-
   getVendorStatus = (rv, bid) => {
     switch (rv.process) {
       case 1:
@@ -193,7 +189,10 @@ class Trade extends Component {
 Trade.propTypes = {
   confirmVendor: PropTypes.func,
   loadInfo: PropTypes.func,
-  loadAuth: PropTypes.func
+  loadAuth: PropTypes.func,
+  myRequests: PropTypes.array,
+  myVendors: PropTypes.array,
+  loading: PropTypes.bool
 };
 
 export default Trade;
